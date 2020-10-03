@@ -1,4 +1,6 @@
-class product{
+class product
+{
+	
 	long productID;
 	String productName;
 	long productBuyerID;
@@ -6,6 +8,7 @@ class product{
 	long productCost;
 	long productSellerID;
 	String productSellerName;
+	
 	product(long productId,long productCost,String productName,long productBuyerID,String productBuyerName,long productSellerID,String productSellerName)
 	{
 		productId=this.productID;
@@ -16,6 +19,7 @@ class product{
 		productSellerID=this.productSellerID;
 		productSellerName=this.productSellerName;
 	}
+	
 	product()
 	{
 		productId=0;
