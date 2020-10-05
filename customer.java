@@ -10,12 +10,12 @@ public class customer
   
 	customer(String customerName,long customerID,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail)
 	{
-		customerID=this.customerID;
-		customerEmail=this.customerEmail;
-		customerName=this.customerName;
-		customerAddress=this.customerAddress;
-		customerCredits=this.customerCredits;
-		customerEmail=this.customerEmail;
+		this.customerID=customerID;
+		this.customerEmail=customerEmail;
+		this.customerName=customerName;
+		this.customerAddress=customerAddress;
+		this.customerCredits=customerCredits;
+		this.customerEmail=customerEmail;
 	}
   
 	customer()
