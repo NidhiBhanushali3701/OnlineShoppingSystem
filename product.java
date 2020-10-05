@@ -11,13 +11,13 @@ class product
 	
 	product(long productId,long productCost,String productName,long productBuyerID,String productBuyerName,long productSellerID,String productSellerName)
 	{
-		productId=this.productID;
-		productCost=this.productCost;
-		productBuyerID=this.productBuyerID;
-		productBuyerName=this.productBuyerName;
-		productName=this.productName;
-		productSellerID=this.productSellerID;
-		productSellerName=this.productSellerName;
+		this.productId=productID;
+		this.productCost=productCost;
+		this.productBuyerID=productBuyerID;
+		this.productBuyerName=productBuyerName;
+		this.productName=productName;
+		this.productSellerID=productSellerID;
+		this.productSellerName=thisproductSellerName;
 	}
 	
 	product()
