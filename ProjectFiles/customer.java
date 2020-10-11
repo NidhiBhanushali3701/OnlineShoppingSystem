@@ -8,8 +8,9 @@ public class customer
 	long customerCredits;
 	long customerID;
 	int customerSize;
-  
-	customer(String customerName,long customerID,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,int customerSize)
+  	char customerGender;
+	
+	customer(String customerName,long customerID,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,int customerSize,char customerGender)
 	{
 		this.customerID=customerID;
 		this.customerEmail=customerEmail;
@@ -18,6 +19,7 @@ public class customer
 		this.customerCredits=customerCredits;
 		this.customerEmail=customerEmail;
 		this.customerSize=customerSize;
+		this.customerGender=customerGender;
 	}
   
 	customer()
@@ -29,6 +31,8 @@ public class customer
 		customerPhoneNo=0;
 		customerID=0;
 		customerSize=0;
+		customerGender='';
+		
 	}
 
 	public static void main(String args[]) 
