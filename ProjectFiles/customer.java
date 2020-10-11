@@ -31,7 +31,7 @@ public class customer
 		customerPhoneNo=0;
 		customerID=0;
 		customerSize=0;
-		customerGender='';
+		customerGender='\0';
 		
 	}
 
