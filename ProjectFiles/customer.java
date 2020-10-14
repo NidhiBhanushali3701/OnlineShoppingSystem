@@ -101,7 +101,7 @@ public class customer
 		System.out.println("Password:\n");
 		String pass=s.nextLine();
 		customer c=new customer(name,0,phone,0,add,email,0,'N',pass, "No Orders yet");
-		v.add(c);
+		cust.(c);
 		System.out.println("Account created successfully\n");//go to store menu
 	}
 
