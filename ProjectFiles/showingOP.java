@@ -1,7 +1,6 @@
 import java.util.*;
 import javax.swing.*;
 import javax.swing.Timer;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -13,7 +12,7 @@ class showingOP
     }
 }
 class Log_Sign extends customer implements ActionListener {
-    JButton login,signin,exitB;
+    JButton loginB,signupB,exitB;
     JPanel panel;
     JFrame mainFrame;
     Log_Sign()
@@ -22,18 +21,18 @@ class Log_Sign extends customer implements ActionListener {
         panel = new JPanel();
         mainFrame.add(panel);
 
-        login = new JButton(" LOG-IN ");
-        login.setBounds(300, 120, 120,48);
-        signin = new JButton(" SIGN-IN ");
-        signin.setBounds(300,201, 120,48);
+        loginB = new JButton(" LOG-IN ");
+        loginB.setBounds(300, 120, 120,48);
+        signupB = new JButton(" SIGN-IN ");
+        signupB.setBounds(300,201, 120,48);
         exitB =  new JButton(" EXIT ");
         exitB.setBounds(300, 282, 120,48);
-        panel.add(login);
-        panel.add(signin);
+        panel.add(loginB);
+        panel.add(signupB);
         panel.add(exitB);
 
-        login.addActionListener(this);
-        signin.addActionListener(this);
+        loginB.addActionListener(this);
+        signupB.addActionListener(this);
         exitB.addActionListener(this);
 
         panel.setLayout(null);
@@ -44,14 +43,14 @@ class Log_Sign extends customer implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent a)
     {
-        if(a.getSource()==login)
+        if(a.getSource()==loginB)
         {
             new logIn();
             mainFrame.dispose();
         }
-        else if(a.getSource()==signin)
+        else if(a.getSource()==signupB)
         {
-            new signIn();
+            new signUp();
             mainFrame.dispose();
         }
         else
@@ -69,7 +68,7 @@ class logIn extends customer implements ActionListener
     JLabel lPassword,lEMail,lMSG;
     JPasswordField password;
     JTextField email;
-    JButton login,exitB;
+    JButton loginB,exitB,backB;
     JProgressBar loginProgress;
     Timer loginT;
     int i=0;
@@ -83,29 +82,32 @@ class logIn extends customer implements ActionListener
         lEMail= new JLabel(" ENTER EMAIL ");
         password = new JPasswordField(15);
         email = new JTextField(15);
-        login = new JButton(" LOG-IN ");
+        loginB = new JButton(" LOG-IN ");
         exitB =  new JButton(" EXIT ");
         lMSG = new JLabel("");
         loginProgress = new JProgressBar(0,15);
         loginT= new Timer(250,this);
+        backB = new JButton("<< BACK ");
         lEMail.setBounds(150, 12,120, 45);
         email.setBounds(300, 12,120, 45);
         lPassword.setBounds(150, 73, 120, 45);
         password.setBounds(300, 73,120, 45);
-        login.setBounds(105,150,120, 45);
-        exitB.setBounds(303, 150, 210,48);
+        loginB.setBounds(210,150,81, 48);
+        exitB.setBounds(315, 150, 81,48);
+        backB.setBounds(105,150,81, 48);
         lMSG.setBounds(225, 300, 300,48);
         loginProgress.setBounds(125, 402,450,21);
         panel.add(lEMail);
         panel.add(email);
         panel.add(lPassword);
         panel.add(password);
-        panel.add(login);
+        panel.add(loginB);
         panel.add(exitB);
+        panel.add(backB);
         panel.add(lMSG);
-        login.addActionListener(this);
+        loginB.addActionListener(this);
         exitB.addActionListener(this);
-
+        backB.addActionListener(this);
         panel.setLayout(null);
         LogInFrame.setSize(693, 810);
         LogInFrame.setVisible(true);
@@ -114,15 +116,14 @@ class logIn extends customer implements ActionListener
     @Override
     public void actionPerformed(ActionEvent a)
     {
-        if(a.getSource()==login)
+        if(a.getSource()==loginB)
         {   
             loginT.start();
             panel.add(loginProgress);
             lMSG.setText(" LOGIN STATUS");
-            if(((email.getText()).equals(customerEmail)) && ((new String(password.getPassword()).equals(customerPassword))))
-            {   
+            if(check(email.getText(),new String(password.getPassword())))
+            {
                 lMSG.setText(" LOGIN SUCCESSFUL");
-            //we open our product display
             }
             else
             {
@@ -134,45 +135,62 @@ class logIn extends customer implements ActionListener
             System.exit(0);
             LogInFrame.dispose();
         }
+        else if(a.getSource()==backB)
+        {
+            new Log_Sign();
+            LogInFrame.dispose();
+        }
         if(i==15)
         {
-            if(((email.getText()).equals(customerEmail)) && ((new String(password.getPassword()).equals(customerPassword))))
-            {   
+            if(check(email.getText(),new String(password.getPassword())))
+            {
                 lMSG.setText(" LOGIN SUCCESSFUL");
-            //we open our product display
+                //we open our product display
             }
             else
             {
                 lMSG.setText(" INCORRECT EMAIL / PASSWORD ");
+                //we tell to try again / sign up
             }
-            System.out.println( customerName+" "+ customerEmail+" "+ customerGender+" "+ customerPhoneNo + " " + customerPassword);
-            //here we display our product display
         }
         i++;
         loginProgress.setValue(i);
     }
+    public boolean check(String checkEMail,String checkPassword)
+    {
+        boolean flag=false;
+        if(checkPassword.length()>8)
+        {
+            if(checkEMail.equals(customerEmail) && checkPassword.equals(customerPassword))
+            {   
+                flag =true;    
+                //we open our product display
+            }
+        }
+        return flag;
+    }
 }
 
-class signIn extends customer implements ActionListener 
+class signUp extends customer implements ActionListener 
 {
     private static final long serialVersionUID = 1L;
-    JFrame signInFrame;
+    JFrame signUpFrame;
     JPanel panel;
     JLabel lName,lPassword,lPhoneNo,lGender,lEMail,lAddress,lMSG;
     JPasswordField password;
     JTextField name,phoneNo,email,address;
     JRadioButton male,female;
     ButtonGroup gender;
-    JButton signin,exitB;
-    JProgressBar signinProgress;
-    Timer signinT;
+    JButton signupB,exitB,backB;
+    JProgressBar signupProgress;
+    Timer signupT;
     int i=0;
-    public signIn()
+    public signUp()
     {
         super();
-        signInFrame = new JFrame();
+        signUpFrame = new JFrame();
         panel=new JPanel();
-        signInFrame.add(panel);
+        signUpFrame.add(panel);
         lName= new JLabel(" ENTER NAME ");
         lPassword= new JLabel(" ENTER PASSWORD");
         lPhoneNo= new JLabel(" ENTER PHONE NO");
@@ -180,8 +198,8 @@ class signIn extends customer implements ActionListener
         lEMail= new JLabel(" ENTER EMAIL ");
         lAddress= new JLabel(" ENTER ADDRESS");
         lMSG = new JLabel("");
-        signinProgress = new JProgressBar(0,25);
-        signinT = new Timer(500, this);
+        signupProgress = new JProgressBar(0,25);
+        signupT = new Timer(500, this);
         password = new JPasswordField(15);
         name = new JTextField(15);
         phoneNo = new JTextField(15);
@@ -190,8 +208,9 @@ class signIn extends customer implements ActionListener
         male = new JRadioButton(" MALE ");
         female = new JRadioButton(" FEMALE ");
         gender = new ButtonGroup();
-        signin = new JButton(" SIGN-IN ");
+        signupB = new JButton(" SIGN-IN ");
         exitB =  new JButton(" EXIT ");
+        backB = new JButton("<< BACK ");
         gender.add(female);
         gender.add(male);
         lName.setBounds( 150, 12,120, 45);
@@ -207,10 +226,11 @@ class signIn extends customer implements ActionListener
         female.setBounds(531,250,102, 45);
         lAddress.setBounds( 150,330,120, 45);
         address.setBounds(300,330,120, 51);
-        signin.setBounds(150,500, 111,48);
-        exitB.setBounds(303,500, 111,48);
+        signupB.setBounds(210,500,81,48);
+        exitB.setBounds(315,500, 81,48);
+        backB.setBounds(105,500, 81,48);
         lMSG.setBounds(225,603, 120, 48);
-        signinProgress.setBounds( 150,700,450, 21);
+        signupProgress.setBounds( 150,700,450, 21);
         panel.add(lName);
         panel.add(name);
         panel.add(lEMail);
@@ -224,28 +244,29 @@ class signIn extends customer implements ActionListener
         panel.add(female);
         panel.add(lAddress);
         panel.add(address);
-        panel.add(signin);
+        panel.add(signupB);
         panel.add(exitB);
+        panel.add(backB);
         panel.add(lMSG);
-        signin.addActionListener(this);
+        signupB.addActionListener(this);
         exitB.addActionListener(this);
-
+        backB.addActionListener(this);
         panel.setLayout(null);
-        signInFrame.setSize(693, 810);
-        signInFrame.setVisible(true);
-        signInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        signUpFrame.setSize(693, 810);
+        signUpFrame.setVisible(true);
+        signUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    signIn(String customerName,long customerID,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,int customerSize,char customerGender,String customerPassword, String prevOrders)
+    signUp(String customerName,long customerID,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,int customerSize,char customerGender,String customerPassword, String prevOrders)
     {
         super(customerName,customerID,customerPhoneNo,customerCredits,customerAddress,customerEmail,customerSize,customerGender,customerPassword,prevOrders);
     }
     @Override
     public void actionPerformed(ActionEvent a)
     {
-        if(a.getSource()==signin)
+        if(a.getSource()==signupB)
         {
-            signinT.start();
-            panel.add(signinProgress);
+            signupT.start();
+            panel.add(signupProgress);
             customerName=name.getText();
             customerPhoneNo=Integer.parseInt(phoneNo.getText());
             customerEmail=email.getText();
@@ -263,23 +284,27 @@ class signIn extends customer implements ActionListener
                 customerGender='F';
             }
             lMSG.setText(" SIGN IN SUCCESSFUL!");
-            //this.signIn(customerName,customerID,customerPhoneNo,customerCredits,customerAddress,customerEmail,customerSize,customerGender);
+            //this.signup(customerName,customerID,customerPhoneNo,customerCredits,customerAddress,customerEmail,customerSize,customerGender);
             System.out.println( customerName+" "+ customerEmail+" "+ customerGender+" "+ customerPhoneNo + " " + customerPassword);
 
         }
         else if(a.getSource()==exitB)
         {
             System.exit(0);
-            signInFrame.dispose();
+            signUpFrame.dispose();
         }
-
+        else if(a.getSource()==backB)
+        {
+            new Log_Sign();
+            signUpFrame.dispose();
+        }
         if(i==15)
         {
             lMSG.setText(" SIGN IN SUCCESSFUL!");
             new logIn();
-            signInFrame.dispose();
+            signUpFrame.dispose();
         }
         i++;
-        signinProgress.setValue(i);
+        signupProgress.setValue(i);
     }
 }
