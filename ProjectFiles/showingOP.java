@@ -1,5 +1,7 @@
 import java.util.*;
 import javax.swing.*;
+import javax.swing.Timer;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -68,6 +70,9 @@ class logIn extends customer implements ActionListener
     JPasswordField password;
     JTextField email;
     JButton login,exitB;
+    JProgressBar loginProgress;
+    Timer loginT;
+    int i=0;
     public logIn()
     {
         super();
@@ -81,15 +86,16 @@ class logIn extends customer implements ActionListener
         login = new JButton(" LOG-IN ");
         exitB =  new JButton(" EXIT ");
         lMSG = new JLabel("");
-
+        loginProgress = new JProgressBar(0,15);
+        loginT= new Timer(250,this);
         lEMail.setBounds(150, 12,120, 45);
         email.setBounds(300, 12,120, 45);
         lPassword.setBounds(150, 73, 120, 45);
         password.setBounds(300, 73,120, 45);
         login.setBounds(105,150,120, 45);
         exitB.setBounds(303, 150, 210,48);
-        lMSG.setBounds(225, 300, 210,48);
-
+        lMSG.setBounds(225, 300, 300,48);
+        loginProgress.setBounds(125, 402,450,21);
         panel.add(lEMail);
         panel.add(email);
         panel.add(lPassword);
@@ -97,7 +103,6 @@ class logIn extends customer implements ActionListener
         panel.add(login);
         panel.add(exitB);
         panel.add(lMSG);
-
         login.addActionListener(this);
         exitB.addActionListener(this);
 
@@ -109,11 +114,13 @@ class logIn extends customer implements ActionListener
     @Override
     public void actionPerformed(ActionEvent a)
     {
-        System.out.println( customerName+" "+ customerEmail+" "+ customerGender+" "+ customerPhoneNo + " " + customerPassword);
         if(a.getSource()==login)
-        {
+        {   
+            loginT.start();
+            panel.add(loginProgress);
+            lMSG.setText(" LOGIN STATUS");
             if(((email.getText()).equals(customerEmail)) && ((new String(password.getPassword()).equals(customerPassword))))
-            {
+            {   
                 lMSG.setText(" LOGIN SUCCESSFUL");
             //we open our product display
             }
@@ -127,8 +134,25 @@ class logIn extends customer implements ActionListener
             System.exit(0);
             LogInFrame.dispose();
         }
+        if(i==15)
+        {
+            if(((email.getText()).equals(customerEmail)) && ((new String(password.getPassword()).equals(customerPassword))))
+            {   
+                lMSG.setText(" LOGIN SUCCESSFUL");
+            //we open our product display
+            }
+            else
+            {
+                lMSG.setText(" INCORRECT EMAIL / PASSWORD ");
+            }
+            System.out.println( customerName+" "+ customerEmail+" "+ customerGender+" "+ customerPhoneNo + " " + customerPassword);
+            //here we display our product display
+        }
+        i++;
+        loginProgress.setValue(i);
     }
 }
+
 class signIn extends customer implements ActionListener 
 {
     private static final long serialVersionUID = 1L;
@@ -140,6 +164,9 @@ class signIn extends customer implements ActionListener
     JRadioButton male,female;
     ButtonGroup gender;
     JButton signin,exitB;
+    JProgressBar signinProgress;
+    Timer signinT;
+    int i=0;
     public signIn()
     {
         super();
@@ -153,6 +180,8 @@ class signIn extends customer implements ActionListener
         lEMail= new JLabel(" ENTER EMAIL ");
         lAddress= new JLabel(" ENTER ADDRESS");
         lMSG = new JLabel("");
+        signinProgress = new JProgressBar(0,25);
+        signinT = new Timer(500, this);
         password = new JPasswordField(15);
         name = new JTextField(15);
         phoneNo = new JTextField(15);
@@ -167,20 +196,21 @@ class signIn extends customer implements ActionListener
         gender.add(male);
         lName.setBounds( 150, 12,120, 45);
         name.setBounds(300, 12,120, 45);
-        lEMail.setBounds( 150, 73,120, 45);
-        email.setBounds(300, 73,120, 45);
-        lPassword.setBounds( 150, 156,120, 45);
-        password.setBounds(300,156,120, 45);
-        lPhoneNo.setBounds( 150,303,120, 45);
-        phoneNo.setBounds(300,303,120, 45);
-        lGender.setBounds( 150,402,120, 45);
-        male.setBounds(300,402,111, 45);
-        female.setBounds(531,402,111, 45);
-        lAddress.setBounds( 150, 531,120, 45);
-        address.setBounds(300,531,120, 51);
-        signin.setBounds(150,630, 111,48);
-        exitB.setBounds(303, 630, 111,48);
-        lMSG.setBounds(225, 702, 120, 48);
+        lEMail.setBounds( 150, 63,120, 45);
+        email.setBounds(300, 63,120, 45);
+        lPassword.setBounds( 150, 123,120, 45);
+        password.setBounds(300,123,120, 45);
+        lPhoneNo.setBounds( 150,184,120, 45);
+        phoneNo.setBounds(300,184,120, 45);
+        lGender.setBounds( 150,250,120, 45);
+        male.setBounds(300,250,102, 45);
+        female.setBounds(531,250,102, 45);
+        lAddress.setBounds( 150,330,120, 45);
+        address.setBounds(300,330,120, 51);
+        signin.setBounds(150,500, 111,48);
+        exitB.setBounds(303,500, 111,48);
+        lMSG.setBounds(225,603, 120, 48);
+        signinProgress.setBounds( 150,700,450, 21);
         panel.add(lName);
         panel.add(name);
         panel.add(lEMail);
@@ -214,6 +244,8 @@ class signIn extends customer implements ActionListener
     {
         if(a.getSource()==signin)
         {
+            signinT.start();
+            panel.add(signinProgress);
             customerName=name.getText();
             customerPhoneNo=Integer.parseInt(phoneNo.getText());
             customerEmail=email.getText();
@@ -234,13 +266,20 @@ class signIn extends customer implements ActionListener
             //this.signIn(customerName,customerID,customerPhoneNo,customerCredits,customerAddress,customerEmail,customerSize,customerGender);
             System.out.println( customerName+" "+ customerEmail+" "+ customerGender+" "+ customerPhoneNo + " " + customerPassword);
 
-            new logIn();
-            signInFrame.dispose();
         }
         else if(a.getSource()==exitB)
         {
             System.exit(0);
             signInFrame.dispose();
         }
+
+        if(i==15)
+        {
+            lMSG.setText(" SIGN IN SUCCESSFUL!");
+            new logIn();
+            signInFrame.dispose();
+        }
+        i++;
+        signinProgress.setValue(i);
     }
 }
