@@ -7,50 +7,58 @@ class showingOP
 {
     public static void main(String args[])
 	{
-        details show = new details();
+        Log_Sign show = new Log_Sign();
     }
 }
-class details extends customer{
-    JButton login,signin;
+class Log_Sign extends customer implements ActionListener {
+    JButton login,signin,exitB;
     JPanel panel;
     JFrame mainFrame;
-    details()
+    Log_Sign()
     {
         mainFrame = new JFrame();
         panel = new JPanel();
         mainFrame.add(panel);
 
         login = new JButton(" LOG-IN ");
-        login.setBounds(150, 120, 120,48);
+        login.setBounds(300, 120, 120,48);
         signin = new JButton(" SIGN-IN ");
-        signin.setBounds(330,120, 120,48);
+        signin.setBounds(300,201, 120,48);
+        exitB =  new JButton(" EXIT ");
+        exitB.setBounds(300, 282, 120,48);
         panel.add(login);
         panel.add(signin);
+        panel.add(exitB);
 
-        login.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent a)
-            {
-            new logIn();
-            mainFrame.dispose();
-            }
-        });
-
-        signin.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent a)
-            {
-            new signIn();
-            mainFrame.dispose();
-            }
-        });
-
+        login.addActionListener(this);
+        signin.addActionListener(this);
+        exitB.addActionListener(this);
 
         panel.setLayout(null);
         mainFrame.setSize(693, 810);
         mainFrame.setVisible(true);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    @Override
+    public void actionPerformed(ActionEvent a)
+    {
+        if(a.getSource()==login)
+        {
+            new logIn();
+            mainFrame.dispose();
+        }
+        else if(a.getSource()==signin)
+        {
+            new signIn();
+            mainFrame.dispose();
+        }
+        else
+        {
+            System.exit(0);
+            mainFrame.dispose();
+        }
+    }
+
 }
 class logIn extends customer implements ActionListener 
 {
@@ -145,21 +153,21 @@ class signIn extends customer implements ActionListener
         gender.add(female);
         gender.add(male);
         int y=39;
-        lName.setBounds( 150, 51-y,120, 45);
-        name.setBounds(300, 51-y,120, 45);
-        lEMail.setBounds( 150, 112-y,120, 45);
-        email.setBounds(300, 112-y,120, 45);
-        lPassword.setBounds( 150, 233-y,120, 45);
-        password.setBounds(300, 233-y,120, 45);
-        lPhoneNo.setBounds( 150, 355-y,120, 45);
-        phoneNo.setBounds(300, 355-y,120, 45);
-        lGender.setBounds( 150, 477-y,120, 45);
-        male.setBounds(300, 477-y,120, 45);
-        female.setBounds(531, 477-y,120, 45);
-        lAddress.setBounds( 150, 599-y,120, 45);
-        address.setBounds(300, 599-y,120, 51);
-        signin.setBounds(339, 721-y, 111,48);
-        lMSG.setBounds(339, 800, 120, 48);
+        lName.setBounds( 150, 12,120, 45);
+        name.setBounds(300, 12,120, 45);
+        lEMail.setBounds( 150, 73,120, 45);
+        email.setBounds(300, 73,120, 45);
+        lPassword.setBounds( 150, 194,120, 45);
+        password.setBounds(300, 194,120, 45);
+        lPhoneNo.setBounds( 150, 316,120, 45);
+        phoneNo.setBounds(300, 316,120, 45);
+        lGender.setBounds( 150, 438,120, 45);
+        male.setBounds(300, 438,120, 45);
+        female.setBounds(531, 438,120, 45);
+        lAddress.setBounds( 150, 560,120, 45);
+        address.setBounds(300, 560,120, 51);
+        signin.setBounds(339, 650, 111,48);
+        lMSG.setBounds(339, 720, 120, 48);
         panel.add(lName);
         panel.add(name);
         panel.add(lEMail);
