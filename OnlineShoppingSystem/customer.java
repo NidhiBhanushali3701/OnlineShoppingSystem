@@ -1,3 +1,5 @@
+package OnlineShoppingSystem;
+
 public class customer 
 {
 	String customerName;

@@ -1,3 +1,5 @@
+package OnlineShoppingSystem;
+
 import java.util.*;
 import javax.swing.*;
 import javax.swing.Timer;
@@ -147,6 +149,8 @@ class logIn extends customer implements ActionListener
             {
                 lMSG.setText(" LOGIN SUCCESSFUL");
                 //we open our product display
+                customerDashBoard customer_ = new customerDashBoard(email.getText(), new String(password.getPassword()));
+                
             }
             else
             {

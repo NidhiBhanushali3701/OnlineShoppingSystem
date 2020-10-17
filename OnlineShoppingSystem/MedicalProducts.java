@@ -1,3 +1,5 @@
+package OnlineShoppingSystem;
+
 public class MedicalProducts extends product
 {
     public MedicalProducts()

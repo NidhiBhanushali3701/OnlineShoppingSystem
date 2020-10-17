@@ -1,3 +1,5 @@
+package OnlineShoppingSystem;
+
 public class ClothingProducts extends product
 {   
     public ClothingProducts()
