@@ -1,8 +1,9 @@
 package OnlineShoppingSystem;
+import java.util.*;
 
-public class product
+public abstract class product
 {
-	
+	public static Scanner ob = new Scanner(System.in);
 	long productID;
 	String productName;
 	long productBuyerID;
@@ -37,6 +38,7 @@ public class product
 		System.out.println("Product Class");
 	}
 
+	public abstract void showProduct();		//we will show the respective product here 
 	public static void main(String args[]) 
 	{
 		

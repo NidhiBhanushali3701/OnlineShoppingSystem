@@ -8,6 +8,7 @@ import java.awt.event.*;
 
 class showingOP
 {
+    public static Scanner ob = new Scanner(System.in);
     public static void main(String args[])
 	{
         Log_Sign show = new Log_Sign();
@@ -127,6 +128,7 @@ class logIn extends customer implements ActionListener
             if(check(email.getText(),new String(password.getPassword())))
             {
                 lMSG.setText(" LOGIN SUCCESSFUL");
+                //customerDashBoard cBoard = new customerDashBoard(userEMail, userPassword);
             }
             else
             {
@@ -164,7 +166,9 @@ class logIn extends customer implements ActionListener
     public boolean check(String checkEMail,String checkPassword)
     {
         boolean flag=false;
-        if(checkPassword.length()>8)
+        //customerEmail="user";
+        //customerPassword="12345678";
+        if(checkPassword.length()>=8)
         {
             if(checkEMail.equals(customerEmail) && checkPassword.equals(customerPassword))
             {   

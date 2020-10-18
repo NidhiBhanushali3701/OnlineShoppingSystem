@@ -1,7 +1,9 @@
 package OnlineShoppingSystem;
+import java.util.*;
 
 public class customer 
 {
+	public static Scanner ob = new Scanner(System.in);
 	String customerName;
 	long customerPhoneNo;
 	String customerEmail;
