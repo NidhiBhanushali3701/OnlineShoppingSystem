@@ -118,6 +118,7 @@ public class accountSettings extends customer {
         if(op.equals("Y"))
         {
             cust.remove(c);
+            customMenu();
         }
         else if(op.equals("N"))
         {
