@@ -1,50 +1,50 @@
-package OnlineShoppingSystem;
 import java.util.*;
 import java.util.Vector;
 public class customer 
 {
 
 	String customerName;
-	long customerPhoneNo;
+	int customerPhoneNo;
 	String customerEmail;
 	String customerAddress;
 	long customerCredits;
-	long customerID;
-	int customerSize;
-  	char customerGender;
+	String customerID;	
 	String customerPassword;
 	String prevOrders;
 	
-	customer(String customerName,long customerID,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,int customerSize,char customerGender,String customerPassword, String prevOrders)
+	customer(String customerName,int customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, String prevOrders)
 	{
-		this.customerID=customerID;
+		this.customerPhoneNo=customerPhoneNo;
 		this.customerName=customerName;
 		this.customerAddress=customerAddress;
 		this.customerCredits=customerCredits;
 		this.customerEmail=customerEmail;
-		this.customerSize=customerSize;
-		this.customerGender=customerGender;
 		this.customerPassword=customerPassword;
 		this.prevOrders=prevOrders;
 	}
 	customer()
 	{
-		customerID=0;
+		customerID="";
 		customerEmail="";
 		customerName="";
+		customerPhoneNo=0;
 		customerAddress="";
 		customerCredits=0;
-		customerSize=0;
-		customerGender='\0';
 		customerPassword="";
 		prevOrders="";
 	}
 	
 	public static Vector<customer> cust=new Vector<customer>();
+	
 	static Scanner s=new Scanner(System.in);
-	public static void main(String args[]) 
+	public static void main(String[] args)
 	{
-		
+		customMenu();
+	}
+	public static void customMenu() 
+	{
+		customer c=new customer("",0,0,"","","","No Orders yet");
+		cust.add(c);
 
 		int op=0;
 		
@@ -64,6 +64,7 @@ public class customer
 				logIn();
 				//break loop1;
 				case 3:
+				System.exit(0);
 				break;
 				default:
 				System.out.println("Option not valid");
@@ -79,9 +80,9 @@ public class customer
 		System.out.println("Email ID:");
 		String email=s.next();
 
-		boolean accountExists=check(email,"");
+		int accountExists=check(email,"");
 		int op=0;
-		if(accountExists)
+		if(accountExists!=0)
 		{
 			
 				System.out.println("You already have an account with this email Id\n1)Log in?\n2)Create new account with different Email ID\n");
@@ -105,18 +106,18 @@ public class customer
 	public static void create(String email)
 	{
 		
-		
 		System.out.println("Name:");
 		String name=s.next();
 		System.out.println("Address:");
 		String add=s.next();
 		System.out.println("Phone Number:");
-		long phone=s.nextLong();
+		int phone=s.nextInt();
 		System.out.println("Password:");
 		String pass=s.next();
-		customer c=new customer(name,0,phone,0,add,email,0,'N',pass, "No Orders yet");
+		customer c=new customer(name,phone,0,add,email,pass, "No Orders yet");
 		cust.add(c);
 		System.out.println("Account created successfully\n");//go to store menu
+		accountSettings.settingsmenu(cust.size()-1);
 	}
 
 	public static void logIn()
@@ -127,10 +128,11 @@ public class customer
 		String email=s.next();
 		System.out.println("Password:");
 		String pass=s.next();
-		boolean validInfo=check(email,pass);
-		if(validInfo)
+		int validInfo=check(email,pass);
+		if(validInfo!=0)
 		{
 			System.out.println("You are logged in");
+			accountSettings.settingsmenu(validInfo);
 			//store menu
 		}
 		else
@@ -154,12 +156,12 @@ public class customer
 		}
 	}
 
-	public static boolean check(String e,String n)
+	public static int check(String e,String n)
 	{
-		boolean b;
-		b=true;
+		int b;
+		b=1;
 		if(cust.size()==0)
-		b=false;
+		b=0;
 		for(int i=0;i<cust.size();i++)
 		{
 			
@@ -171,23 +173,23 @@ public class customer
 				{
 					if(n.equals(cust.get(i).customerPassword))
 					{
-						b=true;						
+						b=i;						
 						return b;
 					}
 					else
 					{
-						b=false;						
+						b=0;						
 					}					
 				}
 				else
 				{
-					b=true;					
+					b=i;					
 					return b;
 				}
 			}
 			else
 			{
-				b=false;				
+				b=0;				
 			}
 		}
 		
