@@ -87,7 +87,7 @@ public class ElectronicProducts extends product
         int i,j;
         for(i=0;i<electronic.size();i++)
         {
-            if(electronic.elementAt(i).productName.equalsIgnoreCase(productNameToFind))
+            if(electronic.elementAt(i).productName.trim().equalsIgnoreCase(productNameToFind))
             {
                 System.out.println(electronic.get(i).productName+"\t"+electronic.get(i).productCost+"\t"+electronic.get(i).productSellerName);
                 break;
