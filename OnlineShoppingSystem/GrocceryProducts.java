@@ -86,7 +86,7 @@ public class GrocceryProducts extends product
         int i,j;
         for(i=0;i<groccery.size();i++)
         {
-            if(groccery.elementAt(i).productName.equalsIgnoreCase(productNameToFind))
+            if(groccery.elementAt(i).productName.trim().equalsIgnoreCase(productNameToFind))
             {
                 System.out.println(groccery.get(i).productName+"\t"+groccery.get(i).productCost+"\t"+groccery.get(i).productSellerName);
                 break;
