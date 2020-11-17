@@ -50,7 +50,10 @@ public class HomeProducts extends product
                 System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
             }
             */
-            System.out.println("\t\t 0. GO BACK");
+            System.out.println("\n\t\t 14. SEARCH");
+            System.out.println("\t\t 15. SORT [HIGH TO LOW]");
+            System.out.println("\t\t 16. SORT [LOW TO HIGH]");
+            System.out.println("\n\t\t 0. GO BACK");
             System.out.print("   ENTER YOUR CHOICE ");
             ch = ob.nextInt();
             switch(ch)
@@ -70,6 +73,17 @@ public class HomeProducts extends product
                 case 13:
                     System.out.println(home.get(ch-1).productDescription);
                     addToCart(thisCustomer,home.get(ch-1));
+                case 14:
+                    System.out.println("ENTER PRODUCT NAME YOU ARE SERACHING ");
+                    ob.nextLine();
+                    search(ob.nextLine());
+                break;
+                case 15:
+                    sortHighToLow();
+                break;
+                case 16:
+                    sortLowToHigh();
+                break;
                 case 0:
                     System.out.println("GOING BACK");
                 break;
