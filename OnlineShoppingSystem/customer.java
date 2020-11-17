@@ -1,11 +1,38 @@
 package CustomerPackage;
 import java.util.*;
 import java.util.Vector;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+class phonenumberException extends Exception
+{
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public phonenumberException(String m)
+{
+super(m);
+}
+}
+
+class passwordException extends Exception
+{
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public passwordException(String m)
+{
+super(m);
+}
+}
 class customer 
 {
 
 	String customerName;
-	int customerPhoneNo;
+	long customerPhoneNo;
 	String customerEmail;
 	String customerAddress;
 	long customerCredits;
@@ -13,12 +40,13 @@ class customer
 	String customerPassword;
 	String prevOrders;
 	
-	Vector<product> customerCart = new Vector<product>();
-	Vector<product> CustomerWishList = new Vector<product>();
+	//Vector<product> customerCart = new Vector<product>();
+	//Vector<product> CustomerWishList = new Vector<product>();
 	
 	
-	customer(String customerName,int customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, String prevOrders)
+	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, String prevOrders)
 	{
+	
 		this.customerPhoneNo=customerPhoneNo;
 		this.customerName=customerName;
 		this.customerAddress=customerAddress;
@@ -111,19 +139,51 @@ class customer
 	}
 	public static void create(String email)
 	{
-		
+		long phone=0;
+		String pass="";
+		String regexStr = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"; 
+		Pattern pattern = Pattern.compile(regexStr); 
 		System.out.println("Name:");
 		String name=s.next();
 		System.out.println("Address:");
-		String add=s.next();
+		String add=s.nextLine();
+		boolean validity=false;
+		while(!validity){
+		try{		
 		System.out.println("Phone Number:");
-		int phone=s.nextInt();
-		System.out.println("Password:");
-		String pass=s.next();
+		phone=s.nextLong();
+		if(phone<1000000000)throw new phonenumberException("Please enter a valid phone number(10 digits)");
+		else validity=true;
+
+		}
+		catch(phonenumberException e)
+		{
+			System.out.println(e);			
+		}
+		
+		}
+		validity=false;
+		while(!validity){
+		try{
+		System.out.println("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number):");
+		pass=s.next();
+		Matcher matcher = pattern.matcher(pass);
+		if(!matcher.matches())throw new passwordException("Please enter a valid password(min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number)");
+		else validity=true;
+		}
+		catch(passwordException e)
+		{
+			System.out.println(e);			
+		}
+		}
+		
 		customer c=new customer(name,phone,0,add,email,pass, "No Orders yet");
 		cust.add(c);
 		System.out.println("Account created successfully\n");//go to store menu
 		accountSettings.settingsmenu(cust.size()-1);
+	
+		
+		
 	}
 
 	public static void logIn()
@@ -201,5 +261,6 @@ class customer
 		
 		return b;
 	}
+}
 	
 	
