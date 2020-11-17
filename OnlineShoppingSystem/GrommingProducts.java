@@ -88,7 +88,7 @@ public class GrommingProducts extends product
         int i,j;
         for(i=0;i<gromming.size();i++)
         {
-            if(gromming.elementAt(i).productName.equalsIgnoreCase(productNameToFind))
+            if(gromming.elementAt(i).productName.trim().equalsIgnoreCase(productNameToFind))
             {
                 System.out.println(gromming.get(i).productName+"\t"+gromming.get(i).productCost+"\t"+gromming.get(i).productSellerName);
                 break;
