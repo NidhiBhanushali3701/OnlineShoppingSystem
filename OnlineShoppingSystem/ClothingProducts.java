@@ -6,12 +6,10 @@ import java.sql.*;
 public class ClothingProducts extends product
 {   
     private static Vector<product> clothing = new Vector<product>();
-    //static Vector<product> Cart = new Vector<product>();
     private static Enumeration<product> CPEnumeration = clothing.elements();
     String prodName[] = {" TOPS       "," T-SHIRTS   "," SHIRTS     "," PANTS      "," SHORTS     "," GOWNS      "," ONE-PIECES "," PURSES     "," BAGS       ","SHOES       ","SANDALS     ","WATCHES     ","JWELLERY    "};
     long prodCost[] = {1299,1399,1149,1999,1299,3499,2999,5999,3499,5999,4499,3999,10999};
     String prodSellerName[] ={"ZARA","ADIDAS","PRADA","PRADA","AND","AND","H&M","H&M","CHANEL","AND","H&M","GUCCI","Dior"};
-    //long prodID[] = {};
     public static Scanner ob = new Scanner(System.in);
     ClothingProducts prod;
     File ClothingProductDescriptionFile;
@@ -23,7 +21,6 @@ public class ClothingProducts extends product
     public ClothingProducts(long productID,long productCost,String productName,long productBuyerID,String productBuyerName,long productSellerID,String productSellerName,String productDescription)
     {
         super(productID,productCost,productName,productBuyerID,productBuyerName,productSellerID,productSellerName,productDescription);
-        //showProduct();
     }
 
     public void showProduct(customer thisCustomer)
@@ -113,19 +110,19 @@ public class ClothingProducts extends product
         int addToBag=ob.nextInt();
         if(addToBag!=0)
         {
-            thisCustomer.Cart.add(addToCartProd);
+            thisCustomer.customerCart.add(addToCartProd);
             System.out.println("\t Do You Want to view Your Cart ?");
             int viewCart = ob.nextInt();
             if(viewCart!=0)
             {
-                /*CPEnumeration = Cart.elements();
+                /*CPEnumeration = customerCart.elements();
                 while(CPEnumeration.hasMoreElements())
                 {
                     System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
                 }*/
                 System.out.println("\t>>YOUR CART ");
                 int i=1;
-                for(product printProd:thisCustomer.Cart)
+                for(product printProd:thisCustomer.customerCart)
                 {
                     System.out.println("\t\t "+(i)+". "+printProd.productName + " \t " +printProd.productCost + " \t " + printProd.productSellerName);
                     i++;
