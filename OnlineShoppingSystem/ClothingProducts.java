@@ -6,9 +6,9 @@ import java.sql.*;
 public class ClothingProducts extends product
 {   
     private static Vector<product> clothing = new Vector<product>();
-    static Vector<product> Cart = new Vector<product>();
+    //static Vector<product> Cart = new Vector<product>();
     private static Enumeration<product> CPEnumeration = clothing.elements();
-    String prodName[] = {" TOPS       "," T-SHIRTS   "," SHIRTS     "," PANTS      "," SHORTS     "," GOWNS      ","ONE-PIECES  ","PURSES      ","BAGS        ","SHOES       ","SANDALS     ","WATCHES     ","JWELLERY    "};
+    String prodName[] = {" TOPS       "," T-SHIRTS   "," SHIRTS     "," PANTS      "," SHORTS     "," GOWNS      "," ONE-PIECES "," PURSES     "," BAGS       ","SHOES       ","SANDALS     ","WATCHES     ","JWELLERY    "};
     long prodCost[] = {1299,1399,1149,1999,1299,3499,2999,5999,3499,5999,4499,3999,10999};
     String prodSellerName[] ={"ZARA","ADIDAS","PRADA","PRADA","AND","AND","H&M","H&M","CHANEL","AND","H&M","GUCCI","Dior"};
     //long prodID[] = {};
@@ -18,7 +18,6 @@ public class ClothingProducts extends product
     public ClothingProducts()
     {
         super();
-        showProduct();
     }
 
     public ClothingProducts(long productID,long productCost,String productName,long productBuyerID,String productBuyerName,long productSellerID,String productSellerName,String productDescription)
@@ -27,7 +26,7 @@ public class ClothingProducts extends product
         //showProduct();
     }
 
-    public void showProduct()
+    public void showProduct(customer thisCustomer)
     {
         addClothingProductDetails();
         int ch,addToBag;
@@ -59,122 +58,20 @@ public class ClothingProducts extends product
             switch(ch)
             {
                 case 1:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
                 case 2:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
                 case 3:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
                 case 4:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
                 case 5:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
                 case 6:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
                 case 7:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
                 case 8:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
                 case 9:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
                 case 10:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
                 case 11:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
                 case 12:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
                 case 13:
-                    System.out.println(clothing.get(ch).productDescription);
-                    System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
-                    addToBag=ob.nextInt();
-                    if(addToBag!=0)
-                    {
-                        addToCart(clothing.get(ch));
-                    }
-                break;
+                    System.out.println(clothing.get(ch-1).productDescription);
+                    addToCart(thisCustomer,clothing.get(ch-1));
                 case 0:
                     System.out.println("GOING BACK");
                 break;
@@ -183,6 +80,7 @@ public class ClothingProducts extends product
                 break;
             }
         }while(ch!=0);
+        clothing = new Vector<product>();
     } 
 
     public void search(String productNameToFind) {
@@ -209,26 +107,32 @@ public class ClothingProducts extends product
          
 
     }
-    public void addToCart(product addToCartProd)
+    public void addToCart(customer thisCustomer,product addToCartProd)
     {
-        Cart.add(addToCartProd);
-        System.out.println("\t Do You Want to view Your Cart ?");
-        int viewCart = ob.nextInt();
-        if(viewCart!=0)
+        System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
+        int addToBag=ob.nextInt();
+        if(addToBag!=0)
         {
-            /*CPEnumeration = Cart.elements();
-            while(CPEnumeration.hasMoreElements())
+            thisCustomer.Cart.add(addToCartProd);
+            System.out.println("\t Do You Want to view Your Cart ?");
+            int viewCart = ob.nextInt();
+            if(viewCart!=0)
             {
-                System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
-            }*/
-            int i=1;
-            for(product printProd:Cart)
-            {
-                System.out.println("\t\t "+(i)+". "+printProd.productName + " \t " +printProd.productCost + " \t " + printProd.productSellerName);
-                i++;
+                /*CPEnumeration = Cart.elements();
+                while(CPEnumeration.hasMoreElements())
+                {
+                    System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+                }*/
+                System.out.println("\t>>YOUR CART ");
+                int i=1;
+                for(product printProd:thisCustomer.Cart)
+                {
+                    System.out.println("\t\t "+(i)+". "+printProd.productName + " \t " +printProd.productCost + " \t " + printProd.productSellerName);
+                    i++;
+                }
             }
         }
-    }
+}
     public static void main(String args[]) 
     {
         ClothingProducts prodMain = new ClothingProducts();
