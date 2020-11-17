@@ -100,7 +100,7 @@ public class HomeProducts extends product
         int i,j;
         for(i=0;i<home.size();i++)
         {
-            if(home.elementAt(i).productName.equalsIgnoreCase(productNameToFind))
+            if(home.elementAt(i).productName.trim().equalsIgnoreCase(productNameToFind))
             {
                 System.out.println(home.get(i).productName+"\t"+home.get(i).productCost+"\t"+home.get(i).productSellerName);
                 break;
