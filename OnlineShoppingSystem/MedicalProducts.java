@@ -88,7 +88,7 @@ public class MedicalProducts extends product
         int i,j;
         for(i=0;i<medical.size();i++)
         {
-            if(medical.elementAt(i).productName.equalsIgnoreCase(productNameToFind))
+            if(medical.elementAt(i).productName.trim().equalsIgnoreCase(productNameToFind))
             {
                 System.out.println(medical.get(i).productName+"\t"+medical.get(i).productCost+"\t"+medical.get(i).productSellerName);
                 break;
