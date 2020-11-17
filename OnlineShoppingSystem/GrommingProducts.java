@@ -83,24 +83,55 @@ public class GrommingProducts extends product
         gromming = new Vector<product>();
     } 
 
-    public void search(String productNameToFind) {
-         
-
+    public void search(String productNameToFind) 
+    {
+        int i,j;
+        for(i=0;i<gromming.size();i++)
+        {
+            if(gromming.elementAt(i).productName.equalsIgnoreCase(productNameToFind))
+            {
+                System.out.println(gromming.get(i).productName+"\t"+gromming.get(i).productCost+"\t"+gromming.get(i).productSellerName);
+                break;
+            }
+        }
     }
     
-    public void sortHighToLow() {
-         
-
+    public void sortHighToLow() 
+    {
+        int i,j;
+        for(i=0;i<gromming.size();i++)
+        {
+            for(j=0;j<gromming.size()-1-i;j++)
+            {
+                if(gromming.get(j).productCost<gromming.get(j+1).productCost)
+                {
+                    product temp = gromming.get(j);
+                    gromming.set(j,gromming.get(j+1));
+                    gromming.set(j+1,temp);
+                }
+            }
+        }
     }
     
-    public void sortLowToHigh() {
-         
-
+    public void sortLowToHigh() 
+    {
+        int i,j;
+        for(i=0;i<gromming.size();i++)
+        {
+            for(j=0;j<gromming.size()-1-i;j++)
+            {
+                if(gromming.get(j).productCost>gromming.get(j+1).productCost)
+                {
+                    product temp = gromming.get(j);
+                    gromming.set(j,gromming.get(j+1));
+                    gromming.set(j+1,temp);
+                }
+            }
+        }
     }
 
     public void sortByPopular() {
          
-
     }
 
     public void sortByNew() {
@@ -167,5 +198,4 @@ public class GrommingProducts extends product
             */
         }
     }
-
 }
