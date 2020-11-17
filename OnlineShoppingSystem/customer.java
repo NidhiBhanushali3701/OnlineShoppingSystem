@@ -39,32 +39,40 @@ class customer
 	String customerID;	
 	String customerPassword;
 	String prevOrders;
+	long customerTotalBill;
 	
-	//Vector<product> customerCart = new Vector<product>();
-	//Vector<product> CustomerWishList = new Vector<product>();
-	
-	
-	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, String prevOrders)
+	Vector<product> customerCart = new Vector<product>();
+	Vector<product> CustomerWishList = new Vector<product>();
+
+	customer(String customerName,long customerID,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,int customerSize,char customerGender,String customerPassword, String prevOrders,long customerTotalBill)
 	{
-	
-		this.customerPhoneNo=customerPhoneNo;
+		this.customerID=customerID;
+		this.customerEmail=customerEmail;
 		this.customerName=customerName;
 		this.customerAddress=customerAddress;
 		this.customerCredits=customerCredits;
 		this.customerEmail=customerEmail;
+		this.customerSize=customerSize;
+		this.customerGender=customerGender;
 		this.customerPassword=customerPassword;
 		this.prevOrders=prevOrders;
+		this.customerTotalBill=customerTotalBill;
 	}
+  
 	customer()
 	{
-		customerID="";
+		customerAddress="";
 		customerEmail="";
 		customerName="";
-		customerPhoneNo=0;
-		customerAddress="";
 		customerCredits=0;
+		customerPhoneNo=0;
+		customerID=0;
+		customerSize=0;
+		customerGender='\0';
 		customerPassword="";
 		prevOrders="";
+		customerTotalBill=0;
+		
 	}
 	
 	public static Vector<customer> cust=new Vector<customer>();
