@@ -1,6 +1,7 @@
+package CustomerPackage;
 import java.util.*;
 import java.util.Vector;
-public class customer 
+class customer 
 {
 
 	String customerName;
@@ -35,7 +36,7 @@ public class customer
 	}
 	
 	public static Vector<customer> cust=new Vector<customer>();
-	
+	public static Vector<customer> cart=new Vector<customer>();
 	static Scanner s=new Scanner(System.in);
 	public static void main(String[] args)
 	{
@@ -49,7 +50,7 @@ public class customer
 		int op=0;
 		
 		
-		loop1: while(op!=3)
+		while(op!=3)
 		{
 			
 			System.out.println("MENU\n1)Sign Up\n2)Log In\n3)Exit\n");
@@ -70,6 +71,7 @@ public class customer
 				System.out.println("Option not valid");
 			}
 		}
+		s.close();
 	}
 
 	public static void signUp()
@@ -196,3 +198,4 @@ public class customer
 		return b;
 	}
 }
+

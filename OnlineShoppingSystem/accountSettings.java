@@ -1,5 +1,6 @@
+package CustomerPackage;
 import java.util.*;
-public class accountSettings extends customer {
+public class accountSettings extends customer{
     public static void settingsmenu(int c){
         Scanner s=new Scanner(System.in);
         int op=0;
@@ -33,6 +34,7 @@ public class accountSettings extends customer {
                 System.out.println("Wrong input, try again.");
             }
         }
+        s.close();
 
     }
 
@@ -101,6 +103,7 @@ public class accountSettings extends customer {
             break;
 
         }
+        s.close();
         
     }
 
