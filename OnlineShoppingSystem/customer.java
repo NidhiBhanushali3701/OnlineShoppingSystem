@@ -201,5 +201,13 @@ class customer
 		
 		return b;
 	}
+	
+	public void customerPayment()
+	{
+		System.out.println("SELECT PAYING OPTION ");
+		System.out.println("1. COD ");
+		System.out.println("2. NET BANKING");
+		System.out.println("3. CARDS");
+		System.out.println("4. CREDIT POINTS");
+	}
 }
-
