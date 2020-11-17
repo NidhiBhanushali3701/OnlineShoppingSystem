@@ -39,40 +39,32 @@ class customer
 	String customerID;	
 	String customerPassword;
 	String prevOrders;
-	long customerTotalBill;
 	
 	Vector<product> customerCart = new Vector<product>();
 	Vector<product> CustomerWishList = new Vector<product>();
-
-	customer(String customerName,long customerID,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,int customerSize,char customerGender,String customerPassword, String prevOrders,long customerTotalBill)
+	
+	
+	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, String prevOrders)
 	{
-		this.customerID=customerID;
-		this.customerEmail=customerEmail;
+	
+		this.customerPhoneNo=customerPhoneNo;
 		this.customerName=customerName;
 		this.customerAddress=customerAddress;
 		this.customerCredits=customerCredits;
 		this.customerEmail=customerEmail;
-		this.customerSize=customerSize;
-		this.customerGender=customerGender;
 		this.customerPassword=customerPassword;
 		this.prevOrders=prevOrders;
-		this.customerTotalBill=customerTotalBill;
 	}
-  
 	customer()
 	{
-		customerAddress="";
+		customerID="";
 		customerEmail="";
 		customerName="";
-		customerCredits=0;
 		customerPhoneNo=0;
-		customerID=0;
-		customerSize=0;
-		customerGender='\0';
+		customerAddress="";
+		customerCredits=0;
 		customerPassword="";
 		prevOrders="";
-		customerTotalBill=0;
-		
 	}
 	
 	public static Vector<customer> cust=new Vector<customer>();
@@ -116,11 +108,11 @@ class customer
 
 	public static void signUp()
 	{
-		
+		s.nextLine();
 		System.out.println("Enter Your Details:\n");
 		
 		System.out.println("Email ID:");
-		String email=s.next();
+		String email=s.nextLine();
 
 		int accountExists=check(email,"");
 		int op=0;
@@ -147,12 +139,13 @@ class customer
 	}
 	public static void create(String email)
 	{
+		s.nextLine();
 		long phone=0;
 		String pass="";
 		String regexStr = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"; 
 		Pattern pattern = Pattern.compile(regexStr); 
 		System.out.println("Name:");
-		String name=s.next();
+		String name=s.nextLine();
 		System.out.println("Address:");
 		String add=s.nextLine();
 		boolean validity=false;
@@ -171,10 +164,11 @@ class customer
 		
 		}
 		validity=false;
+		s.nextLine();
 		while(!validity){
 		try{
 		System.out.println("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number):");
-		pass=s.next();
+		pass=s.nextLine();
 		Matcher matcher = pattern.matcher(pass);
 		if(!matcher.matches())throw new passwordException("Please enter a valid password(min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number)");
 		else validity=true;
