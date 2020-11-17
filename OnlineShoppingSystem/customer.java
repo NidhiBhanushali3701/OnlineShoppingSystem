@@ -5,11 +5,6 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 class phonenumberException extends Exception
 {
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 1L;
-
 	public phonenumberException(String m)
 {
 super(m);
@@ -18,11 +13,6 @@ super(m);
 
 class passwordException extends Exception
 {
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 1L;
-
 	public passwordException(String m)
 {
 super(m);
