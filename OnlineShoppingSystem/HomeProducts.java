@@ -81,19 +81,51 @@ public class HomeProducts extends product
         home = new Vector<product>();
     } 
 
-    public void search(String productNameToFind) {
-         
-
+    public void search(String productNameToFind) 
+    {
+        int i,j;
+        for(i=0;i<home.size();i++)
+        {
+            if(home.elementAt(i).productName.equalsIgnoreCase(productNameToFind))
+            {
+                System.out.println(home.get(i).productName+"\t"+home.get(i).productCost+"\t"+home.get(i).productSellerName);
+                break;
+            }
+        }
     }
     
-    public void sortHighToLow() {
-         
-
+    public void sortHighToLow() 
+    {
+        int i,j;
+        for(i=0;i<home.size();i++)
+        {
+            for(j=0;j<home.size()-1-i;j++)
+            {
+                if(home.get(j).productCost<home.get(j+1).productCost)
+                {
+                    product temp = home.get(j);
+                    home.set(j,home.get(j+1));
+                    home.set(j+1,temp);
+                }
+            }
+        }
     }
     
-    public void sortLowToHigh() {
-         
-
+    public void sortLowToHigh() 
+    {
+        int i,j;
+        for(i=0;i<home.size();i++)
+        {
+            for(j=0;j<home.size()-1-i;j++)
+            {
+                if(home.get(j).productCost>home.get(j+1).productCost)
+                {
+                    product temp = home.get(j);
+                    home.set(j,home.get(j+1));
+                    home.set(j+1,temp);
+                }
+            }
+        }
     }
 
     public void sortByPopular() {
