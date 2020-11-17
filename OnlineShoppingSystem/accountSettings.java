@@ -44,7 +44,7 @@ public class accountSettings extends customer{
                 System.out.println("Wrong input, try again.");
             }
         
-        s.close();
+        
 
     }
 
@@ -143,7 +143,7 @@ public class accountSettings extends customer{
             break;
 
         }
-        s.close();
+        
         
     }
 
@@ -172,7 +172,7 @@ public class accountSettings extends customer{
             System.out.println("Invalid choice");
             delete(c);
         }
-        s.close();
+      
 
     }
 }
