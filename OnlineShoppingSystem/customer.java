@@ -13,6 +13,10 @@ class customer
 	String customerPassword;
 	String prevOrders;
 	
+	Vector<product> customerCart = new Vector<product>();
+	Vector<product> CustomerWishList = new Vector<product>();
+	
+	
 	customer(String customerName,int customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, String prevOrders)
 	{
 		this.customerPhoneNo=customerPhoneNo;
