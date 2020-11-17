@@ -81,19 +81,51 @@ public class GrocceryProducts extends product
         groccery = new Vector<product>();
     } 
 
-    public void search(String productNameToFind) {
-         
-
+    public void search(String productNameToFind) 
+    {
+        int i,j;
+        for(i=0;i<groccery.size();i++)
+        {
+            if(groccery.elementAt(i).productName.equalsIgnoreCase(productNameToFind))
+            {
+                System.out.println(groccery.get(i).productName+"\t"+groccery.get(i).productCost+"\t"+groccery.get(i).productSellerName);
+                break;
+            }
+        }
     }
     
-    public void sortHighToLow() {
-         
-
+    public void sortHighToLow() 
+    {
+        int i,j;
+        for(i=0;i<groccery.size();i++)
+        {
+            for(j=0;j<groccery.size()-1-i;j++)
+            {
+                if(groccery.get(j).productCost<groccery.get(j+1).productCost)
+                {
+                    product temp = groccery.get(j);
+                    groccery.set(j,groccery.get(j+1));
+                    groccery.set(j+1,temp);
+                }
+            }
+        }
     }
     
-    public void sortLowToHigh() {
-         
-
+    public void sortLowToHigh() 
+    {
+        int i,j;
+        for(i=0;i<groccery.size();i++)
+        {
+            for(j=0;j<groccery.size()-1-i;j++)
+            {
+                if(groccery.get(j).productCost>groccery.get(j+1).productCost)
+                {
+                    product temp = groccery.get(j);
+                    groccery.set(j,groccery.get(j+1));
+                    groccery.set(j+1,temp);
+                }
+            }
+        }
     }
 
     public void sortByPopular() {
