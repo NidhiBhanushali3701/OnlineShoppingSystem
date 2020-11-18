@@ -5,9 +5,9 @@ import java.sql.*;
 
 public class MedicalProducts extends product
 {
-    private static Vector<product> medical = new Vector<product>();
+    Vector<product> medical = new Vector<product>();
     //static Vector<product> Cart = new Vector<product>();
-    private static Enumeration<product> CPEnumeration = medical.elements();
+    Enumeration<product> CPEnumeration = medical.elements();
     String prodName[] = {"RELAY SPRAY","MASKS","BAND AID","ANTISEPTICS","OINTMENTS","THERMOMETER","FIRST AID KIT","CROCIN","PUDIN HARA ","CYCLOPAM","PARACETAMOL","COUGH SYRUP","SANITIZERS"};
     long prodCost[] = {300,40,35,200,150,600,1400,50,25,45,50,105,200};
     String prodSellerName[] ={"PHARMEASY","MEDICOS","PHARMEASY","DETTOL","SAVLON","MEDHOME","PHARMEASY","MEDICOS","DABUR","MEDICOS","MEDHOME","HONITUS","LIFEBUOY"};
@@ -38,7 +38,7 @@ public class MedicalProducts extends product
                 System.out.println("\t\t\t"+medical.get(i).productName + " \t " +medical.get(i).productCost + " \t " +medical.get(i).productID);
             }
             */
-            System.out.println("\n\t\t "+" "+". "+"PRODUCT NAME"+ " \t " +"PRICE"+ " \t " +"BRAND NAME");
+            System.out.println("\n\t\t "+" "+"   "+"PRODUCT NAME"+ " \t" +"PRICE"+ " \t " +"BRAND NAME");
             int i=1;
             for(product printProd:medical)
             {
@@ -75,7 +75,7 @@ public class MedicalProducts extends product
                 case 12:
                 case 13:
                     System.out.println(medical.get(ch-1).productDescription);
-                    System.out.println("\t Do You want to add it to : \n   1.CART \n   2.WISHLIST \n   0. NONE ");
+                    System.out.println("\t Do You want to add it to : \n   1. CART \n   2. WISHLIST \n   0. NONE ");
                     switch(ob.nextInt())
                     {
                         case 1:
@@ -204,6 +204,7 @@ public class MedicalProducts extends product
                 }
             }
         }
+        System.out.println("");
     }
     public void addToWishList(customer thisCustomer,product addToWLProd)
     {
@@ -230,6 +231,7 @@ public class MedicalProducts extends product
                 }
             }
         }
+        System.out.println("");
     }
     public static void main(String args[]) 
     {

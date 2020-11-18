@@ -15,8 +15,8 @@ public class GrocceryProducts extends product
         super(productId,productCost,productName,productBuyerID,productBuyerName,productSellerID,productSellerName,productDescription);
     }
 
-    private static Vector<product> groccery = new Vector<product>();
-    private static Enumeration<product> CPEnumeration = groccery.elements();
+    Vector<product> groccery = new Vector<product>();
+    Enumeration<product> CPEnumeration = groccery.elements();
     String prodName[] = {" COOKING OIL       ","  PULSES   ","  FRUITS AND VEGETABLES    ","  WHEAT      ","  DRY FRUITS     ","  RICE      ","  BISCUITS AND SNACKS ","  COLD DRINKS  ","  TEA       ","  COFFEE       ","  MILK    ","  BREAD    ","  INSTANT NOODLES  "};
     long prodCost[] = {250,220,400,200,350,250,80,50,60,75,25,50,30};
     String prodSellerName[] ={"FORTUNE","ORGANIC TATTVA","HARVEST FARMS","AASHIRWAAD","FARMOWN","KOHINOOR","BRITANNIA","THUMBS UP","SOCIETY","NESCAFE","AMUL","ENGLISH OVEN","MAGGI"};
@@ -36,7 +36,7 @@ public class GrocceryProducts extends product
                 System.out.println("\t\t\t"+groccery.get(i).productName + " \t " +groccery.get(i).productCost + " \t " +groccery.get(i).productID);
             }
             */
-            System.out.println("\n\t\t "+" "+". "+"PRODUCT NAME"+ " \t " +"PRICE"+ " \t " +"BRAND NAME");
+            System.out.println("\n\t\t "+" "+"   "+"PRODUCT NAME"+ " \t" +"PRICE"+ " \t " +"BRAND NAME");
             int i=1;
             for(product printProd:groccery)
             {
@@ -73,7 +73,7 @@ public class GrocceryProducts extends product
                 case 12:
                 case 13:
                     System.out.println(groccery.get(ch-1).productDescription);
-                    System.out.println("\t Do You want to add it to : \n   1.CART \n   2.WISHLIST \n   0. NONE ");
+                    System.out.println("\t Do You want to add it to : \n   1. CART \n   2. WISHLIST \n   0. NONE ");
                     switch(ob.nextInt())
                     {
                         case 1:
@@ -204,6 +204,7 @@ public class GrocceryProducts extends product
                 }
             }
         }
+        System.out.println("");
     }
     public void addToWishList(customer thisCustomer,product addToWLProd)
     {
@@ -230,6 +231,7 @@ public class GrocceryProducts extends product
                 }
             }
         }
+        System.out.println("");
     }
     public static void main(String args[]) 
     {

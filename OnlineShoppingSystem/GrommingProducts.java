@@ -16,8 +16,8 @@ public class GrommingProducts extends product
     }
 
 
-    private static Vector<product> gromming = new Vector<product>();
-    private static Enumeration<product> CPEnumeration = gromming.elements();
+    Vector<product> gromming = new Vector<product>();
+    Enumeration<product> CPEnumeration = gromming.elements();
     String prodName[] = {"LOTIONS","OILS","SOAP","FACEWASH","SHAMPOO","CONDITIONER","PASTE","TOOTH BRUSH","FACIAL MASKS","FACIAL KITS","NAIL PAINTS","ACCESSORIES","WIPES"};
     long prodCost[] = {1299,1399,1149,1999,1299,3499,2999,5999,3499,5999,4499,3999,10999};
     String prodSellerName[] ={"VASLINE","DOVE","DOVE","C&C","DOVE","DOVE","CLOSE UP","ORAL B","C&C","VLCC","NYKAA","Dior","J&J"};
@@ -38,7 +38,7 @@ public class GrommingProducts extends product
                 System.out.println("\t\t\t"+gromming.get(i).productName + " \t " +gromming.get(i).productCost + " \t " +gromming.get(i).productID);
             }
             */
-            System.out.println("\n\t\t "+" "+". "+"PRODUCT NAME"+ " \t " +"PRICE"+ " \t " +"BRAND NAME");
+            System.out.println("\n\t\t "+" "+"   "+"PRODUCT NAME"+ " \t" +"PRICE"+ " \t " +"BRAND NAME");
             int i=1;
             for(product printProd:gromming)
             {
@@ -75,7 +75,7 @@ public class GrommingProducts extends product
                 case 12:
                 case 13:
                     System.out.println(gromming.get(ch-1).productDescription);
-                    System.out.println("\t Do You want to add it to : \n   1.CART \n   2.WISHLIST \n   0. NONE ");
+                    System.out.println("\t Do You want to add it to : \n   1. CART \n   2. WISHLIST \n   0. NONE ");
                     switch(ob.nextInt())
                     {
                         case 1:
@@ -205,6 +205,7 @@ public class GrommingProducts extends product
                 }
             }
         }
+        System.out.println("");
     }
     public void addToWishList(customer thisCustomer,product addToWLProd)
     {
@@ -231,6 +232,7 @@ public class GrommingProducts extends product
                 }
             }
         }
+        System.out.println("");
     }
     public static void main(String args[]) 
     {

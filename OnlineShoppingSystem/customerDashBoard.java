@@ -13,13 +13,15 @@ public class customerDashBoard extends customer{
         System.out.println("\n\t\t\tWELCOME !");
         int choice ;
         do{
+            System.out.println("YOU CAN SELECT FROM ALL BELOW :)");
             System.out.println("1. VIEW PRODUCTS");
             System.out.println("2. BUY PRODUCTS");
             System.out.println("3. PREVIOUS PRODUCTS");
             System.out.println("4. VIEW CART");  
             System.out.println("5. VIEW WISHLIST"); //System.out.println("");
-            System.out.println("6. SEARCH FROM PRODUCTS");
+            //System.out.println("6. SEARCH FROM PRODUCTS");
             System.out.println("0. EXIT");
+            System.out.print(" PLEASE ENTER YOUR CHOICE - ");
             choice = ob.nextInt();
             switch(choice)
             {
@@ -38,9 +40,11 @@ public class customerDashBoard extends customer{
                 case 5:
                     customerWishlist(this);
                 break;
+                /*
                 case 6:
                     search();
                 break;
+                */
                 case 0:
                     System.out.println("EXITING ... ");
                 break;
@@ -167,7 +171,7 @@ public class customerDashBoard extends customer{
                     buyingProduct = new ClothingProducts();
                     customerCart(this);
                     buyingProduct.billing(this,customerCart);
-                    confirmBuyProducts();
+                    confirmBuyProducts(this);
                 break;
                 case 0:
                 System.out.println(" GOING TO DASHBORAD ");
@@ -179,17 +183,24 @@ public class customerDashBoard extends customer{
         }
         while(ch!=0);
     }
-    public void confirmBuyProducts()
+    public void confirmBuyProducts(customer thisCustomer)
     {
-        System.out.println("\t SURE YOU WANT TO BUY ?");
-        int sureBuy = ob.nextInt();
-        if(sureBuy!=0)
-        {           //call payment method()
-            customerPayment();
+        if(thisCustomer.customerCart.size()>0)
+        {
+            System.out.println("\t SURE YOU WANT TO BUY ?");
+            int sureBuy = ob.nextInt();
+            if(sureBuy!=0)
+            {           //call payment method()
+                customerPayment();
+            }
+            else
+            {
+                //break;
+            }
         }
         else
         {
-            //break;
+            //System.out.println("\t >> YOUR CART IS EMPTY ADD & BUY BEST PRODUCT AT BEST POSSIBLE PRICES :)\n");
         }
     }
     public void viewPreviousProducts(customer thisCustomer)
@@ -202,8 +213,9 @@ public class customerDashBoard extends customer{
             }
         }
         else{
-            System.out.println("\t >> YOU HAVEN'T BOUGHT ANYTHING ADD & BUY BEST PRODUCT AT BEST POSSIBLE PRICES :)\n");
+            System.out.println("\t >> YOU HAVEN'T BOUGHT ANYTHING ADD & BUY BEST PRODUCT AT BEST POSSIBLE PRICES :)");
         }
+        System.out.println("");
     }
     public void customerCart(customer thisCustomer)
     {
@@ -217,7 +229,7 @@ public class customerDashBoard extends customer{
                 System.out.println("\t\t "+(i)+". "+cartProduct.productName + " \t " +cartProduct.productCost + " \t " + cartProduct.productSellerName);
                 i++;    
             }
-
+            System.out.println("");
             System.out.println("DO YOU WANT CHANGE CART ? \n 1. ADD \n 2. REMOVE \n 0. NO - CONTINUE & BUY ALL");
             switch(ob.nextInt())
             {
@@ -232,7 +244,7 @@ public class customerDashBoard extends customer{
                 break;
                 case 0:
                     System.out.println(" HOLD ON TILL WE LOAD : ) \n");
-                    confirmBuyProducts();
+                    confirmBuyProducts(this);
                     //buyProducts();
                     //buyedProducts.billing(this,customerCart);
                 break;
@@ -243,8 +255,9 @@ public class customerDashBoard extends customer{
             //customerCart_ = new customerCart(, );
         }
         else{
-            System.out.println("\t >> YOUR CART IS EMPTY ADD & BUY BEST PRODUCT AT BEST POSSIBLE PRICES :)\n");
+            System.out.println("\t >> YOUR CART IS EMPTY ADD & BUY BEST PRODUCT AT BEST POSSIBLE PRICES :)");
         }
+        System.out.println("");
     }
     public void customerWishlist(customer thisCustomer)
     {
@@ -261,8 +274,9 @@ public class customerDashBoard extends customer{
             System.out.println("");
         }
         else{
-            System.out.println("\t >> YOUR WISHLIST IS EMPTY VIEW & BUY BEST PRODUCT AT BEST POSSIBLE PRICES :)\n");
+            System.out.println("\t >> YOUR WISHLIST IS EMPTY VIEW & BUY BEST PRODUCT AT BEST POSSIBLE PRICES :)");
         }
+        System.out.println("");
     }
 
     public void removeFromCart(customer thisCustomer,String toRemoveProduct)
@@ -299,7 +313,7 @@ public class customerDashBoard extends customer{
             System.out.println("\t0. BACK");
             System.out.print("   ENTER YOUR CHOICE ");
             ch =  ob.nextInt();
-
+            String s;
             product searchProduct;
 
             switch(ch)
@@ -308,37 +322,50 @@ public class customerDashBoard extends customer{
                     searchProduct = new  MedicalProducts();
                     System.out.println("ENTER THE PRODUCT TO SEARCH ");
                     ob.nextLine();
-                    searchProduct.search(ob.nextLine());
+                    s=ob.nextLine();
+                    System.out.println(s);
+                    searchProduct.search(s);
                 break;
                 case 2:
                     searchProduct = new  HomeProducts();
                     System.out.println("ENTER THE PRODUCT TO SEARCH ");
                     ob.nextLine();
-                    searchProduct.search(ob.nextLine());
+                    s=ob.nextLine();
+                    System.out.println(s);
+                    searchProduct.search(s);
+                    
                 break;
                 case 3:
                     searchProduct = new  GrommingProducts();
                     System.out.println("ENTER THE PRODUCT TO SEARCH ");
                     ob.nextLine();
-                    searchProduct.search(ob.nextLine());
+                    s=ob.nextLine();
+                    System.out.println(s);
+                    searchProduct.search(s);
                 break;
                 case 4:
                     searchProduct = new  GrocceryProducts();
                     System.out.println("ENTER THE PRODUCT TO SEARCH ");
                     ob.nextLine();
-                    searchProduct.search(ob.nextLine());
+                    s=ob.nextLine();
+                    System.out.println(s);
+                    searchProduct.search(s);
                 break;
                 case 5:
                     searchProduct = new  ElectronicProducts();
                     System.out.println("ENTER THE PRODUCT TO SEARCH ");
                     ob.nextLine();
-                    searchProduct.search(ob.nextLine());
+                    s=ob.nextLine();
+                    System.out.println(s);
+                    searchProduct.search(s);
                 break;
                 case 6:
                     searchProduct = new  ClothingProducts();
                     System.out.println("ENTER THE PRODUCT TO SEARCH ");
                     ob.nextLine();
-                    searchProduct.search(ob.nextLine());       //this will give the respective product type dashboard
+                    s=ob.nextLine();
+                    System.out.println(s);
+                    searchProduct.search(s);       //this will give the respective product type dashboard
                 break;
                 case 0:
                 System.out.println(" GOING TO DASHBORAD ");

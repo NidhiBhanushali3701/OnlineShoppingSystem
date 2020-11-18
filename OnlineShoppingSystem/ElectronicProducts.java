@@ -16,9 +16,9 @@ public class ElectronicProducts extends product
     }
 
 
-    private static Vector<product> electronic = new Vector<product>();
+    Vector<product> electronic = new Vector<product>();
     //static Vector<product> Cart = new Vector<product>();
-    private static Enumeration<product> CPEnumeration = electronic.elements();
+    Enumeration<product> CPEnumeration = electronic.elements();
     String prodName[] = {"PHONES ","TABLETS "," TELEVISION ","OVEN ","FRIGDE ","FANS  "," LIGHTS ","COMPUTER ","LAPTOPS","AIR CONDITIONER ","CAMERA ","SPEAKERS","MUSIC PLAYERS"};
     long prodCost[] = {120000,100000,200000,20000,65000,5000,5000,150000,200000,50000,45000,40000,30000};
     String prodSellerName[] ={"APPLE","ONEPLUS","SONY","LG","SAMSUNG","BAJAJ","BAJAJ","APPLE","APPLE","VOLTAS","CANON","SONY","SAMSUNG"};
@@ -39,7 +39,7 @@ public class ElectronicProducts extends product
                 System.out.println("\t\t\t"+electronic.get(i).productName + " \t " +electronic.get(i).productCost + " \t " +electronic.get(i).productID);
             }
             */
-            System.out.println("\n\t\t "+" "+". "+"PRODUCT NAME"+ " \t " +"PRICE"+ " \t " +"BRAND NAME");
+            System.out.println("\n\t\t "+" "+"   "+"PRODUCT NAME"+ " \t" +"PRICE"+ " \t " +"BRAND NAME");
             int i=1;
             for(product printProd:electronic)
             {
@@ -76,7 +76,7 @@ public class ElectronicProducts extends product
                 case 12:
                 case 13:
                     System.out.println(electronic.get(ch-1).productDescription);
-                    System.out.println("\t Do You want to add it to : \n   1.CART \n   2.WISHLIST \n   0. NONE ");
+                    System.out.println("\t Do You want to add it to : \n   1. CART \n   2. WISHLIST \n   0. NONE ");
                     switch(ob.nextInt())
                     {
                         case 1:
@@ -207,6 +207,7 @@ public class ElectronicProducts extends product
                 }
             }
         }
+        System.out.println("");
     }
     public void addToWishList(customer thisCustomer,product addToWLProd)
     {
@@ -233,6 +234,7 @@ public class ElectronicProducts extends product
                 }
             }
         }
+        System.out.println("");
     }
     public static void main(String args[]) 
     {
