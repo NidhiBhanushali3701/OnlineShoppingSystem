@@ -1,5 +1,6 @@
 package OnlineShoppingSystem;
 import java.util.*;
+import java.sql.*;
 
 public abstract class product
 {
@@ -34,13 +35,37 @@ public abstract class product
 		productSellerID=0;
 		productSellerName="";
 		productDescription="";
+	}
 
+	public abstract void showProduct(customer thisCustomer);		//we will show the respective product here 
+	public static void main(String args[]) 
+	{
 		System.out.println("Product Class");
 	}
 
-	public abstract void showProduct();		//we will show the respective product here 
-	public static void main(String args[]) 
+	public abstract void search(String productNameToFind);
+	
+	public abstract void sortHighToLow();
+	
+	public abstract void sortLowToHigh();
+
+	public abstract void searchByBrand();
+	
+	//public abstract void sortByNew();
+
+	//public abstract void sortByPopular();
+
+	public abstract void addToCart(customer thisCustomer,product addToCartProduct);
+
+	//public abstract void removeFromCart(customer thisCustomer,product toRemoveProduct);
+
+	public void billing(customer thisCustomer,Vector<product> customerCartVector)
 	{
-		
+		thisCustomer.customerTotalBill=0;
+		for(product buyingProd:customerCartVector)
+		{
+			thisCustomer.customerTotalBill+=buyingProd.productCost;
+		}
+		System.out.println("  \t  \t \t YOUR TOTAL AMOUNT IS = $ " + thisCustomer.customerTotalBill+"\n");
 	}
 }
