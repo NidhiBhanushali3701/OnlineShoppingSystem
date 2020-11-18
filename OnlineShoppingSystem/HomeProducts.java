@@ -73,6 +73,7 @@ public class HomeProducts extends product
                 case 13:
                     System.out.println(home.get(ch-1).productDescription);
                     addToCart(thisCustomer,home.get(ch-1));
+                break;
                 case 14:
                     System.out.println("ENTER PRODUCT NAME YOU ARE SERACHING ");
                     ob.nextLine();
