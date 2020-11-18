@@ -29,12 +29,13 @@ class customer
 	String customerID;	
 	String customerPassword;
 	String prevOrders;
+	long customerTotalBill;
 	
 	Vector<product> customerCart = new Vector<product>();
-	Vector<product> CustomerWishList = new Vector<product>();
+	Vector<product> customerWishList = new Vector<product>();
 	
 	
-	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, String prevOrders)
+	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, String prevOrders,long customerTotalBill;)
 	{
 	
 		this.customerPhoneNo=customerPhoneNo;
@@ -44,6 +45,7 @@ class customer
 		this.customerEmail=customerEmail;
 		this.customerPassword=customerPassword;
 		this.prevOrders=prevOrders;
+		this.customerTotalBill=customerTotalBill;
 	}
 	customer()
 	{
@@ -55,6 +57,8 @@ class customer
 		customerCredits=0;
 		customerPassword="";
 		prevOrders="";
+		customerTotalBill=0;
+		customerCredits=((long)(customerTotalBill*0.01));
 	}
 	
 	public static Vector<customer> cust=new Vector<customer>();
@@ -66,7 +70,7 @@ class customer
 	}
 	public static void customMenu() 
 	{
-		customer c=new customer("",0,0,"","","","No Orders yet");
+		customer c=new customer("",0,0,"","","","No Orders yet",0);
 		cust.add(c);
 
 		int op=0;
@@ -169,7 +173,7 @@ class customer
 		}
 		}
 		
-		customer c=new customer(name,phone,0,add,email,pass, "No Orders yet");
+		customer c=new customer(name,phone,0,add,email,pass, "No Orders yet",0);
 		cust.add(c);
 		System.out.println("Account created successfully\n");//go to store menu
 		accountSettings.settingsmenu(cust.size()-1);
