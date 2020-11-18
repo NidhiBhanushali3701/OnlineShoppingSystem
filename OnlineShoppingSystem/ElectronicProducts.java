@@ -71,6 +71,7 @@ public class ElectronicProducts extends product
                 case 13:
                     System.out.println(electronic.get(ch-1).productDescription);
                     addToCart(thisCustomer,electronic.get(ch-1));
+                break;
                 case 0:
                     System.out.println("GOING BACK");
                 break;
