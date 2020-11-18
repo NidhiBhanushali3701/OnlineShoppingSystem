@@ -47,7 +47,7 @@ class customer
 	}
 	customer()
 	{
-		customerID="";
+		
 		customerEmail="";
 		customerName="";
 		customerPhoneNo=0;
