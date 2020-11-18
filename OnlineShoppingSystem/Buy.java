@@ -1,7 +1,7 @@
-package BillingPackage;
+package CustomerPackage;
 import java.util.*;
 
-public class Buy extends Cart {
+public class Buy extends accountSettings {
     public static void buymenu(int c,int p){
         Scanner s=new Scanner(System.in);
         System.out.println("Product(s) details:\n");
@@ -25,7 +25,7 @@ public class Buy extends Cart {
             System.out.println("Invalid choice");
             buymenu(c, p);
         }        
-        s.close();
+      
 
     }
 
@@ -43,7 +43,7 @@ public class Buy extends Cart {
                 //go to catalogue
                 break;
             }
-            s.close();
+            
     }
 
     public static void billing(int c,int p)
@@ -64,21 +64,24 @@ public class Buy extends Cart {
             //go to catalogue
             break;
         }
-        s.close();
+       
     }
 
     public static void getpaymentDetails(int c, int p)
     {
+        String name;
         Scanner s=new Scanner(System.in);
         System.out.println("How do you wish to pay?\n1)UPI IDs/Net banking\n2)Debit/Credit/ATM Card\n3)Pay on Delivery\n4)Go back");
         int op=s.nextInt();  
         switch(op)
         {
             case 1:
-            System.out.println("");
+            System.out.println("Enter name: ");
+            System.out.println("Enter  ");
             break;
             case 2:
             System.out.println("Enter name: ");
+            name=s.nextLine();
             System.out.println("Enter your card number: ");
             System.out.println("Enter the expiration date: ");
             System.out.println("Enter CVV (card verification value): ");
@@ -93,7 +96,7 @@ public class Buy extends Cart {
             System.out.println("Invalid choice");
             getpaymentDetails(c,p);
         }      
-        s.close();
+      
     }
     
 }
