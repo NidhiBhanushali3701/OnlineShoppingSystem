@@ -10,6 +10,6 @@ public class SearchingException extends Exception
 
 	public String toString()
 	{
-		return "PRODUCT NOT FOUND :/";
+		return "\n\tPRODUCT NOT FOUND :/\n";
 	}
 }

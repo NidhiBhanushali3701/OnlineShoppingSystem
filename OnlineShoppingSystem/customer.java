@@ -1,4 +1,61 @@
-package CustomerPackage;
+package OnlineShoppingSystem;
+import java.util.*;
+import java.sql.*;
+
+/*public class customer implements person
+{
+	public static Scanner ob = new Scanner(System.in);
+	String customerName;
+	long customerPhoneNo;
+	String customerEmail;
+	String customerAddress;
+	long customerCredits;
+	long customerID;
+	int customerSize;
+  	char customerGender;
+	String customerPassword;
+	long customerTotalBill;
+	Vector<product> prevOrders = new Vector<product>();
+	Vector<product> customerCart = new Vector<product>();
+	Vector<product> customerWishList = new Vector<product>();
+
+	customer(String customerName,long customerID,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,int customerSize,char customerGender,String customerPassword, String prevOrders,long customerTotalBill)
+	{
+		this.customerID=customerID;
+		this.customerEmail=customerEmail;
+		this.customerName=customerName;
+		this.customerAddress=customerAddress;
+		this.customerCredits=customerCredits;
+		this.customerEmail=customerEmail;
+		this.customerSize=customerSize;
+		this.customerGender=customerGender;
+		this.customerPassword=customerPassword;
+		this.customerTotalBill=customerTotalBill;
+	}
+  
+	customer()
+	{
+		customerAddress="";
+		customerEmail="";
+		customerName="";
+		customerCredits=0;
+		customerPhoneNo=0;
+		customerID=0;
+		customerSize=0;
+		customerGender='\0';
+		customerPassword="";
+		customerTotalBill=0;
+		customerCredits=((long)(customerTotalBill*0.01));
+	}
+
+	
+	public static void main(String args[]) 
+	{
+		System.out.println("customer");
+	}
+}
+*/
+
 import java.util.*;
 import java.util.Vector;
 import java.util.regex.Pattern;
@@ -33,7 +90,7 @@ class customer
 	Vector<product> customerWishList = new Vector<product>();
 	
 	
-	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, long customerTotalBill;)
+	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, long customerTotalBill)
 	{
 	
 		this.customerPhoneNo=customerPhoneNo;
@@ -60,11 +117,13 @@ class customer
 	public static Vector<customer> cust=new Vector<customer>();
 	
 	static Scanner s=new Scanner(System.in);
-	public static void main(String[] args)
+	public static void main(String args[]) 
 	{
-		customMenu();
-	}
-	public static void customMenu() 
+		customerDashBoard customerDashBoard_ = new customerDashBoard("user@gmail.com","password");
+		customerDashBoard_.customMenu();
+    }
+	
+	public void customMenu() 
 	{
 		customer c=new customer("",0,0,"","","",0);
 		cust.add(c);
@@ -253,6 +312,12 @@ class customer
 		
 		return b;
 	}
+
+	public void customerPayment(customer thisCustomer)
+	{
+		//buy()
+		buyProducts buyedProd = new buyProducts();
+		buyedProd.buymenu(this,0);
+
+	}
 }
-	
-	

@@ -6,10 +6,10 @@ import java.sql.*;
 
 public class customerDashBoard extends customer{
     public static Scanner ob = new Scanner(System.in);
-    customerCart customerCart_;    
+    //customerCart customerCart_;    
     public customerDashBoard(String userEMail,String userPassword)
     {
-        super("customerName", 0, 0, 0, "customerAddress", userEMail, 0,'\0', userEMail,"",0);
+        super("customerName", 0, 0, "customerAddress", userEMail,userEMail,0);
         System.out.println("\n\t\t\tWELCOME !");
         int choice ;
         do{
@@ -54,11 +54,6 @@ public class customerDashBoard extends customer{
             }
         }
         while(choice != 0);
-    }
-    public static void main(String args[]) 
-	{
-        customerDashBoard customerDashBoard_ = new customerDashBoard("user@gmail.com","password");
-
     }
     public void viewProducts()
     {
@@ -191,7 +186,7 @@ public class customerDashBoard extends customer{
             int sureBuy = ob.nextInt();
             if(sureBuy!=0)
             {           //call payment method()
-                customerPayment();
+                customerPayment(this);
             }
             else
             {
