@@ -71,7 +71,22 @@ public class MedicalProducts extends product
                 case 12:
                 case 13:
                     System.out.println(medical.get(ch-1).productDescription);
-                    addToCart(thisCustomer,medical.get(ch-1));
+                    System.out.println("\t Do You want to add it to : \n  1.CART \n  2.WISHLIST \n  0. NONE ");
+                    switch(ob.nextInt())
+                    {
+                        case 1:
+                            addToCart(thisCustomer,medical.get(ch-1));
+                        break;
+                        case 2:
+                            addToWishList(thisCustomer,medical.get(ch-1));
+                        break;
+                        case 0:
+                            System.out.println("GOING BACK");
+                        break;
+                        default:
+                            System.out.println("INVALID CHOICE \n");
+                        break;
+                    }
                 break;
                 case 0:
                     System.out.println("GOING BACK");
