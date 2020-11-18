@@ -18,7 +18,7 @@ public class HomeProducts extends product
     private static Vector<product> home = new Vector<product>();
     private static Enumeration<product> CPEnumeration = home.elements();
     String prodName[] = {"SOFA","FRAMES","CHAIR","TABLES","SHOW PIECES","STANDS","DINNER TABLE","STOOLS","LADDERS","HOME DECOR","WARDROBES","CLOCKS","BEDS"};
-    long prodCost[] = {1299,1399,1149,1999,1299,3499,2999,5999,3499,5999,4499,3999,10999};
+    long prodCost[] = {20000,1200,2000,9000,1999,5000,11000,1000,2499,3999,2999,3999,10999};
     String prodSellerName[] ={"URBAN LADDER","HOMESAKE","WOODSWORTH","WOODSWORTH","URBAN LADDER","HOME STUDIO","STYLE SPA","URBAN LADDER","WOODSWORTH","HOMESAKE","HOME STUDIO","AJANTA","SPRINGTEK"};
     public static Scanner ob = new Scanner(System.in);
     HomeProducts prod;
