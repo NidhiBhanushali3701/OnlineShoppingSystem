@@ -177,7 +177,33 @@ public class HomeProducts extends product
                 }
             }
         }
-}
+    }
+    public void addToWishList(customer thisCustomer,product addToWLProd)
+    {
+        System.out.print("\t Do You want to add to WishList ? [1-Y || 0-N]      ");
+        int addToWL=ob.nextInt();
+        if(addToWL!=0)
+        {
+            thisCustomer.customerWishList.add(addToWLProd);
+            System.out.println("\t Do You Want to view Your WishList ?");
+            int viewCart = ob.nextInt();
+            if(viewCart!=0)
+            {
+                /*CPEnumeration = customerWishList.elements();
+                while(CPEnumeration.hasMoreElements())
+                {
+                    System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+                }*/
+                System.out.println("\t >>> YOUR WISHLIST ");
+                int i=1;
+                for(product printProd:thisCustomer.customerWishList)
+                {
+                    System.out.println("\t\t "+(i)+". "+printProd.productName + " \t " +printProd.productCost + " \t " + printProd.productSellerName);
+                    i++;
+                }
+            }
+        }
+    }
     public static void main(String args[]) 
     {
         HomeProducts prodMain = new HomeProducts();
