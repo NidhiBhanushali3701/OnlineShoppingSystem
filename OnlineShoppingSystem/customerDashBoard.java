@@ -7,9 +7,12 @@ import java.sql.*;
 public class customerDashBoard extends customer{
     public static Scanner ob = new Scanner(System.in);
     //customerCart customerCart_;    
-    public customerDashBoard(String userEMail,String userPassword)
+    public customerDashBoard(customer thisCustomer,String userEMail,String userPassword)
     {
         super("customerName", 0, 0, "customerAddress", userEMail,userEMail,0);
+    }
+    public void displayCustomerDashBoard(int c)
+    {
         System.out.println("\n\t\t\tWELCOME !");
         int choice ;
         do{
@@ -19,6 +22,7 @@ public class customerDashBoard extends customer{
             System.out.println("3. PREVIOUS PRODUCTS");
             System.out.println("4. VIEW CART");  
             System.out.println("5. VIEW WISHLIST"); //System.out.println("");
+            System.out.println("6. ACCOUNT SETTINGS");
             //System.out.println("6. SEARCH FROM PRODUCTS");
             System.out.println("0. EXIT");
             System.out.print(" PLEASE ENTER YOUR CHOICE - ");
@@ -45,6 +49,10 @@ public class customerDashBoard extends customer{
                     search();
                 break;
                 */
+                case 6:
+                    accountSettings aS = new accountSettings(this, this.customerEmail, this.customerPassword);
+                    aS.settingsmenu(c);
+                break;
                 case 0:
                     System.out.println("EXITING ... ");
                 break;

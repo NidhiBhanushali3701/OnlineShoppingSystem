@@ -3,12 +3,18 @@ import java.sql.*;
 import java.util.*;
 
 public class buyProducts extends accountSettings {
-    public void buymenu(customer thisCustomer,int c){
+    public buyProducts(customer thisCustomer,String userEMail, String userPassword) {
+        super(thisCustomer,userEMail, userPassword);
+        //super(this,userEMail, userPassword);
+    }
+
+	public void buymenu(customer thisCustomer, int c) {
         Scanner s=new Scanner(System.in);
         //System.out.println("Product(s) details:\n");
         //displayproducts();
         System.out.println("Your details:\n");
-        display(c);
+        System.out.println(this.customerName+"\tyes you r buying ;)");
+        //display(c);
         System.out.println("Do You want to edit your personal details(0->No,1->Yes)");
         int op=s.nextInt();
         
@@ -38,7 +44,9 @@ public class buyProducts extends accountSettings {
             {
                 case 1:billing(this,c);
                 break;
-                case 2:buymenu(this,c);
+                case 2:
+                buymenu(this,c);
+                customerDashBoard(this.customerEmail,this.customerPassword);
                 break;
                 case 3:
                 //go to catalogue
@@ -47,7 +55,10 @@ public class buyProducts extends accountSettings {
             
     }
 
-    public void billing(customer thisCustomer,int c)
+    private void customerDashBoard(String customerEmail, String customerPassword) {
+    }
+
+    public void billing(customer thisCustomer, int c)
     {
         Scanner s=new Scanner(System.in);
         System.out.println("Order Summary:\n");
@@ -60,6 +71,7 @@ public class buyProducts extends accountSettings {
             case 1:
             //save in prevOrders
             System.out.println("Order Successfully placed!!");
+            //start thread
             break;
             case 2:
             //go to catalogue

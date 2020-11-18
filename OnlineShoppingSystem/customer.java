@@ -1,65 +1,9 @@
 package OnlineShoppingSystem;
 import java.util.*;
 import java.sql.*;
-
-/*public class customer implements person
-{
-	public static Scanner ob = new Scanner(System.in);
-	String customerName;
-	long customerPhoneNo;
-	String customerEmail;
-	String customerAddress;
-	long customerCredits;
-	long customerID;
-	int customerSize;
-  	char customerGender;
-	String customerPassword;
-	long customerTotalBill;
-	Vector<product> prevOrders = new Vector<product>();
-	Vector<product> customerCart = new Vector<product>();
-	Vector<product> customerWishList = new Vector<product>();
-
-	customer(String customerName,long customerID,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,int customerSize,char customerGender,String customerPassword, String prevOrders,long customerTotalBill)
-	{
-		this.customerID=customerID;
-		this.customerEmail=customerEmail;
-		this.customerName=customerName;
-		this.customerAddress=customerAddress;
-		this.customerCredits=customerCredits;
-		this.customerEmail=customerEmail;
-		this.customerSize=customerSize;
-		this.customerGender=customerGender;
-		this.customerPassword=customerPassword;
-		this.customerTotalBill=customerTotalBill;
-	}
-  
-	customer()
-	{
-		customerAddress="";
-		customerEmail="";
-		customerName="";
-		customerCredits=0;
-		customerPhoneNo=0;
-		customerID=0;
-		customerSize=0;
-		customerGender='\0';
-		customerPassword="";
-		customerTotalBill=0;
-		customerCredits=((long)(customerTotalBill*0.01));
-	}
-
-	
-	public static void main(String args[]) 
-	{
-		System.out.println("customer");
-	}
-}
-*/
-
-import java.util.*;
-import java.util.Vector;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+
 class phonenumberException extends Exception
 {
 	public phonenumberException(String m)
@@ -119,7 +63,8 @@ class customer
 	static Scanner s=new Scanner(System.in);
 	public static void main(String args[]) 
 	{
-		customerDashBoard customerDashBoard_ = new customerDashBoard("user@gmail.com","password");
+		//customer C = new cu
+		customerDashBoard customerDashBoard_ = new customerDashBoard(null,"user@gmail.com","password");
 		customerDashBoard_.customMenu();
     }
 	
@@ -231,13 +176,15 @@ class customer
 		customer c=new customer(name,phone,0,add,email,pass,0);
 		cust.add(c);
 		System.out.println("Account created successfully\n");//go to store menu
-		accountSettings.settingsmenu(cust.size()-1);
-	
+		
+		accountSettings aS= new accountSettings(c,c.customerEmail, c.customerPassword);
+		aS.displayCustomerDashBoard(cust.size()-1);
+		aS.settingsmenu(cust.size()-1);
 		
 		
 	}
 
-	public static void logIn()
+	public void logIn()
 	{
 		int op=0;
 		System.out.println("Enter the following details:\n");
@@ -249,7 +196,10 @@ class customer
 		if(validInfo!=0)
 		{
 			System.out.println("You are logged in");
-			accountSettings.settingsmenu(validInfo);
+			//accountSettings aS= new accountSettings(aS, email, pass);
+			customerDashBoard cDB = new customerDashBoard(this,email,pass);
+			cDB.displayCustomerDashBoard(validInfo);
+			//aS.settingsmenu(validInfo);
 			//store menu
 		}
 		else
@@ -316,8 +266,62 @@ class customer
 	public void customerPayment(customer thisCustomer)
 	{
 		//buy()
-		buyProducts buyedProd = new buyProducts();
+		buyProducts buyedProd = new buyProducts(thisCustomer,this.customerEmail,this.customerPassword);
 		buyedProd.buymenu(this,0);
 
 	}
 }
+
+/*public class customer implements person
+{
+	public static Scanner ob = new Scanner(System.in);
+	String customerName;
+	long customerPhoneNo;
+	String customerEmail;
+	String customerAddress;
+	long customerCredits;
+	long customerID;
+	int customerSize;
+  	char customerGender;
+	String customerPassword;
+	long customerTotalBill;
+	Vector<product> prevOrders = new Vector<product>();
+	Vector<product> customerCart = new Vector<product>();
+	Vector<product> customerWishList = new Vector<product>();
+
+	customer(String customerName,long customerID,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,int customerSize,char customerGender,String customerPassword, String prevOrders,long customerTotalBill)
+	{
+		this.customerID=customerID;
+		this.customerEmail=customerEmail;
+		this.customerName=customerName;
+		this.customerAddress=customerAddress;
+		this.customerCredits=customerCredits;
+		this.customerEmail=customerEmail;
+		this.customerSize=customerSize;
+		this.customerGender=customerGender;
+		this.customerPassword=customerPassword;
+		this.customerTotalBill=customerTotalBill;
+	}
+  
+	customer()
+	{
+		customerAddress="";
+		customerEmail="";
+		customerName="";
+		customerCredits=0;
+		customerPhoneNo=0;
+		customerID=0;
+		customerSize=0;
+		customerGender='\0';
+		customerPassword="";
+		customerTotalBill=0;
+		customerCredits=((long)(customerTotalBill*0.01));
+	}
+
+	
+	public static void main(String args[]) 
+	{
+		System.out.println("customer");
+	}
+}
+*/

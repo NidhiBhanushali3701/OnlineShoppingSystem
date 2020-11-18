@@ -4,13 +4,16 @@ import java.util.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-public class accountSettings extends customer{
+public class accountSettings extends customerDashBoard{
     
-    public static void settingsmenu(int c){
+    public accountSettings(customer thisCustomer,String userEMail, String userPassword) {
+        super(thisCustomer,userEMail, userPassword);
+    }
+
+	public void settingsmenu(int c) {
         Scanner s=new Scanner(System.in);
         int op;
         
-                    
             System.out.println("\n1)DISPLAY DETAILS\n2)EDIT DETAILS\n3)VIEW PREVIOUS ORDERS\n4)SIGN OUT\n5)DELETE ACCOUNT\n6)BACK\n7)EXIT\n");
             op=s.nextInt();
             switch(op)
@@ -28,14 +31,14 @@ public class accountSettings extends customer{
                 settingsmenu(c);
                 break;
                 case 4:
-                customer.customMenu();
+                this.customMenu();
                 settingsmenu(c);
                 break;
                 case 5:
                 delete(c);
                 break;
                 case 6://should be store menu after implementing store menu
-                customer.customMenu();
+                customMenu();
                 settingsmenu(c);
                 break;
                 case 7:
@@ -49,18 +52,17 @@ public class accountSettings extends customer{
 
     }
 
-    public static void display(int c)
+    public void display(int c)
     {
         
         System.out.println( "Name "+cust.get(c).customerName);
         System.out.println( "Email ID "+cust.get(c).customerEmail);
-        System.out.print( "Phone Number ");
-        System.out.println(cust.get(c).customerPhoneNo);
+        System.out.println( "Phone Number "+ cust.get(c).customerPhoneNo);
         System.out.println( "Address "+cust.get(c).customerAddress);
         
     }
     
-    public static void edit(int c)
+    public void edit(int c)
     {
         Scanner s=new Scanner(System.in);
         int o=0;
@@ -93,7 +95,8 @@ public class accountSettings extends customer{
             try{
             System.out.println( "New Phone number ");
             p=s.nextLong();
-            if(p<1000000000)throw new phonenumberException("Please enter a valid phone number(10 digits)");
+            if(p<1000000000)
+                throw new phonenumberException("Please enter a valid phone number(10 digits)");
 		    else validity=true;
             }
             catch(phonenumberException e)
@@ -148,12 +151,12 @@ public class accountSettings extends customer{
         
     }
 
-    public static void prevorders(int c)
+    public void prevorders(int c)
     {
         System.out.println( "Your orders: ");
     }
 
-    public static void delete(int c)
+    public void delete(int c)
     {
         Scanner s=new Scanner(System.in);
         
