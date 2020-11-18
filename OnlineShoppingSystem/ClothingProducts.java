@@ -35,6 +35,7 @@ public class ClothingProducts extends product
                 System.out.println("\t\t\t"+clothing.get(i).productName + " \t " +clothing.get(i).productCost + " \t " +clothing.get(i).productID);
             }
             */
+            System.out.println("\n\t\t "+" "+". "+"PRODUCT NAME"+ " \t " +"PRICE"+ " \t " +"BRAND NAME");
             int i=1;
             for(product printProd:clothing)
             {
@@ -71,7 +72,7 @@ public class ClothingProducts extends product
                 case 12:
                 case 13:
                     System.out.println(clothing.get(ch-1).productDescription);
-                    System.out.println("\t Do You want to add it to : \n  1.CART \n  2.WISHLIST \n  0. NONE ");
+                    System.out.println("\t Do You want to add it to : \n   1.CART \n   2.WISHLIST \n   0. NONE ");
                     switch(ob.nextInt())
                     {
                         case 1:
@@ -117,7 +118,6 @@ public class ClothingProducts extends product
         {
             if(clothing.elementAt(i).productName.trim().equalsIgnoreCase(productNameToFind))
             {
-                System.out.println(clothing.get(i).productName+"\t"+clothing.get(i).productCost+"\t"+clothing.get(i).productSellerName);
                 flag=1;
                 break;
             }
@@ -126,6 +126,10 @@ public class ClothingProducts extends product
             if(flag==0)
             {
                 throw new Exception("\n\tPRODUCT NOT FOUND :/\n");
+            }
+            else
+            {
+                System.out.println(clothing.get(i).productName+"\t"+clothing.get(i).productCost+"\t"+clothing.get(i).productSellerName);
             }
         }
         catch(Exception e)
@@ -175,17 +179,12 @@ public class ClothingProducts extends product
     
     public void addToCart(customer thisCustomer,product addToCartProd)
     {
-        System.out.print("Do you want to add to WishList ? [1-Y || 0-N]   ");
-        if(ob.nextInt()!=0)
-        {
-
-        }
-        System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]      ");
+        System.out.print("\t Do You want to add to Cart ? [1-Y || 0-N]\t");
         int addToBag=ob.nextInt();
         if(addToBag!=0)
         {
             thisCustomer.customerCart.add(addToCartProd);
-            System.out.println("\t Do You Want to view Your Cart ?");
+            System.out.print("\t Do You Want to view Your Cart ?\t");
             int viewCart = ob.nextInt();
             if(viewCart!=0)
             {
@@ -194,7 +193,7 @@ public class ClothingProducts extends product
                 {
                     System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
                 }*/
-                System.out.println("\t >>> YOUR CART ");
+                System.out.println("\t >>> YOUR CART \n");
                 int i=1;
                 for(product printProd:thisCustomer.customerCart)
                 {
@@ -206,12 +205,12 @@ public class ClothingProducts extends product
     }
     public void addToWishList(customer thisCustomer,product addToWLProd)
     {
-        System.out.print("\t Do You want to add to WishList ? [1-Y || 0-N]      ");
+        System.out.print("\t Do You want to add to WishList ? [1-Y || 0-N]\t");
         int addToWL=ob.nextInt();
         if(addToWL!=0)
         {
             thisCustomer.customerWishList.add(addToWLProd);
-            System.out.println("\t Do You Want to view Your WishList ?");
+            System.out.print("\t Do You Want to view Your WishList ?\t");
             int viewCart = ob.nextInt();
             if(viewCart!=0)
             {
@@ -220,7 +219,7 @@ public class ClothingProducts extends product
                 {
                     System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
                 }*/
-                System.out.println("\t >>> YOUR WISHLIST ");
+                System.out.println("\t >>> YOUR WISHLIST \n");
                 int i=1;
                 for(product printProd:thisCustomer.customerWishList)
                 {

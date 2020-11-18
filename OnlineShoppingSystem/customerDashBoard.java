@@ -18,6 +18,7 @@ public class customerDashBoard extends customer{
             System.out.println("3. PREVIOUS PRODUCTS");
             System.out.println("4. VIEW CART");  
             System.out.println("5. VIEW WISHLIST"); //System.out.println("");
+            System.out.println("6. SEARCH FROM PRODUCTS");
             System.out.println("0. EXIT");
             choice = ob.nextInt();
             switch(choice)
@@ -35,7 +36,10 @@ public class customerDashBoard extends customer{
                     customerCart(this);
                 break;
                 case 5:
-
+                    customerWishlist(this);
+                break;
+                case 6:
+                    search();
                 break;
                 case 0:
                     System.out.println("EXITING ... ");
@@ -163,17 +167,7 @@ public class customerDashBoard extends customer{
                     buyingProduct = new ClothingProducts();
                     customerCart(this);
                     buyingProduct.billing(this,customerCart);
-                    System.out.println("\t SURE YOU WANT TO BUY ?");
-                    int sureBuy = ob.nextInt();
-                    if(sureBuy!=0)
-                    {
-                        //call payment method()
-                        System.out.println("SELECT PAYING OPTION ");
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    confirmBuyProducts();
                 break;
                 case 0:
                 System.out.println(" GOING TO DASHBORAD ");
@@ -185,50 +179,175 @@ public class customerDashBoard extends customer{
         }
         while(ch!=0);
     }
+    public void confirmBuyProducts()
+    {
+        System.out.println("\t SURE YOU WANT TO BUY ?");
+        int sureBuy = ob.nextInt();
+        if(sureBuy!=0)
+        {           //call payment method()
+            customerPayment();
+        }
+        else
+        {
+            //break;
+        }
+    }
     public void viewPreviousProducts(customer thisCustomer)
     {
-
+        if(thisCustomer.prevOrders.size()>0)
+        {
+            for(product p:thisCustomer.prevOrders)
+            {
+                System.out.println(p.productName+"\t\t"+p.productCost);
+            }
+        }
+        else{
+            System.out.println("\t >> YOU HAVEN'T BOUGHT ANYTHING ADD & BUY BEST PRODUCT AT BEST POSSIBLE PRICES :)\n");
+        }
     }
     public void customerCart(customer thisCustomer)
     {
         //product buyedProducts = new ClothingProducts();
-        System.out.println("\t >> YOUR CART ");
-        int i=1;
-        for(product cartProduct: thisCustomer.customerCart)
+        if(thisCustomer.customerCart.size()>0)
         {
-            System.out.println("\t\t "+(i)+". "+cartProduct.productName + " \t " +cartProduct.productCost + " \t " + cartProduct.productSellerName);
-            i++;    
-        }
+            System.out.println("\t >> YOUR CART \n");
+            int i=1;
+            for(product cartProduct: thisCustomer.customerCart)
+            {
+                System.out.println("\t\t "+(i)+". "+cartProduct.productName + " \t " +cartProduct.productCost + " \t " + cartProduct.productSellerName);
+                i++;    
+            }
 
-        System.out.println("DO YOU WANT CHANGE CART ? \n 1. ADD \n 2. REMOVE \n 0. NO - CONTINUE & BUY ALL");
-        switch(ob.nextInt())
-        {
-            case 1:
-                viewProducts();
-            break;
-            case 2:
-                System.out.println("Enter Name of The Product From To remove it ");
-                //String removeProductName=ob.nextLine();
-                removeFromCart(this,ob.nextLine());
-            break;
-            case 0:
-                System.out.println(" HOLD ON TILL WE LOAD : ) \n");
-                buyProducts();
-                //buyedProducts.billing(this,customerCart);
-            break;
-            default:
-                System.out.println("INVALID CHOICE \n");
-            break;
+            System.out.println("DO YOU WANT CHANGE CART ? \n 1. ADD \n 2. REMOVE \n 0. NO - CONTINUE & BUY ALL");
+            switch(ob.nextInt())
+            {
+                case 1:
+                    viewProducts();
+                break;
+                case 2:
+                    System.out.println("Enter Name of The Product From To remove it ");
+                    //String removeProductName=ob.nextLine();
+                    ob.nextLine();
+                    removeFromCart(this,ob.nextLine());
+                break;
+                case 0:
+                    System.out.println(" HOLD ON TILL WE LOAD : ) \n");
+                    confirmBuyProducts();
+                    //buyProducts();
+                    //buyedProducts.billing(this,customerCart);
+                break;
+                default:
+                    System.out.println("INVALID CHOICE \n");
+                break;
+            }
+            //customerCart_ = new customerCart(, );
         }
-        //customerCart_ = new customerCart(, );
+        else{
+            System.out.println("\t >> YOUR CART IS EMPTY ADD & BUY BEST PRODUCT AT BEST POSSIBLE PRICES :)\n");
+        }
     }
-    public void customerWishlist()
+    public void customerWishlist(customer thisCustomer)
     {
-
+        
+        if(thisCustomer.customerWishList.size()>0)
+        {
+            System.out.println("\t\t>>> YOUR WISHLIST \n");
+            int i=1;
+            for(product cartProduct: thisCustomer.customerWishList)
+            {
+                System.out.println("\t\t "+(i)+". "+cartProduct.productName + " \t " +cartProduct.productCost + " \t " + cartProduct.productSellerName);
+                i++;    
+            }
+            System.out.println("");
+        }
+        else{
+            System.out.println("\t >> YOUR WISHLIST IS EMPTY VIEW & BUY BEST PRODUCT AT BEST POSSIBLE PRICES :)\n");
+        }
     }
 
     public void removeFromCart(customer thisCustomer,String toRemoveProduct)
     {
+        /*Iterator<product> i = customerCart.iterator();
+        while(i.hasNext())
+        {
+            product p=i.next();
+            if(p.productName.trim().equalsIgnoreCase(toRemoveProduct))
+            {
+                customerCart.remove(i.next());
+            }
+        }*/
+        for(int i = 0;i<customerCart.size();i++)
+        {
+            if(customerCart.elementAt(i).productName.trim().equalsIgnoreCase(toRemoveProduct))
+            {
+                customerCart.removeElementAt(i);
+            }
+        }
+    }
 
+    public void search()
+    {
+        int ch;
+        do{
+            System.out.println(" WHAT TYPE OF PRODUCT YOU WANT TO SEARCH IN ?");
+            System.out.println("\t1. MEDICAL");
+            System.out.println("\t2. HOME");
+            System.out.println("\t3. GROOMING");
+            System.out.println("\t4. GROCCERY");
+            System.out.println("\t5. ELECTRONICS");
+            System.out.println("\t6. CLOTHING");
+            System.out.println("\t0. BACK");
+            System.out.print("   ENTER YOUR CHOICE ");
+            ch =  ob.nextInt();
+
+            product searchProduct;
+
+            switch(ch)
+            {
+                case 1:
+                    searchProduct = new  MedicalProducts();
+                    System.out.println("ENTER THE PRODUCT TO SEARCH ");
+                    ob.nextLine();
+                    searchProduct.search(ob.nextLine());
+                break;
+                case 2:
+                    searchProduct = new  HomeProducts();
+                    System.out.println("ENTER THE PRODUCT TO SEARCH ");
+                    ob.nextLine();
+                    searchProduct.search(ob.nextLine());
+                break;
+                case 3:
+                    searchProduct = new  GrommingProducts();
+                    System.out.println("ENTER THE PRODUCT TO SEARCH ");
+                    ob.nextLine();
+                    searchProduct.search(ob.nextLine());
+                break;
+                case 4:
+                    searchProduct = new  GrocceryProducts();
+                    System.out.println("ENTER THE PRODUCT TO SEARCH ");
+                    ob.nextLine();
+                    searchProduct.search(ob.nextLine());
+                break;
+                case 5:
+                    searchProduct = new  ElectronicProducts();
+                    System.out.println("ENTER THE PRODUCT TO SEARCH ");
+                    ob.nextLine();
+                    searchProduct.search(ob.nextLine());
+                break;
+                case 6:
+                    searchProduct = new  ClothingProducts();
+                    System.out.println("ENTER THE PRODUCT TO SEARCH ");
+                    ob.nextLine();
+                    searchProduct.search(ob.nextLine());       //this will give the respective product type dashboard
+                break;
+                case 0:
+                System.out.println(" GOING TO DASHBORAD ");
+                break;
+                default:
+                    System.out.println("INVALID CHOICE \n");
+                break;
+            }
+        }
+        while(ch!=0);
     }
 }

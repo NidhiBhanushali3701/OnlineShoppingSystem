@@ -68,4 +68,6 @@ public abstract class product
 		}
 		System.out.println("  \t  \t \t YOUR TOTAL AMOUNT IS = $ " + thisCustomer.customerTotalBill+"\n");
 	}
+
+	public abstract void addToWishList(customer thisCustomer,product addToWLProd);
 }
