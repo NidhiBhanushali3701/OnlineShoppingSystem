@@ -72,6 +72,7 @@ public class MedicalProducts extends product
                 case 13:
                     System.out.println(medical.get(ch-1).productDescription);
                     addToCart(thisCustomer,medical.get(ch-1));
+                break;
                 case 0:
                     System.out.println("GOING BACK");
                 break;
