@@ -52,7 +52,10 @@ public class MedicalProducts extends product
                 System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
             }
             */
-            System.out.println("\t\t 0. GO BACK");
+            System.out.println("\n\t\t 14. SEARCH");
+            System.out.println("\t\t 15. SORT [HIGH TO LOW]");
+            System.out.println("\t\t 16. SORT [LOW TO HIGH]");
+            System.out.println("\n\t\t 0. GO BACK");
             System.out.print("   ENTER YOUR CHOICE ");
             ch = ob.nextInt();
             switch(ch)
@@ -88,6 +91,17 @@ public class MedicalProducts extends product
                         break;
                     }
                 break;
+                case 14:
+                    System.out.println("ENTER PRODUCT NAME YOU ARE SERACHING ");
+                    ob.nextLine();
+                    search(ob.nextLine());
+                break;
+                case 15:
+                    sortHighToLow();
+                break;
+                case 16:
+                    sortLowToHigh();
+                break;
                 case 0:
                     System.out.println("GOING BACK");
                 break;
@@ -101,14 +115,25 @@ public class MedicalProducts extends product
 
     public void search(String productNameToFind) 
     {
-        int i,j;
+        int i,flag=0;
         for(i=0;i<medical.size();i++)
         {
             if(medical.elementAt(i).productName.trim().equalsIgnoreCase(productNameToFind))
             {
                 System.out.println(medical.get(i).productName+"\t"+medical.get(i).productCost+"\t"+medical.get(i).productSellerName);
+                flag=1;
                 break;
             }
+        }
+        try{
+            if(flag==0)
+            {
+                throw new Exception("\n\tPRODUCT NOT FOUND :/\n");
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e+"\n");
         }
     }
     
@@ -145,14 +170,10 @@ public class MedicalProducts extends product
             }
         }
     }
-    public void sortByPopular() {
+
+    public void searchByBrand() 
+    {
          
-
-    }
-
-    public void sortByNew() {
-         
-
     }
     public void addToCart(customer thisCustomer,product addToCartProd)
     {
@@ -179,7 +200,33 @@ public class MedicalProducts extends product
                 }
             }
         }
-}
+    }
+    public void addToWishList(customer thisCustomer,product addToWLProd)
+    {
+        System.out.print("\t Do You want to add to WishList ? [1-Y || 0-N]      ");
+        int addToWL=ob.nextInt();
+        if(addToWL!=0)
+        {
+            thisCustomer.customerWishList.add(addToWLProd);
+            System.out.println("\t Do You Want to view Your WishList ?");
+            int viewCart = ob.nextInt();
+            if(viewCart!=0)
+            {
+                /*CPEnumeration = customerWishList.elements();
+                while(CPEnumeration.hasMoreElements())
+                {
+                    System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+                }*/
+                System.out.println("\t >>> YOUR WISHLIST ");
+                int i=1;
+                for(product printProd:thisCustomer.customerWishList)
+                {
+                    System.out.println("\t\t "+(i)+". "+printProd.productName + " \t " +printProd.productCost + " \t " + printProd.productSellerName);
+                    i++;
+                }
+            }
+        }
+    }
     public static void main(String args[]) 
     {
         MedicalProducts prodMain = new MedicalProducts();

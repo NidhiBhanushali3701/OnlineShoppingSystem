@@ -113,14 +113,25 @@ public class HomeProducts extends product
 
     public void search(String productNameToFind) 
     {
-        int i,j;
+        int i,flag=0;
         for(i=0;i<home.size();i++)
         {
             if(home.elementAt(i).productName.trim().equalsIgnoreCase(productNameToFind))
             {
                 System.out.println(home.get(i).productName+"\t"+home.get(i).productCost+"\t"+home.get(i).productSellerName);
+                flag=1;
                 break;
             }
+        }
+        try{
+            if(flag==0)
+            {
+                throw new Exception("\n\tPRODUCT NOT FOUND :/\n");
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e+"\n");
         }
     }
     
@@ -158,15 +169,11 @@ public class HomeProducts extends product
         }
     }
 
-    public void sortByPopular() {
+    public void searchByBrand() 
+    {
          
-
     }
 
-    public void sortByNew() {
-         
-
-    }
     public void addToCart(customer thisCustomer,product addToCartProd)
     {
         System.out.print("\t Do You want to add to Cart ? [1-Y || 0-N]   ");

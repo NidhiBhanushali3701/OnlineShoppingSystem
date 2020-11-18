@@ -52,7 +52,10 @@ public class GrommingProducts extends product
                 System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
             }
             */
-            System.out.println("\t\t 0. GO BACK");
+            System.out.println("\n\t\t 14. SEARCH");
+            System.out.println("\t\t 15. SORT [HIGH TO LOW]");
+            System.out.println("\t\t 16. SORT [LOW TO HIGH]");
+            System.out.println("\n\t\t 0. GO BACK");
             System.out.print("   ENTER YOUR CHOICE ");
             ch = ob.nextInt();
             switch(ch)
@@ -71,7 +74,33 @@ public class GrommingProducts extends product
                 case 12:
                 case 13:
                     System.out.println(gromming.get(ch-1).productDescription);
-                    addToCart(thisCustomer,gromming.get(ch-1));
+                    System.out.println("\t Do You want to add it to : \n  1.CART \n  2.WISHLIST \n  0. NONE ");
+                    switch(ob.nextInt())
+                    {
+                        case 1:
+                            addToCart(thisCustomer,gromming.get(ch-1));
+                        break;
+                        case 2:
+                            addToWishList(thisCustomer,gromming.get(ch-1));
+                        break;
+                        case 0:
+                            System.out.println("GOING BACK");
+                        break;
+                        default:
+                            System.out.println("INVALID CHOICE \n");
+                        break;
+                    }
+                break;
+                case 14:
+                    System.out.println("ENTER PRODUCT NAME YOU ARE SERACHING ");
+                    ob.nextLine();
+                    search(ob.nextLine());
+                break;
+                case 15:
+                    sortHighToLow();
+                break;
+                case 16:
+                    sortLowToHigh();
                 break;
                 case 0:
                     System.out.println("GOING BACK");
@@ -86,14 +115,25 @@ public class GrommingProducts extends product
 
     public void search(String productNameToFind) 
     {
-        int i,j;
+        int i,flag=0;
         for(i=0;i<gromming.size();i++)
         {
             if(gromming.elementAt(i).productName.trim().equalsIgnoreCase(productNameToFind))
             {
                 System.out.println(gromming.get(i).productName+"\t"+gromming.get(i).productCost+"\t"+gromming.get(i).productSellerName);
+                flag=1;
                 break;
             }
+        }
+        try{
+            if(flag==0)
+            {
+                throw new Exception("\n\tPRODUCT NOT FOUND :/\n");
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e+"\n");
         }
     }
     
@@ -131,17 +171,14 @@ public class GrommingProducts extends product
         }
     }
 
-    public void sortByPopular() {
+    public void searchByBrand() 
+    {
          
     }
 
-    public void sortByNew() {
-         
-
-    }
     public void addToCart(customer thisCustomer,product addToCartProd)
     {
-        System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
+        System.out.print("\t Do You want to add to Cart ? [1-Y || 0-N]   ");
         int addToBag=ob.nextInt();
         if(addToBag!=0)
         {
@@ -155,7 +192,7 @@ public class GrommingProducts extends product
                 {
                     System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
                 }*/
-                System.out.println("\t>>YOUR CART ");
+                System.out.println("\t >>> YOUR CART ");
                 int i=1;
                 for(product printProd:thisCustomer.customerCart)
                 {
@@ -164,7 +201,33 @@ public class GrommingProducts extends product
                 }
             }
         }
-}
+    }
+    public void addToWishList(customer thisCustomer,product addToWLProd)
+    {
+        System.out.print("\t Do You want to add to WishList ? [1-Y || 0-N]      ");
+        int addToWL=ob.nextInt();
+        if(addToWL!=0)
+        {
+            thisCustomer.customerWishList.add(addToWLProd);
+            System.out.println("\t Do You Want to view Your WishList ?");
+            int viewCart = ob.nextInt();
+            if(viewCart!=0)
+            {
+                /*CPEnumeration = customerWishList.elements();
+                while(CPEnumeration.hasMoreElements())
+                {
+                    System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+                }*/
+                System.out.println("\t >>> YOUR WISHLIST ");
+                int i=1;
+                for(product printProd:thisCustomer.customerWishList)
+                {
+                    System.out.println("\t\t "+(i)+". "+printProd.productName + " \t " +printProd.productCost + " \t " + printProd.productSellerName);
+                    i++;
+                }
+            }
+        }
+    }
     public static void main(String args[]) 
     {
         GrommingProducts prodMain = new GrommingProducts();
@@ -199,4 +262,5 @@ public class GrommingProducts extends product
             */
         }
     }
+
 }
