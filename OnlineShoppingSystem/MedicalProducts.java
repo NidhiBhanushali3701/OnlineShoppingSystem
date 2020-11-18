@@ -8,9 +8,9 @@ public class MedicalProducts extends product
     private static Vector<product> medical = new Vector<product>();
     //static Vector<product> Cart = new Vector<product>();
     private static Enumeration<product> CPEnumeration = medical.elements();
-    String prodName[] = {"Med1","Med2 ","Med3","Med4","Med5","Med6","Med7","Med8","Med9","Med10","Med11","Med12","Med13"};
-    long prodCost[] = {1299,1399,1149,1999,1299,3499,2999,5999,3499,5999,4499,3999,10999};
-    String prodSellerName[] ={"ZARA1","ADIDAS1","PRADA1","PRADA1","AND1","AND1","H&M1","H&M1","CHANEL1","AND1","H&M1","GUCCI1","Dior1"};
+    String prodName[] = {"RELAY SPRAY","MASKS","BAND AID","ANTISEPTICS","OINTMENTS","THERMOMETER","FIRST AID KIT","CROCIN","PUDIN HARA ","CYCLOPAM","PARACETAMOL","COUGH SYRUP","SANITIZERS"};
+    long prodCost[] = {300,40,35,200,150,600,1400,50,25,45,50,105,200};
+    String prodSellerName[] ={"PHARMEASY","MEDICOS","PHARMEASY","DETTOL","SAVLON","MEDHOME","PHARMEASY","MEDICOS","DABUR","MEDICOS","MEDHOME","HONITUS","LIFEBUOY"};
     //long prodID[] = {};
     public static Scanner ob = new Scanner(System.in);
     MedicalProducts prod;
