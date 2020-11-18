@@ -3,48 +3,48 @@ import java.util.*;
 import java.io.*;
 import java.sql.*;
 
-public class GrocceryProducts extends product
+public class groceryProducts extends product
 {
-    public GrocceryProducts()
+    public groceryProducts()
     {
         super();
     }
 
-    public GrocceryProducts(long productId,long productCost,String productName,long productBuyerID,String productBuyerName,long productSellerID,String productSellerName,String productDescription)
+    public groceryProducts(long productId,long productCost,String productName,long productBuyerID,String productBuyerName,long productSellerID,String productSellerName,String productDescription)
     {
         super(productId,productCost,productName,productBuyerID,productBuyerName,productSellerID,productSellerName,productDescription);
     }
 
-    private static Vector<product> groccery = new Vector<product>();
-    private static Enumeration<product> CPEnumeration = groccery.elements();
-    String prodName[] = {" TOPS       "," T-SHIRTS   "," SHIRTS     "," PANTS      "," SHORTS     "," GOWNS      "," ONE-PIECES "," PURSES     "," BAGS       ","SHOES       ","SANDALS     ","WATCHES     ","JWELLERY    "};
-    long prodCost[] = {1299,1399,1149,1999,1299,3499,2999,5999,3499,5999,4499,3999,10999};
-    String prodSellerName[] ={"ZARA","ADIDAS","PRADA","PRADA","AND","AND","H&M","H&M","CHANEL","AND","H&M","GUCCI","Dior"};
+    private static Vector<product> grocery = new Vector<product>();
+    private static Enumeration<product> CPEnumeration = grocery.elements();
+    String prodName[] = {" COOKING OIL       ","  PULSES   ","  FRUITS AND VEGETABLES    ","  WHEAT      ","  DRY FRUITS     ","  RICE      ","  BISCUITS AND SNACKS ","  COLD DRINKS  ","  TEA       ","  COFFEE       ","  MILK    ","  BREAD    ","  INSTANT NOODLES  ",};
+    long prodCost[] = {250,220,400,200,350,250,80,50,60,75,25,50,30};
+    String prodSellerName[] ={"FORTUNE","ORGANIC TATTVA","HARVEST FARMS","AASHIRWAAD","FARMOWN","KOHINOOR","BRITANNIA","THUMBS UP","SOCIETY","NESCAFE","AMUL","ENGLISH OVEN","MAGGI"};
     public static Scanner ob = new Scanner(System.in);
-    GrocceryProducts prod;
-    File GrocceryProductDescriptionFile;
+    groceryProducts prod;
+    File groceryProductDescriptionFile;
 
     public void showProduct(customer thisCustomer)
     {
-        addGrocceryProductDetails();
+        addgroceryProductDetails();
         int ch,addToBag;
         do{
-            System.out.println("\t--->>> WELCOME TO GROCCERY COLLECTION ");
+            System.out.println("\t--->>> WELCOME TO grocery COLLECTION ");
             /*
             for(int i=0;i<13;i++)
             {
-                System.out.println("\t\t\t"+groccery.get(i).productName + " \t " +groccery.get(i).productCost + " \t " +groccery.get(i).productID);
+                System.out.println("\t\t\t"+grocery.get(i).productName + " \t " +grocery.get(i).productCost + " \t " +grocery.get(i).productID);
             }
             */
             int i=1;
-            for(product printProd:groccery)
+            for(product printProd:grocery)
             {
                 System.out.println("\t\t "+(i)+". "+printProd.productName + " \t " +printProd.productCost + " \t " + printProd.productSellerName);
                 i++;
             }
             
             /*
-            CPEnumeration = groccery.elements();
+            CPEnumeration = grocery.elements();
             while(CPEnumeration.hasMoreElements())
             {
                 System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
@@ -68,9 +68,8 @@ public class GrocceryProducts extends product
                 case 11:
                 case 12:
                 case 13:
-                    System.out.println(groccery.get(ch-1).productDescription);
-                    addToCart(thisCustomer,groccery.get(ch-1));
-                break;
+                    System.out.println(grocery.get(ch-1).productDescription);
+                    addToCart(thisCustomer,grocery.get(ch-1));
                 case 0:
                     System.out.println("GOING BACK");
                 break;
@@ -79,54 +78,22 @@ public class GrocceryProducts extends product
                 break;
             }
         }while(ch!=0);
-        groccery = new Vector<product>();
+        grocery = new Vector<product>();
     } 
 
-    public void search(String productNameToFind) 
-    {
-        int i,j;
-        for(i=0;i<groccery.size();i++)
-        {
-            if(groccery.elementAt(i).productName.trim().equalsIgnoreCase(productNameToFind))
-            {
-                System.out.println(groccery.get(i).productName+"\t"+groccery.get(i).productCost+"\t"+groccery.get(i).productSellerName);
-                break;
-            }
-        }
+    public void search(String productNameToFind) {
+         
+
     }
     
-    public void sortHighToLow() 
-    {
-        int i,j;
-        for(i=0;i<groccery.size();i++)
-        {
-            for(j=0;j<groccery.size()-1-i;j++)
-            {
-                if(groccery.get(j).productCost<groccery.get(j+1).productCost)
-                {
-                    product temp = groccery.get(j);
-                    groccery.set(j,groccery.get(j+1));
-                    groccery.set(j+1,temp);
-                }
-            }
-        }
+    public void sortHighToLow() {
+         
+
     }
     
-    public void sortLowToHigh() 
-    {
-        int i,j;
-        for(i=0;i<groccery.size();i++)
-        {
-            for(j=0;j<groccery.size()-1-i;j++)
-            {
-                if(groccery.get(j).productCost>groccery.get(j+1).productCost)
-                {
-                    product temp = groccery.get(j);
-                    groccery.set(j,groccery.get(j+1));
-                    groccery.set(j+1,temp);
-                }
-            }
-        }
+    public void sortLowToHigh() {
+         
+
     }
 
     public void sortByPopular() {
@@ -140,7 +107,7 @@ public class GrocceryProducts extends product
     }
     public void addToCart(customer thisCustomer,product addToCartProd)
     {
-        System.out.print("\t Do You want to add to Cart ? [1-Y || 0-N]   ");
+        System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
         int addToBag=ob.nextInt();
         if(addToBag!=0)
         {
@@ -154,7 +121,7 @@ public class GrocceryProducts extends product
                 {
                     System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
                 }*/
-                System.out.println("\t >>> YOUR CART ");
+                System.out.println("\t>>YOUR CART ");
                 int i=1;
                 for(product printProd:thisCustomer.customerCart)
                 {
@@ -166,11 +133,11 @@ public class GrocceryProducts extends product
 }
     public static void main(String args[]) 
     {
-        GrocceryProducts prodMain = new GrocceryProducts();
-        ((GrocceryProducts) prodMain).addGrocceryProductDetails();
+        GroceryProducts prodMain = new groceryProducts();
+        ((GroceryProducts) prodMain).addgroceryProductDetails();
     }
 
-    public void addGrocceryProductDetails()
+    public void addgroceryProductDetails()
     {
         product allProd;
         Scanner sc;
@@ -178,12 +145,12 @@ public class GrocceryProducts extends product
         {
             try
             {
-                GrocceryProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\GrocceryProductsDescription.txt");
-                sc = new Scanner(GrocceryProductDescriptionFile);
+                groceryProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\groceryProductsDescription.txt");
+                sc = new Scanner(groceryProductDescriptionFile);
                 if(sc.hasNextLine())
                 {
-                    allProd= new GrocceryProducts((4000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],sc.nextLine());
-                    groccery.add(allProd);
+                    allProd= new groceryProducts((4000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],sc.nextLine());
+                    grocery.add(allProd);
                 }
             }
             catch(Exception E)
@@ -192,8 +159,8 @@ public class GrocceryProducts extends product
             }
             /*
             finally{
-                allProd= new GrocceryProducts((6000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],"");
-                groccery.add(allProd);
+                allProd= new groceryProducts((6000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],"");
+                grocery.add(allProd);
             }
             */
         }
