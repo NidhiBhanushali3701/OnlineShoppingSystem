@@ -72,7 +72,22 @@ public class HomeProducts extends product
                 case 12:
                 case 13:
                     System.out.println(home.get(ch-1).productDescription);
-                    addToCart(thisCustomer,home.get(ch-1));
+                    System.out.println("\t Do You want to add it to : \n  1.CART \n  2.WISHLIST \n  0. NONE ");
+                    switch(ob.nextInt())
+                    {
+                        case 1:
+                            addToCart(thisCustomer,home.get(ch-1));
+                        break;
+                        case 2:
+                            addToWishList(thisCustomer,home.get(ch-1));
+                        break;
+                        case 0:
+                            System.out.println("GOING BACK");
+                        break;
+                        default:
+                            System.out.println("INVALID CHOICE \n");
+                        break;
+                    }
                 break;
                 case 14:
                     System.out.println("ENTER PRODUCT NAME YOU ARE SERACHING ");
