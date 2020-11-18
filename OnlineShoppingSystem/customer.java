@@ -26,11 +26,9 @@ class customer
 	String customerEmail;
 	String customerAddress;
 	long customerCredits;
-	String customerID;	
 	String customerPassword;
-	String prevOrders;
 	long customerTotalBill;
-	
+	Vector<product> prevOrders=new Vector<product>();	
 	Vector<product> customerCart = new Vector<product>();
 	Vector<product> customerWishList = new Vector<product>();
 	
