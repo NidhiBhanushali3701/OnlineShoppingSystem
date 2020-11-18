@@ -154,7 +154,7 @@ public class HomeProducts extends product
     }
     public void addToCart(customer thisCustomer,product addToCartProd)
     {
-        System.out.print("\t Do You want to add to cart ? [1-Y || 0-N]   ");
+        System.out.print("\t Do You want to add to Cart ? [1-Y || 0-N]   ");
         int addToBag=ob.nextInt();
         if(addToBag!=0)
         {
@@ -168,7 +168,7 @@ public class HomeProducts extends product
                 {
                     System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
                 }*/
-                System.out.println("\t>>YOUR CART ");
+                System.out.println("\t >>> YOUR CART ");
                 int i=1;
                 for(product printProd:thisCustomer.customerCart)
                 {
