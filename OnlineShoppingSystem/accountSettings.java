@@ -149,7 +149,7 @@ public class accountSettings extends customer{
 
     public static void prevorders(int c)
     {
-        System.out.println( "Your orders: "+cust.get(c).prevOrders);
+        System.out.println( "Your orders: ");
     }
 
     public static void delete(int c)
