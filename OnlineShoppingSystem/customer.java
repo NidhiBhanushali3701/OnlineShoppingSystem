@@ -58,14 +58,13 @@ class customer
 		customerCredits=((long)(customerTotalBill*0.01));
 	}
 	
-	public static Vector<customer> cust=new Vector<customer>();
+	Vector<customer> cust=new Vector<customer>();
 	
 	static Scanner s=new Scanner(System.in);
 	public static void main(String args[]) 
 	{
-		//customer C = new cu
-		customerDashBoard customerDashBoard_ = new customerDashBoard(null,"user@gmail.com","password");
-		customerDashBoard_.customMenu();
+		customer C = new customer();
+		C.customMenu();
     }
 	
 	public void customMenu() 
@@ -100,7 +99,7 @@ class customer
 		s.close();
 	}
 
-	public static void signUp()
+	public void signUp()
 	{
 		s.nextLine();
 		System.out.println("Enter Your Details:\n");
@@ -108,9 +107,9 @@ class customer
 		System.out.println("Email ID:");
 		String email=s.nextLine();
 
-		int accountExists=check(email,"");
+		customer accountExists=check(email,"");
 		int op=0;
-		if(accountExists!=0)
+		if(accountExists.customerEmail!="")
 		{
 			
 				System.out.println("You already have an account with this email Id\n1)Log in?\n2)Create new account with different Email ID\n");
@@ -131,7 +130,7 @@ class customer
 			create(email);
 		}
 	}
-	public static void create(String email)
+	public void create(String email)
 	{
 		s.nextLine();
 		long phone=0;
@@ -175,11 +174,12 @@ class customer
 		
 		customer c=new customer(name,phone,0,add,email,pass,0);
 		cust.add(c);
+		customer thisCustomer=c;
 		System.out.println("Account created successfully\n");//go to store menu
 		
-		accountSettings aS= new accountSettings(c,c.customerEmail, c.customerPassword);
-		aS.displayCustomerDashBoard(cust.size()-1);
-		aS.settingsmenu(cust.size()-1);
+		accountSettings aS= new accountSettings(thisCustomer);
+		aS.displayCustomerDashBoard(thisCustomer);
+		aS.settingsmenu(thisCustomer);
 		
 		
 	}
@@ -192,12 +192,12 @@ class customer
 		String email=s.next();
 		System.out.println("Password:");
 		String pass=s.next();
-		int validInfo=check(email,pass);
-		if(validInfo!=0)
+		customer validInfo=check(email,pass);
+		if(validInfo.customerEmail!="")
 		{
 			System.out.println("You are logged in");
 			//accountSettings aS= new accountSettings(aS, email, pass);
-			customerDashBoard cDB = new customerDashBoard(this,email,pass);
+			customerDashBoard cDB = new customerDashBoard(validInfo);
 			cDB.displayCustomerDashBoard(validInfo);
 			//aS.settingsmenu(validInfo);
 			//store menu
@@ -223,40 +223,41 @@ class customer
 		}
 	}
 
-	public static int check(String e,String n)
+	public customer check(String e,String n)
 	{
-		int b;
-		b=1;
+		customer b;
+		customer x;
+		b=new customer();
 		if(cust.size()==0)
-		b=0;
+		return b;
 		for(int i=0;i<cust.size();i++)
 		{
+			x=cust.get(i);
 			
-			
-			if(e.equals(cust.get(i).customerEmail))
+			if(e.equals(x.customerEmail))
 			{			
 				
 				if(n!="")
 				{
-					if(n.equals(cust.get(i).customerPassword))
+					if(n.equals(x.customerPassword))
 					{
-						b=i;						
+						b=x;						
 						return b;
 					}
 					else
 					{
-						b=0;						
+						b=new customer();						
 					}					
 				}
 				else
 				{
-					b=i;					
+					b=x;					
 					return b;
 				}
 			}
 			else
 			{
-				b=0;				
+				b=new customer();				
 			}
 		}
 		
@@ -266,8 +267,8 @@ class customer
 	public void customerPayment(customer thisCustomer)
 	{
 		//buy()
-		buyProducts buyedProd = new buyProducts(thisCustomer,this.customerEmail,this.customerPassword);
-		buyedProd.buymenu(this,0);
+		buyProducts buyedProd = new buyProducts(thisCustomer);
+		buyedProd.buymenu(thisCustomer);
 
 	}
 }
