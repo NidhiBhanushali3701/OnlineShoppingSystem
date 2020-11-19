@@ -9,7 +9,7 @@ public class customerDashBoard extends customer{
     //customerCart customerCart_;    
     public customerDashBoard(customer thisCustomer)
     {
-        super();
+        super(thisCustomer.customerName,thisCustomer.customerPhoneNo,thisCustomer.customerCredits,thisCustomer.customerAddress,thisCustomer.customerEmail,thisCustomer.customerPassword,thisCustomer.customerTotalBill);
     }
     
 	public void displayCustomerDashBoard(customer thisCustomer)
