@@ -3,8 +3,8 @@ import java.sql.*;
 import java.util.*;
 
 public class buyProducts extends accountSettings {
-    public buyProducts(customer thisCustomer) {
-        super(thisCustomer);
+    public buyProducts(customer thisCustomer, Vector cust) {
+        super(thisCustomer, cust);
         //super(this,userEMail, userPassword);
     }
 
@@ -45,7 +45,7 @@ public class buyProducts extends accountSettings {
                 case 1:billing(thisCustomer);
                 break;
                 case 2:
-                buymenu(thisCustomer);
+                //buymenu(thisCustomer);
                 customerDashBoard(thisCustomer.customerEmail,thisCustomer.customerPassword);
                 break;
                 case 3:
@@ -72,6 +72,7 @@ public class buyProducts extends accountSettings {
             //save in prevOrders
             System.out.println("Order Successfully placed!!");
             //start thread
+            customerDashBoard(thisCustomer.customerEmail,thisCustomer.customerPassword);
             break;
             case 2:
             //go to catalogue
