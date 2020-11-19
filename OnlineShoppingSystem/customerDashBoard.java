@@ -7,13 +7,14 @@ import java.sql.*;
 public class customerDashBoard extends customer{
     public static Scanner ob = new Scanner(System.in);
     //customerCart customerCart_;    
-    public customerDashBoard(customer thisCustomer,String userEMail,String userPassword)
+    public customerDashBoard(customer thisCustomer)
     {
-        super("customerName", 0, 0, "customerAddress", userEMail,userEMail,0);
+        super();
     }
-    public void displayCustomerDashBoard(int c)
+    
+	public void displayCustomerDashBoard(customer thisCustomer)
     {
-        System.out.println("\n\t\t\tWELCOME !");
+        System.out.println("\n\t\t\tWELCOME !"+thisCustomer.customerName);
         int choice ;
         do{
             System.out.println("YOU CAN SELECT FROM ALL BELOW :)");
@@ -49,9 +50,9 @@ public class customerDashBoard extends customer{
                     search();
                 break;
                 */
-                case 6:
-                    accountSettings aS = new accountSettings(this, this.customerEmail, this.customerPassword);
-                    aS.settingsmenu(c);
+                case 6: 
+                accountSettings ob=new accountSettings(thisCustomer);                  
+                   ob.settingsmenu(thisCustomer);
                 break;
                 case 0:
                     System.out.println("EXITING ... ");
