@@ -7,14 +7,14 @@ import java.sql.*;
 public class customerDashBoard extends customer{
     public static Scanner ob = new Scanner(System.in);
     //customerCart customerCart_;    
-    public customerDashBoard(customer thisCustomer)
+    public customerDashBoard(customer thisCustomer, Vector cust)
     {
-        super(thisCustomer.customerName,thisCustomer.customerPhoneNo,thisCustomer.customerCredits,thisCustomer.customerAddress,thisCustomer.customerEmail,thisCustomer.customerPassword,thisCustomer.customerTotalBill);
+        super(thisCustomer.customerName,thisCustomer.customerPhoneNo,thisCustomer.customerCredits,thisCustomer.customerAddress,thisCustomer.customerEmail,thisCustomer.customerPassword,thisCustomer.customerTotalBill,cust);
     }
     
 	public void displayCustomerDashBoard(customer thisCustomer)
     {
-        System.out.println("\n\t\t\tWELCOME !"+thisCustomer.customerName);
+        System.out.println("\n\t\t\tWELCOME "+thisCustomer.customerName);
         int choice ;
         do{
             System.out.println("YOU CAN SELECT FROM ALL BELOW :)");
@@ -51,7 +51,7 @@ public class customerDashBoard extends customer{
                 break;
                 */
                 case 6: 
-                accountSettings ob=new accountSettings(thisCustomer);                  
+                accountSettings ob=new accountSettings(thisCustomer,cust);                  
                    ob.settingsmenu(thisCustomer);
                 break;
                 case 0:
@@ -195,7 +195,8 @@ public class customerDashBoard extends customer{
             int sureBuy = ob.nextInt();
             if(sureBuy!=0)
             {           //call payment method()
-                customerPayment(this);
+                customer c=new customer(thisCustomer.customerName, thisCustomer.customerPhoneNo, thisCustomer.customerCredits, thisCustomer.customerAddress, thisCustomer.customerEmail, thisCustomer.customerPassword, thisCustomer.customerTotalBill, cust);
+                c.customerPayment(thisCustomer);
             }
             else
             {
@@ -248,7 +249,7 @@ public class customerDashBoard extends customer{
                 break;
                 case 0:
                     System.out.println(" HOLD ON TILL WE LOAD : ) \n");
-                    confirmBuyProducts(this);
+                    confirmBuyProducts(thisCustomer);
                     //buyProducts();
                     //buyedProducts.billing(this,customerCart);
                 break;
