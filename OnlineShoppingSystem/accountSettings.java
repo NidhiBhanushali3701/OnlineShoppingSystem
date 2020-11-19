@@ -6,14 +6,14 @@ import java.util.regex.Matcher;
 
 public class accountSettings extends customerDashBoard{
     
-    public accountSettings(customer thisCustomer) {
-        super(thisCustomer);
+    public accountSettings(customer thisCustomer, Vector cust) {
+        super(thisCustomer,cust);
     }
 
 	public void settingsmenu(customer thisCustomer) {
         Scanner s=new Scanner(System.in);
         int op;
-        
+        //System.out.println(cust.get(1).customerName);
             System.out.println("\n1)DISPLAY DETAILS\n2)EDIT DETAILS\n3)SIGN OUT\n4)DELETE ACCOUNT\n5)BACK\n6)EXIT\n");
             op=s.nextInt();
             switch(op)
@@ -27,6 +27,7 @@ public class accountSettings extends customerDashBoard{
                 settingsmenu(thisCustomer);
                 break;
                 case 3:
+                
                 customMenu();
                 settingsmenu(thisCustomer);
                 break;
