@@ -7,17 +7,17 @@ import java.util.regex.Matcher;
 class phonenumberException extends Exception
 {
 	public phonenumberException(String m)
-	{
-		super(m);
-	}
+{
+super(m);
+}
 }
 
 class passwordException extends Exception
 {
 	public passwordException(String m)
-	{
-		super(m);
-	}
+{
+super(m);
+}
 }
 class customer 
 {
@@ -25,44 +25,46 @@ class customer
 	String customerName;
 	long customerPhoneNo;
 	String customerEmail;
-	static String customerAddress;
+	String customerAddress;
 	long customerCredits;
 	String customerPassword;
 	long customerTotalBill;
-	Vector<product> prevOrders = new Vector<product>();
+	Vector<product> prevOrders=new Vector<product>();	
+	Vector<product> customerOrders=new Vector<product>();
 	Vector<product> customerCart = new Vector<product>();
 	Vector<product> customerWishList = new Vector<product>();
-	public Vector<customer> cust = new Vector<customer>();
+	deliveredThread delivered_thread ; //= new deliveredThread(0);
 
-	customer(String customerName, long customerPhoneNo, long customerCredits, String customerAddress, String customerEmail, String customerPassword, long customerTotalBill, Vector cust) {
-
-		this.customerPhoneNo = customerPhoneNo;
-		this.customerName = customerName;
-		this.customerAddress = customerAddress;
-		this.customerCredits = customerCredits;
-		this.customerEmail = customerEmail;
-		this.customerPassword = customerPassword;
-		this.customerTotalBill = customerTotalBill;
-		this.cust=cust;
-	}
-
-	customer() {
-
-		customerEmail = "";
-		customerName = "";
-		customerPhoneNo = 0;
-		customerAddress = "";
-		customerCredits = 0;
-		customerPassword = "";
-		customerTotalBill = 0;
-		customerCredits = ((long) (customerTotalBill * 0.01));
-	}
-
+	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, long customerTotalBill)
+	{
 	
-
-	static Scanner s = new Scanner(System.in);
-
-	public static void main(String args[]) {
+		this.customerPhoneNo=customerPhoneNo;
+		this.customerName=customerName;
+		this.customerAddress=customerAddress;
+		this.customerCredits=customerCredits;
+		this.customerEmail=customerEmail;
+		this.customerPassword=customerPassword;
+		this.customerTotalBill=customerTotalBill;
+		this.delivered_thread = new deliveredThread(0);
+	}
+	customer()
+	{
+		
+		customerEmail="";
+		customerName="";
+		customerPhoneNo=0;
+		customerAddress="";
+		customerCredits=0;
+		customerPassword="";
+		customerTotalBill=0;
+		customerCredits=((long)(customerTotalBill*0.01));
+	}
+	
+	Vector<customer> cust=new Vector<customer>();
+	
+	static Scanner s=new Scanner(System.in);
+	public static void main(String args[]) 
+	{
 		customer C = new customer();
 		C.customMenu();
     }
@@ -78,7 +80,7 @@ class customer
 		while(op!=3)
 		{
 			
-			System.out.println("MENU\n1)Sign Up\n2)Log In\n3)Exit\n");
+			System.out.println("\n\tMENU\n1) Sign Up\n2) Log In\n0) Exit\n".toUpperCase());
 			op=s.nextInt();
 
 			switch(op)
@@ -87,14 +89,13 @@ class customer
 				signUp();
 				break;
 				case 2:
-				
 				logIn();
 				//break loop1;
-				case 3:
+				case 0:
 				System.exit(0);
 				break;
 				default:
-				System.out.println("Option not valid");
+				System.out.println("INVALID OPTION");
 			}
 		}
 		s.close();
@@ -102,9 +103,11 @@ class customer
 
 	public void signUp()
 	{
-		s.nextLine();
-		System.out.println("Enter Your Details:\n");		
+		//s.nextLine();
+		System.out.println("Enter Your Details:\n");
+		
 		System.out.println("Email ID:");
+		s.nextLine();
 		String email=s.nextLine();
 
 		customer accountExists=check(email,"");
@@ -116,9 +119,11 @@ class customer
 				op=s.nextInt();
 				switch(op)
 				{
-					case 1:logIn();
+					case 1:
+					logIn();
 					break;
-					case 2:signUp();
+					case 2:
+					signUp();
 					break;
 					default:
 					System.out.println("Please enter a valid option");
@@ -172,12 +177,14 @@ class customer
 		}
 		}
 		
-		customer c=new customer(name,phone,0,add,email,pass,0,cust);
+		customer c=new customer(name,phone,0,add,email,pass,0);
 		cust.add(c);
 		customer thisCustomer=c;
 		System.out.println("Account created successfully\n");//go to store menu
 		
-		accountSettings aS= new accountSettings(thisCustomer, cust);
+		accountSettings aS= new accountSettings(thisCustomer);
+		delivered_thread = new deliveredThread(0);
+		delivered_thread.thisCustomer=thisCustomer;
 		aS.displayCustomerDashBoard(thisCustomer);
 		aS.settingsmenu(thisCustomer);
 		
@@ -196,8 +203,10 @@ class customer
 		if(validInfo.customerEmail!="")
 		{
 			System.out.println("You are logged in");
+			delivered_thread = new deliveredThread(0);
+			delivered_thread.thisCustomer=validInfo;
 			//accountSettings aS= new accountSettings(aS, email, pass);
-			customerDashBoard cDB = new customerDashBoard(validInfo, cust);
+			customerDashBoard cDB = new customerDashBoard(validInfo);
 			cDB.displayCustomerDashBoard(validInfo);
 			//aS.settingsmenu(validInfo);
 			//store menu
@@ -246,7 +255,7 @@ class customer
 					}
 					else
 					{
-						b=new customer();
+						b=new customer();						
 					}					
 				}
 				else
@@ -257,7 +266,7 @@ class customer
 			}
 			else
 			{
-				b=new customer();
+				b=new customer();				
 			}
 		}
 		
@@ -267,7 +276,7 @@ class customer
 	public void customerPayment(customer thisCustomer)
 	{
 		//buy()
-		buyProducts buyedProd = new buyProducts(thisCustomer, cust);
+		buyProducts buyedProd = new buyProducts(thisCustomer);
 		buyedProd.buymenu(thisCustomer);
 
 	}
