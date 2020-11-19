@@ -3,50 +3,50 @@ import java.sql.*;
 import java.util.*;
 
 public class buyProducts extends accountSettings {
-    public buyProducts(customer thisCustomer,String userEMail, String userPassword) {
-        super(thisCustomer,userEMail, userPassword);
+    public buyProducts(customer thisCustomer) {
+        super(thisCustomer);
         //super(this,userEMail, userPassword);
     }
 
-	public void buymenu(customer thisCustomer, int c) {
+	public void buymenu(customer thisCustomer) {
         Scanner s=new Scanner(System.in);
         //System.out.println("Product(s) details:\n");
         //displayproducts();
         System.out.println("Your details:\n");
-        System.out.println(this.customerName+"\tyes you r buying ;)");
-        //display(c);
+        //System.out.println(this.customerName+"\tyes you r buying ;)");
+        display(thisCustomer);
         System.out.println("Do You want to edit your personal details(0->No,1->Yes)");
         int op=s.nextInt();
         
         if(op==0)
         {           
-            confirmOrder(this,c);
+            confirmOrder(thisCustomer);
         }
         else if(op==1)
         {
-            edit(c);
-            confirmOrder(this,c);
+            edit(thisCustomer);
+            confirmOrder(thisCustomer);
         }
         else
         {
             System.out.println("Invalid choice");
-            buymenu(this,c);
+            buymenu(thisCustomer);
         }        
       
 
     }
 
-    public void confirmOrder(customer thisCustomer,int c){
+    public void confirmOrder(customer thisCustomer){
         Scanner s=new Scanner(System.in);
         System.out.println("1)Proceed to payment\n2)Go back\n3)Cancel ordering");
             int o=s.nextInt();
             switch(o)
             {
-                case 1:billing(this,c);
+                case 1:billing(thisCustomer);
                 break;
                 case 2:
-                buymenu(this,c);
-                customerDashBoard(this.customerEmail,this.customerPassword);
+                buymenu(thisCustomer);
+                customerDashBoard(thisCustomer.customerEmail,thisCustomer.customerPassword);
                 break;
                 case 3:
                 //go to catalogue
@@ -58,12 +58,12 @@ public class buyProducts extends accountSettings {
     private void customerDashBoard(String customerEmail, String customerPassword) {
     }
 
-    public void billing(customer thisCustomer, int c)
+    public void billing(customer thisCustomer)
     {
         Scanner s=new Scanner(System.in);
         System.out.println("Order Summary:\n");
         //display product name, quantity, specifications, price
-        getpaymentDetails(this,c);
+        getpaymentDetails(thisCustomer);
         System.out.println("1)confirm order?\n2)cancel");
         int o=s.nextInt();
         switch(o)
@@ -80,7 +80,7 @@ public class buyProducts extends accountSettings {
        
     }
 
-    public void getpaymentDetails(customer thisCustomer,int c)
+    public void getpaymentDetails(customer thisCustomer)
     {
         String name;
         Scanner s=new Scanner(System.in);
@@ -103,11 +103,11 @@ public class buyProducts extends accountSettings {
             case 3:
             break;
             case 4:
-            confirmOrder(this,c);
+            confirmOrder(thisCustomer);
             break;
             default:
             System.out.println("Invalid choice");
-            getpaymentDetails(this,c);
+            getpaymentDetails(thisCustomer);
         }      
       
     }
