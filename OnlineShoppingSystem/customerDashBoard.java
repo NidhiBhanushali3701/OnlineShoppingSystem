@@ -7,14 +7,18 @@ import java.sql.*;
 public class customerDashBoard extends customer{
     public static Scanner ob = new Scanner(System.in);
     //customerCart customerCart_;    
-    public customerDashBoard(customer thisCustomer, Vector cust)
+    public customerDashBoard(customer thisCustomer)
     {
-        super(thisCustomer.customerName,thisCustomer.customerPhoneNo,thisCustomer.customerCredits,thisCustomer.customerAddress,thisCustomer.customerEmail,thisCustomer.customerPassword,thisCustomer.customerTotalBill,cust);
+        super(thisCustomer.customerName,thisCustomer.customerPhoneNo,thisCustomer.customerCredits,thisCustomer.customerAddress,thisCustomer.customerEmail,thisCustomer.customerPassword,thisCustomer.customerTotalBill);
     }
     
+	public customerDashBoard() {
+        
+	}
+
 	public void displayCustomerDashBoard(customer thisCustomer)
     {
-        System.out.println("\n\t\t\tWELCOME "+thisCustomer.customerName);
+        System.out.println("\n\t\t\tWELCOME !"+thisCustomer.customerName);
         int choice ;
         do{
             System.out.println("YOU CAN SELECT FROM ALL BELOW :)");
@@ -23,7 +27,8 @@ public class customerDashBoard extends customer{
             System.out.println("3. PREVIOUS PRODUCTS");
             System.out.println("4. VIEW CART");  
             System.out.println("5. VIEW WISHLIST"); //System.out.println("");
-            System.out.println("6. ACCOUNT SETTINGS");
+            System.out.println("6. VIEW ORDERED PRODUCTS");
+            System.out.println("7. ACCOUNT SETTINGS");
             //System.out.println("6. SEARCH FROM PRODUCTS");
             System.out.println("0. EXIT");
             System.out.print(" PLEASE ENTER YOUR CHOICE - ");
@@ -45,14 +50,17 @@ public class customerDashBoard extends customer{
                 case 5:
                     customerWishlist(this);
                 break;
+                case 6:
+                    orderedProducts(this);;
+                break;
                 /*
                 case 6:
                     search();
                 break;
                 */
-                case 6: 
-                accountSettings ob=new accountSettings(thisCustomer,cust);                  
-                   ob.settingsmenu(thisCustomer);
+                case 7: 
+                    accountSettings ob=new accountSettings(thisCustomer);                  
+                    ob.settingsmenu(thisCustomer);
                 break;
                 case 0:
                     System.out.println("EXITING ... ");
@@ -195,8 +203,7 @@ public class customerDashBoard extends customer{
             int sureBuy = ob.nextInt();
             if(sureBuy!=0)
             {           //call payment method()
-                customer c=new customer(thisCustomer.customerName, thisCustomer.customerPhoneNo, thisCustomer.customerCredits, thisCustomer.customerAddress, thisCustomer.customerEmail, thisCustomer.customerPassword, thisCustomer.customerTotalBill, cust);
-                c.customerPayment(thisCustomer);
+                customerPayment(this);
             }
             else
             {
@@ -212,7 +219,23 @@ public class customerDashBoard extends customer{
     {
         if(thisCustomer.prevOrders.size()>0)
         {
+            System.out.println("\t\t >> YOUR DELIVERED PRODUCTS");
             for(product p:thisCustomer.prevOrders)
+            {
+                System.out.println(p.productName+"\t\t"+p.productCost);
+            }
+        }
+        else{
+            System.out.println("\t >> YOU HAVEN'T BOUGHT ANYTHING ADD & BUY BEST PRODUCT AT BEST POSSIBLE PRICES :)");
+        }
+        System.out.println("");
+    }
+    public void orderedProducts(customer thisCustomer)
+    {
+        if(thisCustomer.customerOrders.size()>0)
+        {
+            System.out.println("\t\t >> YOUR ORDERED PRODUCTS");
+            for(product p:thisCustomer.customerOrders)
             {
                 System.out.println(p.productName+"\t\t"+p.productCost);
             }
@@ -249,7 +272,7 @@ public class customerDashBoard extends customer{
                 break;
                 case 0:
                     System.out.println(" HOLD ON TILL WE LOAD : ) \n");
-                    confirmBuyProducts(thisCustomer);
+                    confirmBuyProducts(this);
                     //buyProducts();
                     //buyedProducts.billing(this,customerCart);
                 break;
