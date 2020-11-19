@@ -6,42 +6,38 @@ import java.util.regex.Matcher;
 
 public class accountSettings extends customerDashBoard{
     
-    public accountSettings(customer thisCustomer,String userEMail, String userPassword) {
-        super(thisCustomer,userEMail, userPassword);
+    public accountSettings(customer thisCustomer) {
+        super(thisCustomer);
     }
 
-	public void settingsmenu(int c) {
+	public void settingsmenu(customer thisCustomer) {
         Scanner s=new Scanner(System.in);
         int op;
         
-            System.out.println("\n1)DISPLAY DETAILS\n2)EDIT DETAILS\n3)VIEW PREVIOUS ORDERS\n4)SIGN OUT\n5)DELETE ACCOUNT\n6)BACK\n7)EXIT\n");
+            System.out.println("\n1)DISPLAY DETAILS\n2)EDIT DETAILS\n3)SIGN OUT\n4)DELETE ACCOUNT\n5)BACK\n6)EXIT\n");
             op=s.nextInt();
             switch(op)
             {
                 case 1:
-                display(c);
-                settingsmenu(c);
+                display(thisCustomer);
+                settingsmenu(thisCustomer);
                 break;
                 case 2:
-                edit(c);
-                settingsmenu(c);
+                edit(thisCustomer);
+                settingsmenu(thisCustomer);
                 break;
                 case 3:
-                prevorders(c);
-                settingsmenu(c);
+                customMenu();
+                settingsmenu(thisCustomer);
                 break;
                 case 4:
-                this.customMenu();
-                settingsmenu(c);
+                delete(thisCustomer);
                 break;
                 case 5:
-                delete(c);
+                displayCustomerDashBoard(thisCustomer);
+                settingsmenu(thisCustomer);
                 break;
-                case 6://should be store menu after implementing store menu
-                customMenu();
-                settingsmenu(c);
-                break;
-                case 7:
+                case 6:
                 System.exit(0);
                 break;
                 default:
@@ -52,18 +48,19 @@ public class accountSettings extends customerDashBoard{
 
     }
 
-    public void display(int c)
+    public void display(customer thisCustomer)
     {
         
-        System.out.println( "Name "+cust.get(c).customerName);
-        System.out.println( "Email ID "+cust.get(c).customerEmail);
-        System.out.println( "Phone Number "+ cust.get(c).customerPhoneNo);
-        System.out.println( "Address "+cust.get(c).customerAddress);
+        System.out.println( "Name "+thisCustomer.customerName);
+        System.out.println( "Email ID "+thisCustomer.customerEmail);
+        System.out.println( "Phone Number "+ thisCustomer.customerPhoneNo);
+        System.out.println( "Address "+thisCustomer.customerAddress);
         
     }
     
-    public void edit(int c)
+    public void edit(customer thisCustomer)
     {
+        customer old=thisCustomer;
         Scanner s=new Scanner(System.in);
         int o=0;
         String name,add,pass,id;
@@ -78,19 +75,19 @@ public class accountSettings extends customerDashBoard{
         switch(o)
         {
             case 1:
-            System.out.println( "Name "+cust.get(c).customerName);
+            System.out.println( "Name "+thisCustomer.customerName);
             System.out.println( "New Name ");
             name=s.nextLine();
-            cust.elementAt(c).customerName=name;
+            thisCustomer.customerName=name;
             break;
             case 2:
-            System.out.println( "Address "+cust.get(c).customerAddress);
+            System.out.println( "Address "+thisCustomer.customerAddress);
             System.out.println( "New Address ");
             add=s.nextLine();
-            cust.elementAt(c).customerAddress=add;
+            thisCustomer.customerAddress=add;
             break;
             case 3:
-            System.out.println( "Phone Number "+cust.get(c).customerPhoneNo);
+            System.out.println( "Phone Number "+thisCustomer.customerPhoneNo);
             while(!validity){
             try{
             System.out.println( "New Phone number ");
@@ -104,19 +101,19 @@ public class accountSettings extends customerDashBoard{
                 System.out.println(e);
             }
             }
-            cust.elementAt(c).customerPhoneNo=p;
+            thisCustomer.customerPhoneNo=p;
             break;
             case 4:
-            System.out.println( "Email ID "+cust.get(c).customerEmail);
+            System.out.println( "Email ID "+thisCustomer.customerEmail);
             System.out.println( "New ID ");
             id=s.nextLine();
-            cust.elementAt(c).customerEmail=id;
+            thisCustomer.customerEmail=id;
             break;
             case 5:
             System.out.println("Enter your old password");
             pass=s.nextLine();
             
-            if(cust.elementAt(c).customerPassword.equals(pass))
+            if(thisCustomer.customerPassword.equals(pass))
             {
                 while(!validity)
                 {
@@ -132,31 +129,34 @@ public class accountSettings extends customerDashBoard{
                         System.out.println(e);			
                     }
                 }
-                cust.elementAt(c).customerPassword=newpass;
+                thisCustomer.customerPassword=newpass;
             }
             
             else
             {
                 System.out.println("Wrong password");
-                edit(c);
+                edit(thisCustomer);
             }
             break;
             default:
             System.out.println("Invalid choice");
-            edit(c);
+            edit(thisCustomer);
             break;
 
         }
+    
+        cust.remove(old);
+        cust.add(thisCustomer);
         
         
     }
 
-    public void prevorders(int c)
+    public void prevorders(customer thisCustomer)
     {
         System.out.println( "Your orders: ");
     }
 
-    public void delete(int c)
+    public void delete(customer thisCustomer)
     {
         Scanner s=new Scanner(System.in);
         
@@ -164,19 +164,21 @@ public class accountSettings extends customerDashBoard{
         int ch=s.nextInt();
         if(ch==1)
         {
-            cust.remove(c);
+            cust.remove(thisCustomer);
             customMenu();
         }
         else if(ch==0)
         {
-            settingsmenu(c);
+            settingsmenu(thisCustomer);
         }
         else
         {
             System.out.println("Invalid choice");
-            delete(c);
+            delete(thisCustomer);
         }
       
 
     }
+
+	
 }
