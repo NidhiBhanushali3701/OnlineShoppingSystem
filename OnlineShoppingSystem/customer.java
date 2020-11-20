@@ -7,17 +7,17 @@ import java.util.regex.Matcher;
 class phonenumberException extends Exception
 {
 	public phonenumberException(String m)
-{
-super(m);
-}
+	{
+		super(m);
+	}
 }
 
 class passwordException extends Exception
 {
 	public passwordException(String m)
-{
-super(m);
-}
+	{
+		super(m);
+	}
 }
 class customer 
 {
@@ -29,38 +29,39 @@ class customer
 	long customerCredits;
 	String customerPassword;
 	long customerTotalBill;
-	Vector<product> prevOrders=new Vector<product>();	
-	Vector<product> customerOrders=new Vector<product>();
+	Vector<product> prevOrders = new Vector<product>();
 	Vector<product> customerCart = new Vector<product>();
 	Vector<product> customerWishList = new Vector<product>();
+	public Vector<customer> cust = new Vector<customer>();
+	Vector<product> customerOrders=new Vector<product>();
 	deliveredThread delivered_thread ; //= new deliveredThread(0);
+	customer(String customerName, long customerPhoneNo, long customerCredits, String customerAddress, String customerEmail, String customerPassword, long customerTotalBill, Vector cust) {
 
-	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, long customerTotalBill)
-	{
-	
-		this.customerPhoneNo=customerPhoneNo;
-		this.customerName=customerName;
-		this.customerAddress=customerAddress;
-		this.customerCredits=customerCredits;
-		this.customerEmail=customerEmail;
-		this.customerPassword=customerPassword;
-		this.customerTotalBill=customerTotalBill;
+		this.customerPhoneNo = customerPhoneNo;
+		this.customerName = customerName;
+		this.customerAddress = customerAddress;
+		this.customerCredits = customerCredits;
+		this.customerEmail = customerEmail;
+		this.customerPassword = customerPassword;
+		this.customerTotalBill = customerTotalBill;
+		this.cust=cust;
 		this.delivered_thread = new deliveredThread(0);
 	}
-	customer()
-	{
-		
-		customerEmail="";
-		customerName="";
-		customerPhoneNo=0;
-		customerAddress="";
-		customerCredits=0;
-		customerPassword="";
-		customerTotalBill=0;
-		customerCredits=((long)(customerTotalBill*0.01));
+
+	customer() {
+
+		customerEmail = "";
+		customerName = "";
+		customerPhoneNo = 0;
+		customerAddress = "";
+		customerCredits = 0;
+		customerPassword = "";
+		customerTotalBill = 0;
+		customerCredits = ((long) (customerTotalBill * 0.01));
 	}
+
 	
-	Vector<customer> cust=new Vector<customer>();
+	
 	
 	static Scanner s=new Scanner(System.in);
 	public static void main(String args[]) 
@@ -89,6 +90,7 @@ class customer
 				signUp();
 				break;
 				case 2:
+				
 				logIn();
 				//break loop1;
 				case 0:
@@ -103,11 +105,10 @@ class customer
 
 	public void signUp()
 	{
-		//s.nextLine();
-		System.out.println("Enter Your Details:\n");
-		
-		System.out.println("Email ID:");
 		s.nextLine();
+		System.out.println("Enter Your Details:\n");		
+		System.out.println("Email ID:");
+		
 		String email=s.nextLine();
 
 		customer accountExists=check(email,"");
@@ -137,7 +138,7 @@ class customer
 	}
 	public void create(String email)
 	{
-		s.nextLine();
+		
 		long phone=0;
 		String pass="";
 		String regexStr = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"; 
@@ -177,12 +178,12 @@ class customer
 		}
 		}
 		
-		customer c=new customer(name,phone,0,add,email,pass,0);
+		customer c=new customer(name,phone,0,add,email,pass,0,cust);
 		cust.add(c);
 		customer thisCustomer=c;
 		System.out.println("Account created successfully\n");//go to store menu
 		
-		accountSettings aS= new accountSettings(thisCustomer);
+		accountSettings aS= new accountSettings(thisCustomer,cust);
 		delivered_thread = new deliveredThread(0);
 		delivered_thread.thisCustomer=thisCustomer;
 		aS.displayCustomerDashBoard(thisCustomer);
@@ -206,7 +207,7 @@ class customer
 			delivered_thread = new deliveredThread(0);
 			delivered_thread.thisCustomer=validInfo;
 			//accountSettings aS= new accountSettings(aS, email, pass);
-			customerDashBoard cDB = new customerDashBoard(validInfo);
+			customerDashBoard cDB = new customerDashBoard(validInfo, cust);
 			cDB.displayCustomerDashBoard(validInfo);
 			//aS.settingsmenu(validInfo);
 			//store menu
@@ -255,7 +256,7 @@ class customer
 					}
 					else
 					{
-						b=new customer();						
+						b=new customer();
 					}					
 				}
 				else
@@ -266,7 +267,7 @@ class customer
 			}
 			else
 			{
-				b=new customer();				
+				b=new customer();
 			}
 		}
 		
@@ -276,7 +277,7 @@ class customer
 	public void customerPayment(customer thisCustomer)
 	{
 		//buy()
-		buyProducts buyedProd = new buyProducts(thisCustomer);
+		buyProducts buyedProd = new buyProducts(thisCustomer, cust);
 		buyedProd.buymenu(thisCustomer);
 
 	}
