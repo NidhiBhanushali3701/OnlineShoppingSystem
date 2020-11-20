@@ -4,8 +4,8 @@ import java.util.*;
 
 public class buyProducts extends accountSettings {
     public static Scanner ob = new Scanner(System.in);
-    public buyProducts(customer thisCustomer, Vector cust) {
-        super(thisCustomer,cust);
+    public buyProducts(customer thisCustomer) {
+        super(thisCustomer);
         //super(this,userEMail, userPassword);
     }
 
@@ -13,7 +13,7 @@ public class buyProducts extends accountSettings {
 	}
 
 	public void buymenu(customer thisCustomer) {
-        Scanner s=new Scanner(System.in);
+        
         //System.out.println("Product(s) details:\n");
         //displayproducts();
         System.out.println("Your details:\n");
@@ -42,10 +42,8 @@ public class buyProducts extends accountSettings {
 
     public void confirmOrder(customer thisCustomer)
     {
-        Scanner s=new Scanner(System.in);
         
         System.out.println("1) Proceed to payment\n0) CANCEL ORDER & BACK TO DASHBORAD".toUpperCase());
-        int o=s.nextInt();
         switch(ob.nextInt())
         {
             case 1:
@@ -70,7 +68,7 @@ public class buyProducts extends accountSettings {
         customerCart(thisCustomer);
         getpaymentDetails(thisCustomer);
         System.out.println("1) confirm order?\n0) cancel".toUpperCase());
-        int o=s.nextInt();
+        int o=ob.nextInt();
         switch(o)
         {
             case 1:
@@ -91,7 +89,6 @@ public class buyProducts extends accountSettings {
             }
             //delivered_thread.start();
             //start thread
-            displayCustomerDashBoard(thisCustomer);
             break;
             case 2:
             displayCustomerDashBoard(thisCustomer);
