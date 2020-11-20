@@ -6,8 +6,8 @@ import java.util.regex.Matcher;
 
 public class accountSettings extends customerDashBoard{
     
-    public accountSettings(customer thisCustomer) {
-        super(thisCustomer);
+    public accountSettings(customer thisCustomer, Vector cust) {
+        super(thisCustomer, cust);
     }
     public accountSettings() {
         super();
@@ -29,6 +29,7 @@ public class accountSettings extends customerDashBoard{
                 settingsmenu(thisCustomer);
                 break;
                 case 3:
+                
                 customMenu();
                 settingsmenu(thisCustomer);
                 break;
