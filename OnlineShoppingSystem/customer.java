@@ -30,159 +30,19 @@ class customer
 	long customerCredits;
 	String customerPassword;
 	long customerTotalBill;
+	deliveredThread delivered_thread ; //= new deliveredThread(0);
 	Vector<product> prevOrders=new Vector<product>();	
 	Vector<product> customerOrders=new Vector<product>();
 	Vector<product> customerCart = new Vector<product>();
 	Vector<product> customerWishList = new Vector<product>();
-	deliveredThread delivered_thread ; //= new deliveredThread(0);
+	Vector<customer> cust=new Vector<customer>();
+	
+	static Scanner s=new Scanner(System.in);
 	Scanner scanner;
 	File file;
 	FileWriter fileWriter;
     FileReader fileReader;
 	String pathOfCD="C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\customerData.csv";
-
-	public void login()
-	{
-		System.out.println("Enter the following details:\n");
-		System.out.println("Email ID:");
-		String email=s.next();
-		System.out.println("Password:");
-		String pass=s.next();
-		int ch=-1;
-
-		try
-		{
-			file= new File(pathOfCD);
-			scanner = new Scanner(file);
-
-			while(scanner.hasNext())
-			{
-                String customerDetails[] = scanner.nextLine().split(",");
-                /*System.out.println(customerDetails.length+" length");
-                for(int i=0;i<customerDetails.length;i++)
-                {
-                    System.out.print(customerDetails[i]+" ");
-                }
-                System.out.println("");
-                */
-				if(email.equalsIgnoreCase(customerDetails[4]) && pass.equals(customerDetails[7]))
-				{
-                    System.out.println("SUCCESSFULL LOGIN !!");
-					delivered_thread = new deliveredThread(0);
-					customer loggedInCustomer = new customer(customerDetails[2],Long.parseLong(customerDetails[3]),Long.parseLong(customerDetails[6]),customerDetails[5],customerDetails[4],customerDetails[7],0);
-					//delivered_thread.thisCustomer=new customer(customerDetails[2],Long.parseLong(customerDetails[3]),Long.parseLong(customerDetails[6]),customerDetails[5],customerDetails[4],customerDetails[7],0);
-					delivered_thread.thisCustomer = loggedInCustomer;
-					//accountSettings aS= new accountSettings(aS, email, pass);
-					customerDashBoard cDB = new customerDashBoard(loggedInCustomer);
-					cDB.displayCustomerDashBoard(loggedInCustomer);
-					//aS.settingsmenu(validInfo);
-					//store menu
-					//SrNo0,ID1,Name2,Phone No3,Email4,Address5,Credits6,Password7,
-				}
-				else
-				{
-					while(ch!=1 || ch!=2 || ch!=0)
-					{
-						System.out.println("Wrong email ID/Password\n1) Try Again\n2) Sign Up\n0) exit".toUpperCase());
-						ch=s.nextInt();
-						switch(ch)
-						{
-							case 1:
-								login();
-							break;
-							case 2:
-								signup();
-							break;
-							case 0:
-								System.out.println("Exiting...");
-								System.exit(0);
-							break;
-							default:
-								System.out.println("Please enter a valid option".toUpperCase());
-						}
-					}
-				}
-			}
-			scanner.close();
-		}
-		catch(Exception e)
-		{
-			System.out.println(e);
-		}
-
-	}
-	public void signup()
-    {
-        //String Name="ABC XYZ",address="P Q R",pass;
-        //long phone,credits=0;
-        s = new Scanner(System.in);
-		System.out.println("Enter the following details:\n");
-		System.out.println("Email ID:");
-		String email=s.next();
-		//System.out.println("Password:");
-        //pass=s.next();
-        int accFound=0;
-        int i=0;
-        try
-		{
-			file= new File(pathOfCD);
-			scanner = new Scanner(file);
-
-			while(scanner.hasNextLine())
-			{
-                String customerDetails[] = scanner.nextLine().split(",");
-                /*System.out.println(customerDetails.length+" length");
-                for(int i=0;i<customerDetails.length;i++)
-                {
-                    System.out.print(customerDetails[i]+" ");
-                }
-                System.out.println("");
-                */
-				if(email.equalsIgnoreCase(customerDetails[4]))
-				{
-                    System.out.println(" ACCOUNT EXISTS !!");
-                    accFound=1;
-                    break;
-                }
-                i++;
-            }
-            if(accFound==1)
-            {
-                System.out.println("\n1) Log in?\n2) Create new account with different Email ID\n0) EXIT\n".toUpperCase());
-				//op=s.nextInt();
-				switch(s.nextInt())
-				{
-					case 1:
-					login();
-					break;
-					case 2:
-					signup();
-					break;
-					case 0:
-					break;
-					default:
-					System.out.println("Please enter a valid option");
-				}
-            }
-            else
-            {
-				customer thisCustomer = create(email,i);
-                fileWriter = new FileWriter(pathOfCD,true);
-                fileWriter.write("\n"+Integer.toString(i)+","+Integer.toString(i)+","+ thisCustomer.customerName+","+Long.toString(thisCustomer.customerPhoneNo)+","+thisCustomer.customerEmail+","+thisCustomer.customerAddress+","+thisCustomer.customerCredits+","+thisCustomer.customerPassword+",");
-				accountSettings aS= new accountSettings(thisCustomer);
-				fileWriter.close();
-				delivered_thread = new deliveredThread(0);
-				delivered_thread.thisCustomer=thisCustomer;
-				aS.displayCustomerDashBoard(thisCustomer);
-				aS.settingsmenu(thisCustomer);
-            }
-			scanner.close();
-		}
-		catch(Exception e)
-		{
-			System.out.println(e);
-		}
-    }
 	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, long customerTotalBill)
 	{
 	
@@ -208,14 +68,175 @@ class customer
 		customerCredits=((long)(customerTotalBill*0.01));
 	}
 	
-	Vector<customer> cust=new Vector<customer>();
-	
-	static Scanner s=new Scanner(System.in);
 	public static void main(String args[]) 
 	{
 		customer C = new customer();
 		C.customMenu();
     }
+	
+	public void logIn()
+	{
+		System.out.println("Enter the following details:\n");
+		System.out.println("Email ID:");
+		String email=s.next();
+		System.out.println("Password:");
+		String pass=s.next();
+		int ch=-1;
+		int logged = 0;
+		String customerDetails[] = new String[8];
+		try
+		{
+			file= new File(pathOfCD);
+			scanner = new Scanner(file);
+
+			while(scanner.hasNextLine())
+			{
+               	customerDetails = scanner.nextLine().split(",");
+                /*System.out.println(customerDetails.length+" length");
+                for(int i=0;i<customerDetails.length;i++)
+                {
+                    System.out.print(customerDetails[i]+" ");
+                }
+                System.out.println("");
+				*/
+				//System.out.println("-\t-\t-\t- EMAIL = " + email+" , "+ customerDetails[4] + "-\t-\t-\t- EMAIL = "+pass+" , "+customerDetails[7]);
+				if(email.equalsIgnoreCase(customerDetails[4]) && pass.equals(customerDetails[7]))
+				{
+					System.out.println("SUCCESSFULL LOGIN !!");
+					logged = 1;
+					break;
+					/*
+					delivered_thread = new deliveredThread(0);
+					customer loggedInCustomer = new customer(customerDetails[2],Long.parseLong(customerDetails[3]),Long.parseLong(customerDetails[6]),customerDetails[5],customerDetails[4],customerDetails[7],0);
+					//delivered_thread.thisCustomer=new customer(customerDetails[2],Long.parseLong(customerDetails[3]),Long.parseLong(customerDetails[6]),customerDetails[5],customerDetails[4],customerDetails[7],0);
+					delivered_thread.thisCustomer = loggedInCustomer;
+					//accountSettings aS= new accountSettings(aS, email, pass);
+					customerDashBoard cDB = new customerDashBoard(loggedInCustomer);
+					cDB.displayCustomerDashBoard(loggedInCustomer);
+					//aS.settingsmenu(validInfo);
+					//store menu
+					//SrNo0,ID1,Name2,Phone No3,Email4,Address5,Credits6,Password7,
+					*/
+				}
+				
+			}
+			if(logged==1)
+				{
+					delivered_thread = new deliveredThread(0);
+					customer loggedInCustomer = new customer(customerDetails[2],Long.parseLong(customerDetails[3]),Long.parseLong(customerDetails[6]),customerDetails[5],customerDetails[4],customerDetails[7],0);
+					//delivered_thread.thisCustomer=new customer(customerDetails[2],Long.parseLong(customerDetails[3]),Long.parseLong(customerDetails[6]),customerDetails[5],customerDetails[4],customerDetails[7],0);
+					delivered_thread.thisCustomer = loggedInCustomer;
+					//accountSettings aS= new accountSettings(aS, email, pass);
+					customerDashBoard cDB = new customerDashBoard(loggedInCustomer);
+					cDB.displayCustomerDashBoard(loggedInCustomer);
+					//aS.settingsmenu(validInfo);
+					//store menu
+					//SrNo0,ID1,Name2,Phone No3,Email4,Address5,Credits6,Password7,
+				}
+				else
+				{
+					while(ch!=1 || ch!=2 || ch!=0)
+					{
+						System.out.println("Wrong email ID/Password\n1) Try Again\n2) Sign Up\n0) exit".toUpperCase());
+						ch=s.nextInt();
+						switch(ch)
+						{
+							case 1:
+								logIn();
+							break;
+							case 2:
+								signUp();
+							break;
+							case 0:
+								System.out.println("Exiting...");
+								System.exit(0);
+							break;
+							default:
+								System.out.println("Please enter a valid option".toUpperCase());
+						}
+					}
+				}
+			scanner.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+
+	}
+	public void signUp()
+    {
+        //String Name="ABC XYZ",address="P Q R",pass;
+        //long phone,credits=0;
+        s = new Scanner(System.in);
+		System.out.println("Enter the following details:\n");
+		System.out.println("Email ID:");
+		String email=s.next();
+		//System.out.println("Password:");
+		//pass=s.next();
+		String customerDetails[] = new String[8];
+        int accFound=0;
+        int i=0;
+        try
+		{
+			file= new File(pathOfCD);
+			scanner = new Scanner(file);
+
+			while(scanner.hasNextLine())
+			{
+                customerDetails = scanner.nextLine().split(",");
+                /*System.out.println(customerDetails.length+" length");
+                for(int i=0;i<customerDetails.length;i++)
+                {
+                    System.out.print(customerDetails[i]+" ");
+                }
+                System.out.println("");
+                */
+				if(email.equalsIgnoreCase(customerDetails[4]))
+				{
+                    System.out.println(" ACCOUNT EXISTS !!");
+                    accFound=1;
+                    break;
+                }
+                i++;
+            }
+            if(accFound==1)
+            {
+                System.out.println("\n1) Log in?\n2) Create new account with different Email ID\n0) EXIT\n".toUpperCase());
+				//op=s.nextInt();
+				switch(s.nextInt())
+				{
+					case 1:
+					logIn();
+					break;
+					case 2:
+					signUp();
+					break;
+					case 0:
+					break;
+					default:
+					System.out.println("Please enter a valid option");
+				}
+            }
+            else
+            {
+				customer thisCustomer = create(email,i);
+                fileWriter = new FileWriter(pathOfCD,true);
+                fileWriter.write("\n"+Integer.toString(i)+","+Integer.toString(i)+","+ thisCustomer.customerName+","+Long.toString(thisCustomer.customerPhoneNo)+","+thisCustomer.customerEmail+","+thisCustomer.customerAddress+","+thisCustomer.customerCredits+","+thisCustomer.customerPassword+",");
+				accountSettings aS= new accountSettings(thisCustomer);
+				fileWriter.close();
+				delivered_thread = new deliveredThread(0);
+				delivered_thread.thisCustomer=thisCustomer;
+				aS.displayCustomerDashBoard(thisCustomer);
+				aS.settingsmenu(thisCustomer);
+            }
+			scanner.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
 	
 	public void customMenu() 
 	{
@@ -235,11 +256,11 @@ class customer
 			{
 				case 1:
 				//signUp();
-				signup();
+				signUp();
 				break;
 				case 2:
 				//logIn();
-				login();
+				logIn();
 				//break loop1;
 				case 0:
 				System.exit(0);
@@ -260,7 +281,6 @@ class customer
 		System.out.println("Email ID:");
 		s.nextLine();
 		String email=s.nextLine();
-
 		customer accountExists=check(email,"");
 		int op=0;
 		if(accountExists.customerEmail!="")

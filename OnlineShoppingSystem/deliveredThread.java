@@ -20,7 +20,7 @@ class deliveredThread  extends Thread
     {
         try
         {
-            Thread.sleep(5000);
+            Thread.sleep(7500);
             System.out.println("\t\t\tSTARTED PACKING YOUR PRODUCTS(S) :)");
             Thread.sleep(7500);
             System.out.println("\t\t\tSHIPPED :)");
