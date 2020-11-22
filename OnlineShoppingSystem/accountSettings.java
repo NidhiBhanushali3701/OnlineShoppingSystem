@@ -6,10 +6,12 @@ import java.util.regex.Matcher;
 
 public class accountSettings extends customerDashBoard{
     
-    public accountSettings(customer thisCustomer) {
+    public accountSettings(customer thisCustomer) 
+    {
         super(thisCustomer);
     }
-    public accountSettings() {
+    public accountSettings() 
+    {
         super();
     }
 	public void settingsmenu(customer thisCustomer) {
@@ -181,7 +183,6 @@ public class accountSettings extends customerDashBoard{
             System.out.println("Invalid choice");
             delete(thisCustomer);
         }
-      
 
     }
 

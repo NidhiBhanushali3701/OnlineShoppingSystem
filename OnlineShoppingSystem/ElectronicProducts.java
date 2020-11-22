@@ -129,7 +129,7 @@ public class ElectronicProducts extends product
         try{
             if(flag==0)
             {
-                throw new Exception("\n\tPRODUCT NOT FOUND :/\n");
+                throw new ProductNotFoundException("\n\tPRODUCT NOT FOUND :/\n");
             }
             else
             {

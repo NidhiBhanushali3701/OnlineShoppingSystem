@@ -13,6 +13,7 @@ public class ClothingProducts extends product
     public static Scanner ob = new Scanner(System.in);
     ClothingProducts prod;
     File ClothingProductDescriptionFile;
+    
     public ClothingProducts()
     {
         super();
@@ -125,7 +126,7 @@ public class ClothingProducts extends product
         try{
             if(flag==0)
             {
-                throw new Exception("\n\tPRODUCT NOT FOUND :/\n");
+                throw new ProductNotFoundException("\n\tPRODUCT NOT FOUND :/\n");
             }
             else
             {

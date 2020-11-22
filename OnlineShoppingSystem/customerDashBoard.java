@@ -12,8 +12,9 @@ public class customerDashBoard extends customer{
         super(thisCustomer.customerName,thisCustomer.customerPhoneNo,thisCustomer.customerCredits,thisCustomer.customerAddress,thisCustomer.customerEmail,thisCustomer.customerPassword,thisCustomer.customerTotalBill);
     }
     
-	public customerDashBoard() {
-        
+    public customerDashBoard() 
+    {
+        super();
 	}
 
 	public void displayCustomerDashBoard(customer thisCustomer)

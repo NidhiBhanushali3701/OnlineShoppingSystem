@@ -38,10 +38,6 @@ public abstract class product
 	}
 
 	public abstract void showProduct(customer thisCustomer);		//we will show the respective product here 
-	public static void main(String args[]) 
-	{
-		System.out.println("Product Class");
-	}
 
 	public abstract void search(String productNameToFind);
 	

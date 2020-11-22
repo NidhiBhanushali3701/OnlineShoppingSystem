@@ -4,16 +4,19 @@ import java.util.*;
 
 public class buyProducts extends accountSettings {
     public static Scanner ob = new Scanner(System.in);
-    public buyProducts(customer thisCustomer) {
+    public buyProducts(customer thisCustomer) 
+    {
         super(thisCustomer);
         //super(this,userEMail, userPassword);
     }
 
-	public buyProducts() {
+    public buyProducts() 
+    {
+        super();
 	}
 
-	public void buymenu(customer thisCustomer) {
-        
+    public void buymenu(customer thisCustomer) 
+    {
         //System.out.println("Product(s) details:\n");
         //displayproducts();
         System.out.println("Your details:\n");
