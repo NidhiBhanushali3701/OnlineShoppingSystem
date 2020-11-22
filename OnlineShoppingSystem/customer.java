@@ -4,24 +4,8 @@ import java.sql.*;
 import java.util.regex.*;
 import java.io.*;
 
-class phonenumberException extends Exception
-{
-	public phonenumberException(String m)
-	{
-		super(m);
-	}
-}
-
-class passwordException extends Exception
-{
-	public passwordException(String m)
-	{
-		super(m);
-	}
-}
 class customer 
 {
-
 	String customerName;
 	long customerPhoneNo;
 	String customerEmail;
@@ -44,7 +28,6 @@ class customer
 	String pathOfCD="C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\customerData.csv";
 	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, long customerTotalBill)
 	{
-	
 		this.customerPhoneNo=customerPhoneNo;
 		this.customerName=customerName;
 		this.customerAddress=customerAddress;
