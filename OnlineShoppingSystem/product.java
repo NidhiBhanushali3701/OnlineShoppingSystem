@@ -63,7 +63,7 @@ public abstract class product
 		{
 			q=0;
 			System.out.println("Enter the quantity of "+buyingProd.productName);
-			q=s.nextInt();
+			q=ob.nextInt();
 			thisCustomer.customerTotalBill+=(buyingProd.productCost*q);
 		}
 		System.out.println("  \t  \t \t YOUR TOTAL AMOUNT IS = $ " + thisCustomer.customerTotalBill+"\n");
