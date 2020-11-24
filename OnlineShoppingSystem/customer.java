@@ -13,6 +13,8 @@ class customer
 	long customerCredits;
 	String customerPassword;
 	long customerTotalBill;
+	int customerDeliveryStatus;
+	long customerID;
 	deliveredThread delivered_thread ; //= new deliveredThread(0);
 	Vector<product> prevOrders=new Vector<product>();	
 	Vector<product> customerOrders=new Vector<product>();
@@ -27,7 +29,7 @@ class customer
     FileReader fileReader;
 	Console console = System.console();
 	String pathOfCD="C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\customerData.csv";
-	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, long customerTotalBill)
+	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword,long customerID,long customerTotalBill)
 	{
 		this.customerPhoneNo=customerPhoneNo;
 		this.customerName=customerName;
@@ -36,6 +38,7 @@ class customer
 		this.customerEmail=customerEmail;
 		this.customerPassword=customerPassword;
 		this.customerTotalBill=customerTotalBill;
+		this.customerID=customerID;
 		this.delivered_thread = new deliveredThread(0);
 	}
 	customer()
@@ -49,6 +52,8 @@ class customer
 		customerPassword="";
 		customerTotalBill=0;
 		customerCredits=((long)(customerTotalBill*0.01));
+		customerDeliveryStatus=0;
+		customerID=0;
 	}
 	
 	public static void main(String args[]) 
@@ -63,7 +68,7 @@ class customer
 		System.out.println("Email ID:");
 		String email=s.next();
 		
-		String pass=console.readPassword("Password:");
+		char[] pass = console.readPassword("Password:");
 		int ch=-1;
 		int logged = 0;
 		String customerDetails[] = new String[8];
@@ -83,7 +88,7 @@ class customer
                 System.out.println("");
 				*/
 				//System.out.println("-\t-\t-\t- EMAIL = " + email+" , "+ customerDetails[4] + "-\t-\t-\t- EMAIL = "+pass+" , "+customerDetails[7]);
-				if(email.equalsIgnoreCase(customerDetails[4]) && pass.equals(customerDetails[7]))
+				if(email.equalsIgnoreCase(customerDetails[4]) && pass.toString().equals(customerDetails[7]))
 				{
 					System.out.println("SUCCESSFULL LOGIN !!");
 					logged = 1;
@@ -106,7 +111,7 @@ class customer
 			if(logged==1)
 				{
 					delivered_thread = new deliveredThread(0);
-					customer loggedInCustomer = new customer(customerDetails[2],Long.parseLong(customerDetails[3]),Long.parseLong(customerDetails[6]),customerDetails[5],customerDetails[4],customerDetails[7],0);
+					customer loggedInCustomer = new customer(customerDetails[2],Long.parseLong(customerDetails[3]),Long.parseLong(customerDetails[6]),customerDetails[5],customerDetails[4],customerDetails[7],Long.parseLong(customerDetails[1]),0);
 					//delivered_thread.thisCustomer=new customer(customerDetails[2],Long.parseLong(customerDetails[3]),Long.parseLong(customerDetails[6]),customerDetails[5],customerDetails[4],customerDetails[7],0);
 					delivered_thread.thisCustomer = loggedInCustomer;
 					//accountSettings aS= new accountSettings(aS, email, pass);
@@ -205,7 +210,7 @@ class customer
             {
 				customer thisCustomer = create(email,i);
                 fileWriter = new FileWriter(pathOfCD,true);
-                fileWriter.write("\n"+Integer.toString(i)+","+Integer.toString(i)+","+ thisCustomer.customerName+","+Long.toString(thisCustomer.customerPhoneNo)+","+thisCustomer.customerEmail+","+thisCustomer.customerAddress+","+thisCustomer.customerCredits+","+thisCustomer.customerPassword+",");
+                fileWriter.write(Integer.toString(i)+","+Integer.toString(i)+","+ thisCustomer.customerName+","+Long.toString(thisCustomer.customerPhoneNo)+","+thisCustomer.customerEmail+","+thisCustomer.customerAddress+","+thisCustomer.customerCredits+","+thisCustomer.customerPassword+","+"\n");
 				accountSettings aS= new accountSettings(thisCustomer);
 				fileWriter.close();
 				delivered_thread = new deliveredThread(0);
@@ -295,6 +300,7 @@ class customer
 		s.nextLine();
 		long phone=0;
 		String pass="";
+		char[] pass_;
 		String regexStr = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"; 
 		Pattern pattern = Pattern.compile(regexStr); 
 		System.out.println("Name:");
@@ -320,8 +326,8 @@ class customer
 		s.nextLine();
 		while(!validity){
 		try{
-		pass=console.readPassword("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number):");
-		
+		pass_=console.readPassword("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number):");
+		pass=pass_.toString();
 		Matcher matcher = pattern.matcher(pass);
 		if(!matcher.matches())throw new passwordException("Please enter a valid password(min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number)");
 		else validity=true;
@@ -332,7 +338,7 @@ class customer
 		}
 		}
 		
-		customer c=new customer(name,phone,0,add,email,pass,0);
+		customer c=new customer(name,phone,0,add,email,pass,customerNo,0);
 		cust.add(c);
 		return c;
 		/*customer thisCustomer=c;

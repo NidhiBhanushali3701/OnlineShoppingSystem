@@ -1,11 +1,17 @@
 package OnlineShoppingSystem;
 
 import java.util.*;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+import java.util.regex.*;
+import java.io.*;
 
 public class accountSettings extends customerDashBoard{
-    
+
+    ArrayList<customer> customerList = new ArrayList<customer>();
+    File file;
+    FileWriter fileWriter;
+    FileReader fileReader;
+    Scanner scanner;
+
     public accountSettings(customer thisCustomer) 
     {
         super(thisCustomer);
@@ -69,7 +75,8 @@ public class accountSettings extends customerDashBoard{
         long p=0;
         String newpass="";
         String regexStr = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"; 
-		Pattern pattern = Pattern.compile(regexStr); 
+        Pattern pattern = Pattern.compile(regexStr); 
+        String[] cStr;
         System.out.println("\nEDIT:\n1) Name\n2) Addrress\n3) Phone Number\n4) Email ID\n5) Password\n0) BACK");
         o=s.nextInt();
         s.nextLine();
@@ -149,13 +156,51 @@ public class accountSettings extends customerDashBoard{
             System.out.println("Invalid choice".toUpperCase());
             edit(thisCustomer);
             break;
-
         }
-    
+        
+        file = new File(pathOfCD);
+        try
+        {
+            scanner = new Scanner(file);
+            while(scanner.hasNextLine())
+            {
+                cStr= scanner.nextLine().split(",");
+                customer customerOB;
+                if(cStr[4].equalsIgnoreCase("Email"))//|| cStr[4].equals(thisCustomer.customerEmail))
+                {
+                    continue;
+                }
+                else if(Long.parseLong(cStr[1])==thisCustomer.customerID)
+                {
+                    //customerOB = new customer(thisCustomer.customerName, thisCustomer.customerPhoneNo, thisCustomer.customerCredits, thisCustomer.customerAddress, thisCustomer.customerEmail, thisCustomer.customerPassword, thisCustomer.customerID, thisCustomer.customerTotalBill);
+                    //customerList.add(customerOB);
+                    //customerOB = thisCustomer;
+                    customerList.add(thisCustomer);
+                }
+                else
+                {
+                    customerOB = new customer(cStr[2],Long.parseLong(cStr[3]),Long.parseLong(cStr[6]),cStr[5],cStr[4],cStr[7],Long.parseLong(cStr[1]),0);
+                    customerList.add(customerOB);
+                //SrNo,ID,Name,Phone No,Email,Address,Credits6,Password7,
+                }
+            }
+            fileWriter = new FileWriter(file);
+            fileWriter.write("SrNo,ID,Name,Phone No,Email,Address,Credits,Password,\n");
+            int j=1;
+            for(customer addToCustomerList:customerList)
+            {
+                fileWriter.write(Integer.toString(j)+","+Long.toString(addToCustomerList.customerID)+","+addToCustomerList.customerName+","+Long.toString(addToCustomerList.customerPhoneNo)+","+addToCustomerList.customerEmail+","+addToCustomerList.customerAddress+","+Long.toString(addToCustomerList.customerCredits)+","+addToCustomerList.customerPassword+",\n");
+                j++;
+            }
+            fileWriter.close();
+            customerList.clear();
+        }
+        catch(Exception exp)
+        {
+            System.out.println(exp);
+        }
         cust.remove(old);
         cust.add(thisCustomer);
-        
-        
     }
 
     public void prevorders(customer thisCustomer)
@@ -166,11 +211,45 @@ public class accountSettings extends customerDashBoard{
     public void delete(customer thisCustomer)
     {
         Scanner s=new Scanner(System.in);
-        
+        String[] cStr;
         System.out.println("Are you sure you want to delete your Account?(Y->1/N->0)");
         int ch=s.nextInt();
+        //System.out.println("Please enter your password");
         if(ch==1)
         {
+            file = new File(pathOfCD);
+            try
+            {
+                scanner = new Scanner(file);
+                while(scanner.hasNextLine())
+                {
+                    cStr= scanner.nextLine().split(",");
+                    if(cStr[4].equalsIgnoreCase("Email") || cStr[4].equals(thisCustomer.customerEmail))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                    customer customerOB = new customer(cStr[2],Long.parseLong(cStr[3]),Long.parseLong(cStr[6]),cStr[5],cStr[4],cStr[7],Long.parseLong(cStr[1]),0);
+                    customerList.add(customerOB);
+                    //SrNo,ID,Name,Phone No,Email,Address,Credits6,Password7,
+                    }
+                }
+                fileWriter = new FileWriter(file);
+                fileWriter.write("SrNo,ID,Name,Phone No,Email,Address,Credits,Password,\n");
+                int j=1;
+                for(customer addToCustomerList:customerList)
+                {
+                    fileWriter.write(Integer.toString(j)+","+Long.toString(addToCustomerList.customerID)+","+addToCustomerList.customerName+","+Long.toString(addToCustomerList.customerPhoneNo)+","+addToCustomerList.customerEmail+","+addToCustomerList.customerAddress+","+Long.toString(addToCustomerList.customerCredits)+","+addToCustomerList.customerPassword+",\n");
+                    j++;
+                }
+                fileWriter.close();
+                customerList.clear();
+            }
+            catch(Exception exp)
+            {
+                System.out.println(exp);
+            }
             cust.remove(thisCustomer);
             customMenu();
         }

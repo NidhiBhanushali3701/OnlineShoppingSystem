@@ -28,6 +28,7 @@ class deliveredThread  extends Thread
             System.out.println("\t\t\tOUT FOR DELIVERY :)");
             Thread.sleep(15000);
             System.out.println("\t\t\tPRODUCT DELIVERED :)");
+            thisCustomer.customerDeliveryStatus=1;
             flagDelivered=1;
             checkStatus(thisCustomer,flagDelivered);
         }
@@ -38,12 +39,13 @@ class deliveredThread  extends Thread
         finally
         {
             System.out.println("\t\t\t HAPPY SHOPPING ;-)");
+            //or else change status here :)
         }
     }
     public void checkStatus(customer thisCustomer,int flagDelivered)
     { 
         this.flagDelivered=flagDelivered;
-        if(flagDelivered!=0)
+        if(flagDelivered!=0 || thisCustomer.customerDeliveryStatus!=0)
         {
             for(int pI=0;pI<thisCustomer.customerCart.size();pI++)
             {
