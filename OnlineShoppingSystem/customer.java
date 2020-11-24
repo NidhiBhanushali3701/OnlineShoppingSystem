@@ -25,6 +25,7 @@ class customer
 	File file;
 	FileWriter fileWriter;
     FileReader fileReader;
+	Console console = System.console();
 	String pathOfCD="C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\customerData.csv";
 	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword, long customerTotalBill)
 	{
@@ -61,8 +62,8 @@ class customer
 		System.out.println("Enter the following details:\n");
 		System.out.println("Email ID:");
 		String email=s.next();
-		System.out.println("Password:");
-		String pass=s.next();
+		
+		String pass=console.readPassword("Password:");
 		int ch=-1;
 		int logged = 0;
 		String customerDetails[] = new String[8];
@@ -319,8 +320,8 @@ class customer
 		s.nextLine();
 		while(!validity){
 		try{
-		System.out.println("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number):");
-		pass=s.nextLine();
+		pass=console.readPassword("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number):");
+		
 		Matcher matcher = pattern.matcher(pass);
 		if(!matcher.matches())throw new passwordException("Please enter a valid password(min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number)");
 		else validity=true;
