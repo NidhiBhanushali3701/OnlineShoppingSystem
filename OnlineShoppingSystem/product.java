@@ -58,9 +58,13 @@ public abstract class product
 	public void billing(customer thisCustomer,Vector<product> customerCartVector)
 	{
 		thisCustomer.customerTotalBill=0;
+		int q;
 		for(product buyingProd:customerCartVector)
 		{
-			thisCustomer.customerTotalBill+=buyingProd.productCost;
+			q=0;
+			System.out.println("Enter the quantity of "+buyingProd.productName);
+			q=s.nextInt();
+			thisCustomer.customerTotalBill+=(buyingProd.productCost*q);
 		}
 		System.out.println("  \t  \t \t YOUR TOTAL AMOUNT IS = $ " + thisCustomer.customerTotalBill+"\n");
 	}
