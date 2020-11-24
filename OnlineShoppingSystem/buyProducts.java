@@ -103,7 +103,8 @@ public class buyProducts extends accountSettings {
     public void getpaymentDetails(customer thisCustomer)
     {
         String name;
-        
+	long phone;
+	int otp,num,exp,cvv;       
         System.out.println("How do you wish to pay?\n1) UPI IDs/Net banking\n2) Debit/Credit/ATM Card\n3) Pay on Delivery\n0) back".toUpperCase());
         int op=ob.nextInt();  
         switch(op)
@@ -111,17 +112,25 @@ public class buyProducts extends accountSettings {
             case 1:
             System.out.println("Enter Name: ");
             name=ob.nextLine();
-            System.out.println("Enter Phone No ");
+            System.out.println("Enter Phone number: ");
+            phone=ob.nextLong();	
+            System.out.println("Enter OTP: ");
+            otp=ob.nextInt();
+	    System.out.println("Redirecting...");
+            System.out.println("Payment was Successfully done! ");           
             break;
             case 2:
             System.out.println("Enter name: ");
             name=ob.nextLine();
             System.out.println("Enter your card number: ");
+	    num=ob.nextInt();
             System.out.println("Enter the expiration date: ");
+            exp=ob.nextInt();
             System.out.println("Enter CVV (card verification value): ");
-            System.out.println("Enter the zip code: ");
+	    cvv=ob.nextInt();            
             break;
             case 3:
+	    System.out.println("Order has been placed");
             break;
             case 0:
             confirmOrder(thisCustomer);
