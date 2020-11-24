@@ -1,7 +1,9 @@
-package OnlineShoppingSystem;
+package OnlineShoppingSystem.Product;
 import java.util.*;
 import java.io.*;
 import java.sql.*;
+import OnlineShoppingSystem.Customer.*;
+import OnlineShoppingSystem.TnE.*;
 
 public class GrocceryProducts extends product
 {
@@ -173,11 +175,6 @@ public class GrocceryProducts extends product
             }
         }
     }
-    
-    public void searchByBrand() 
-    {
-         
-    }
 
     public void addToCart(customer thisCustomer,product addToCartProd)
     {
@@ -247,7 +244,7 @@ public class GrocceryProducts extends product
         {
             try
             {
-                GrocceryProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\GrocceryProductsDescription.txt");
+                GrocceryProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\GrocceryProductsDescription.txt");
                 sc = new Scanner(GrocceryProductDescriptionFile);
                 if(sc.hasNextLine())
                 {

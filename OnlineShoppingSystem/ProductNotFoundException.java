@@ -1,4 +1,6 @@
-package OnlineShoppingSystem;
+package OnlineShoppingSystem.TnE;
+import OnlineShoppingSystem.Customer.*;
+import OnlineShoppingSystem.Product.*;
 
 public class ProductNotFoundException extends Exception
 {

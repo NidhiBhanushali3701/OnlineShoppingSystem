@@ -1,7 +1,9 @@
-package OnlineShoppingSystem;
+package OnlineShoppingSystem.Product;
 import java.util.*;
 import java.io.*;
 import java.sql.*;
+import OnlineShoppingSystem.Customer.*;
+import OnlineShoppingSystem.TnE.*;
 
 public class MedicalProducts extends product
 {
@@ -175,10 +177,6 @@ public class MedicalProducts extends product
         }
     }
 
-    public void searchByBrand() 
-    {
-         
-    }
     public void addToCart(customer thisCustomer,product addToCartProd)
     {
         System.out.print("\t Do You want to add to Cart ? [1-Y || 0-N]\t");
@@ -247,7 +245,7 @@ public class MedicalProducts extends product
         {
             try
             {
-                MedicalProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\MedicalProductsDescription.txt");
+                MedicalProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\MedicalProductsDescription.txt");
                 sc = new Scanner(MedicalProductDescriptionFile);
                 if(sc.hasNextLine())
                 {

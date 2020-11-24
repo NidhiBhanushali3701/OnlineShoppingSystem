@@ -1,5 +1,6 @@
-package OnlineShoppingSystem;
-
+package OnlineShoppingSystem.Customer;
+import OnlineShoppingSystem.Product.*;
+import OnlineShoppingSystem.TnE.*;
 import java.util.*;
 import java.time.*;
 import java.sql.*;
@@ -7,6 +8,7 @@ import java.sql.*;
 public class customerDashBoard extends customer{
     public static Scanner ob = new Scanner(System.in);
     //customerCart customerCart_;    
+    //product buyingProduct;
     public customerDashBoard(customer thisCustomer)
     {
         super(thisCustomer.customerName,thisCustomer.customerPhoneNo,thisCustomer.customerCredits,thisCustomer.customerAddress,thisCustomer.customerEmail,thisCustomer.customerPassword,thisCustomer.customerID,thisCustomer.customerTotalBill);
@@ -133,6 +135,7 @@ public class customerDashBoard extends customer{
     public void buyProducts()
     {
         int ch;
+        product buyingProduct;
         do{
             System.out.println(" WHAT TYPE OF PRODUCT YOU WANT TO SEE ?");
             System.out.println("\t1. MEDICAL");
@@ -145,8 +148,6 @@ public class customerDashBoard extends customer{
             System.out.println("\t0. BACK");
             System.out.print("   ENTER YOUR CHOICE ");
             ch =  ob.nextInt();
-
-            product buyingProduct;
 
             switch(ch)
             {
@@ -204,7 +205,7 @@ public class customerDashBoard extends customer{
             int sureBuy = ob.nextInt();
             if(sureBuy!=0)
             {           //call payment method()
-                customerPayment(this);
+                customerPayment(thisCustomer);
             }
             else
             {
@@ -218,6 +219,14 @@ public class customerDashBoard extends customer{
     }
     public void viewPreviousProducts(customer thisCustomer)
     {
+        if(thisCustomer.customerDeliveryStatus!=0)
+        {
+            for(int pI=0;pI<thisCustomer.customerCart.size();pI++)
+            {
+                thisCustomer.prevOrders.add(thisCustomer.customerOrders.get(pI));
+            }
+            thisCustomer.customerOrders.clear();
+        }
         if(thisCustomer.prevOrders.size()>0)
         {
             System.out.println("\t\t >> YOUR DELIVERED PRODUCTS");

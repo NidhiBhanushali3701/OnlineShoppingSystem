@@ -1,6 +1,8 @@
-package OnlineShoppingSystem;
+package OnlineShoppingSystem.TnE;
+import OnlineShoppingSystem.Customer.*;
+import OnlineShoppingSystem.Product.*;
 
-class passwordException extends Exception
+public class passwordException extends Exception
 {
 	public passwordException(String m)
 	{

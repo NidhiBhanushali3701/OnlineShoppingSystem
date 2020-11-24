@@ -1,7 +1,9 @@
-package OnlineShoppingSystem;
+package OnlineShoppingSystem.Product;
 import java.util.*;
 import java.io.*;
 import java.sql.*;
+import OnlineShoppingSystem.Customer.*;
+import OnlineShoppingSystem.TnE.*;
 
 public class GrommingProducts extends product
 {
@@ -175,11 +177,6 @@ public class GrommingProducts extends product
         }
     }
 
-    public void searchByBrand() 
-    {
-         
-    }
-
     public void addToCart(customer thisCustomer,product addToCartProd)
     {
         System.out.print("\t Do You want to add to Cart ? [1-Y || 0-N]\t");
@@ -248,7 +245,7 @@ public class GrommingProducts extends product
         {
             try
             {
-                GrommingProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\GrommingProductsDescription.txt");
+                GrommingProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\GrommingProductsDescription.txt");
                 sc = new Scanner(GrommingProductDescriptionFile);
                 if(sc.hasNextLine())
                 {

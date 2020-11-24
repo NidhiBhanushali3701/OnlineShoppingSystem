@@ -1,4 +1,6 @@
-package OnlineShoppingSystem;
+package OnlineShoppingSystem.Product;
+import OnlineShoppingSystem.Customer.*;
+import OnlineShoppingSystem.TnE.*;
 import java.util.*;
 import java.io.*;
 import java.sql.*;
@@ -172,11 +174,6 @@ public class ClothingProducts extends product
             }
         }
     }
-
-    public void searchByBrand() 
-    {
-         
-    }
     
     public void addToCart(customer thisCustomer,product addToCartProd)
     {
@@ -246,7 +243,7 @@ public class ClothingProducts extends product
         {
             try
             {
-                ClothingProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\ClothingProductsDescription.txt");
+                ClothingProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\ClothingProductsDescription.txt");
                 sc = new Scanner(ClothingProductDescriptionFile);
                 if(sc.hasNextLine())
                 {

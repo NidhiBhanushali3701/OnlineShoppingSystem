@@ -1,4 +1,6 @@
-package OnlineShoppingSystem;
+package OnlineShoppingSystem.Customer;
+import OnlineShoppingSystem.Product.*;
+import OnlineShoppingSystem.TnE.*;
 import java.sql.*;
 import java.util.*;
 
@@ -19,6 +21,7 @@ public class buyProducts extends accountSettings {
     {
         //System.out.println("Product(s) details:\n");
         //displayproducts();
+        //((product) thisCustomer.buyProducts).billing(thisCustomer, thisCustomer.customerCart);
         System.out.println("Your details:\n");
         display(thisCustomer);
 
@@ -103,34 +106,55 @@ public class buyProducts extends accountSettings {
     public void getpaymentDetails(customer thisCustomer)
     {
         String name;
-	long phone;
-	int otp,num,exp,cvv;       
-        System.out.println("How do you wish to pay?\n1) UPI IDs/Net banking\n2) Debit/Credit/ATM Card\n3) Pay on Delivery\n0) back".toUpperCase());
+	    long phone;
+        int otp,num,exp,cvv; 
+		thisCustomer.customerTotalBill=0;
+		int q;
+		for(product buyingProd:thisCustomer.customerCart)
+		{
+			q=0;
+			System.out.println("Enter the quantity of "+buyingProd.productName);
+			q=ob.nextInt();
+			thisCustomer.customerTotalBill+=(buyingProd.productCost*q);
+		}
+		System.out.println("  \t  \t \t YOUR TOTAL AMOUNT IS = $ " + thisCustomer.customerTotalBill+"\n");
+		if(thisCustomer.customerCredits>0)
+		{
+		System.out.println("DO YOY WANT TO USE YOUR ACCOUNT CREDIT BALANCE");
+		int op=ob.nextInt();
+		if(op!=0)
+		{
+			thisCustomer.customerTotalBill-=thisCustomer.customerCredits;
+			System.out.println("  \t  \t \t YOUR GRAND TOTAL AMOUNT IS = $ " + thisCustomer.customerTotalBill+"\n");
+		}
+			System.out.println(" NICE CHOICE OF PRODUCTS ");
+		}
+		System.out.println("\nHow do you wish to pay?\n1) UPI IDs/Net banking\n2) Debit/Credit/ATM Card\n3) Pay on Delivery\n0) back".toUpperCase());
         int op=ob.nextInt();  
         switch(op)
         {
             case 1:
-            System.out.println("Enter Name: ");
+            System.out.println("Enter Name: ");     ob.nextLine();
             name=ob.nextLine();
             System.out.println("Enter Phone number: ");
             phone=ob.nextLong();	
             System.out.println("Enter OTP: ");
             otp=ob.nextInt();
-	    System.out.println("Redirecting...");
+	        System.out.println("Redirecting...");
             System.out.println("Payment was Successfully done! ");           
             break;
             case 2:
-            System.out.println("Enter name: ");
+            System.out.println("Enter name: ");     ob.nextLine();
             name=ob.nextLine();
             System.out.println("Enter your card number: ");
-	    num=ob.nextInt();
+	        num=ob.nextInt();
             System.out.println("Enter the expiration date: ");
             exp=ob.nextInt();
             System.out.println("Enter CVV (card verification value): ");
-	    cvv=ob.nextInt();            
+	        cvv=ob.nextInt();            
             break;
             case 3:
-	    System.out.println("Order has been placed");
+	        System.out.println("Order has been placed");
             break;
             case 0:
             confirmOrder(thisCustomer);

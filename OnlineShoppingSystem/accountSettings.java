@@ -1,5 +1,6 @@
-package OnlineShoppingSystem;
-
+package OnlineShoppingSystem.Customer;
+import OnlineShoppingSystem.Product.*;
+import OnlineShoppingSystem.TnE.*;
 import java.util.*;
 import java.util.regex.*;
 import java.io.*;
@@ -11,6 +12,7 @@ public class accountSettings extends customerDashBoard{
     FileWriter fileWriter;
     FileReader fileReader;
     Scanner scanner;
+    Console console = System.console();
 
     public accountSettings(customer thisCustomer) 
     {
@@ -74,6 +76,8 @@ public class accountSettings extends customerDashBoard{
         String name,add,pass,id;
         long p=0;
         String newpass="";
+        char[] oldPass;
+        char[] newPass;
         String regexStr = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"; 
         Pattern pattern = Pattern.compile(regexStr); 
         String[] cStr;
@@ -122,15 +126,16 @@ public class accountSettings extends customerDashBoard{
             break;
             case 5:
             System.out.println("Enter your old password");
-            pass=s.nextLine();
-            
-            if(thisCustomer.customerPassword.equals(pass))
+            //pass=s.nextLine();
+            oldPass = console.readPassword("Password : ");
+            if(thisCustomer.customerPassword.equals(oldPass.toString()))
             {
                 while(!validity)
                 {
                     try{
                     System.out.println( "New Password ");
-                    newpass=s.nextLine();
+                    //newpass=s.nextLine();
+                    newPass = console.readPassword("Password : ");
                     Matcher matcher = pattern.matcher(newpass);
                     if(!matcher.matches())throw new passwordException("Please enter a valid password(min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number)");
                     else validity=true;

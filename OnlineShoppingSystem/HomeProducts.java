@@ -1,7 +1,9 @@
-package OnlineShoppingSystem;
+package OnlineShoppingSystem.Product;
 import java.util.*;
 import java.sql.*;
 import java.io.*;
+import OnlineShoppingSystem.Customer.*;
+import OnlineShoppingSystem.TnE.*;
 
 public class HomeProducts extends product
 {
@@ -173,11 +175,6 @@ public class HomeProducts extends product
         }
     }
 
-    public void searchByBrand() 
-    {
-         
-    }
-
     public void addToCart(customer thisCustomer,product addToCartProd)
     {
         System.out.print("\t Do You want to add to Cart ? [1-Y || 0-N]\t");
@@ -246,7 +243,7 @@ public class HomeProducts extends product
         {
             try
             {
-                HomeProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\HomeProductsDescription.txt");
+                HomeProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\HomeProductsDescription.txt");
                 sc = new Scanner(HomeProductDescriptionFile);
                 if(sc.hasNextLine())
                 {

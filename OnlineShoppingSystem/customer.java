@@ -1,25 +1,30 @@
-package OnlineShoppingSystem;
+package OnlineShoppingSystem.Customer;
+
+import OnlineShoppingSystem.Product.*;
+import OnlineShoppingSystem.TnE.*;
+import OnlineShoppingSystem.TnE.deliveredThread;
+import OnlineShoppingSystem.*;
 import java.util.*;
 import java.sql.*;
 import java.util.regex.*;
 import java.io.*;
 
-class customer 
+public class customer 
 {
 	String customerName;
 	long customerPhoneNo;
 	String customerEmail;
 	String customerAddress;
-	long customerCredits;
+	public long customerCredits;
 	String customerPassword;
-	long customerTotalBill;
-	int customerDeliveryStatus;
+	public long customerTotalBill;
+	public int customerDeliveryStatus;
 	long customerID;
 	deliveredThread delivered_thread ; //= new deliveredThread(0);
-	Vector<product> prevOrders=new Vector<product>();	
-	Vector<product> customerOrders=new Vector<product>();
-	Vector<product> customerCart = new Vector<product>();
-	Vector<product> customerWishList = new Vector<product>();
+	public Vector<product> prevOrders=new Vector<product>();	
+	public Vector<product> customerOrders=new Vector<product>();
+	public Vector<product> customerCart = new Vector<product>();
+	public Vector<product> customerWishList = new Vector<product>();
 	Vector<customer> cust=new Vector<customer>();
 	
 	static Scanner s=new Scanner(System.in);
@@ -28,7 +33,8 @@ class customer
 	FileWriter fileWriter;
     FileReader fileReader;
 	Console console = System.console();
-	String pathOfCD="C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\customerData.csv";
+	String pathOfCD="C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Customer\\customerData.csv";
+	public Object buyProducts;
 	customer(String customerName,long customerPhoneNo,long customerCredits,String customerAddress,String customerEmail,String customerPassword,long customerID,long customerTotalBill)
 	{
 		this.customerPhoneNo=customerPhoneNo;
@@ -41,7 +47,7 @@ class customer
 		this.customerID=customerID;
 		this.delivered_thread = new deliveredThread(0);
 	}
-	customer()
+	public customer()
 	{
 		
 		customerEmail="";
@@ -65,10 +71,12 @@ class customer
 	public void logIn()
 	{
 		System.out.println("Enter the following details:\n");
-		System.out.println("Email ID:");
+		System.out.println("Email ID : ");
 		String email=s.next();
-		
-		char[] pass = console.readPassword("Password:");
+		System.out.println("Password : ");
+		String password;
+		//char[] pass = console.readPassword("Password : ");
+		password=s.next();
 		int ch=-1;
 		int logged = 0;
 		String customerDetails[] = new String[8];
@@ -88,7 +96,7 @@ class customer
                 System.out.println("");
 				*/
 				//System.out.println("-\t-\t-\t- EMAIL = " + email+" , "+ customerDetails[4] + "-\t-\t-\t- EMAIL = "+pass+" , "+customerDetails[7]);
-				if(email.equalsIgnoreCase(customerDetails[4]) && pass.toString().equals(customerDetails[7]))
+				if(email.equalsIgnoreCase(customerDetails[4]) && password.toString().equals(customerDetails[7]))
 				{
 					System.out.println("SUCCESSFULL LOGIN !!");
 					logged = 1;
@@ -299,8 +307,8 @@ class customer
 	{
 		s.nextLine();
 		long phone=0;
-		String pass="";
-		char[] pass_;
+		String password="";
+		//char[] pass_;
 		String regexStr = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"; 
 		Pattern pattern = Pattern.compile(regexStr); 
 		System.out.println("Name:");
@@ -326,9 +334,11 @@ class customer
 		s.nextLine();
 		while(!validity){
 		try{
-		pass_=console.readPassword("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number):");
-		pass=pass_.toString();
-		Matcher matcher = pattern.matcher(pass);
+			System.out.println("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number): ");
+		//password=console.readPassword("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number):");
+		password=s.nextLine();
+		//pass=pass_.toString();
+		Matcher matcher = pattern.matcher(password);
 		if(!matcher.matches())throw new passwordException("Please enter a valid password(min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number)");
 		else validity=true;
 		}
@@ -338,7 +348,7 @@ class customer
 		}
 		}
 		
-		customer c=new customer(name,phone,0,add,email,pass,customerNo,0);
+		customer c=new customer(name,phone,0,add,email,password,customerNo,0);
 		cust.add(c);
 		return c;
 		/*customer thisCustomer=c;

@@ -1,13 +1,14 @@
-package OnlineShoppingSystem;
-
-class deliveredThread  extends Thread
+package OnlineShoppingSystem.TnE;
+import OnlineShoppingSystem.Customer.*;
+import OnlineShoppingSystem.Product.*;
+public class deliveredThread extends Thread
 {
     int flagDelivered=0;
     private Thread t;
     String threadName;
-    customer thisCustomer=new customer();
+    public customer thisCustomer=new customer();
 
-    deliveredThread(int flagDelivered)
+    public deliveredThread(int flagDelivered)
     {
         this.threadName="DELIVERY THREAD";
         //this.thisCustomer=thisCustomer;
@@ -21,16 +22,16 @@ class deliveredThread  extends Thread
         try
         {
             Thread.sleep(7500);
-            System.out.println("\t\t\tSTARTED PACKING YOUR PRODUCTS(S) :)");
+            System.out.println("\n\t\t\tSTARTED PACKING YOUR PRODUCTS(S) :)");
             Thread.sleep(7500);
-            System.out.println("\t\t\tSHIPPED :)");
+            System.out.println("\n\t\t\tSHIPPED :)");
             Thread.sleep(10000);
-            System.out.println("\t\t\tOUT FOR DELIVERY :)");
+            System.out.println("\n\t\t\tOUT FOR DELIVERY :)");
             Thread.sleep(15000);
-            System.out.println("\t\t\tPRODUCT DELIVERED :)");
+            System.out.println("\n\t\t\tPRODUCT DELIVERED :)");
             thisCustomer.customerDeliveryStatus=1;
             flagDelivered=1;
-            checkStatus(thisCustomer,flagDelivered);
+            //checkStatus(thisCustomer,flagDelivered);
         }
         catch(Exception e)
         {
@@ -38,7 +39,7 @@ class deliveredThread  extends Thread
         }
         finally
         {
-            System.out.println("\t\t\t HAPPY SHOPPING ;-)");
+            System.out.println("\n\t\t\t HAPPY SHOPPING ;-)");
             //or else change status here :)
         }
     }

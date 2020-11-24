@@ -1,6 +1,8 @@
-package OnlineShoppingSystem;
+package OnlineShoppingSystem.TnE;
+import OnlineShoppingSystem.Customer.*;
+import OnlineShoppingSystem.Product.*;
 
-class phonenumberException extends Exception
+public class phonenumberException extends Exception
 {
 	public phonenumberException(String m)
 	{
