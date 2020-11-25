@@ -1,13 +1,14 @@
-1hp
-2hp
-3hp
-4hp
-5hp
-6hp
-7hp
-8hp
-9hp
-10hp
-11hp
-12 hp
-13 hp
+productID,Description,
+1001<SOFA>,L shaped Modern Fabric Sofa Set; solid wooden base; Style: Contemporary; Seat filling : Foam,
+1002<FRAMES>,High Quality Synthetic Wood; unbreakable Plexi Glass and Mdf Back; The frame set makes a great gift idea for multi occasion: Christmas; anniversary; wedding; baby shower; housewarming; and more,
+1003<CHAIR>,Wide and broad design that provides comfortable long hours of sitting; Strong Plastic Armrest; Heavy Duty Plastic Umbrella Shape Base; Pneumatic height adjustment & padded seat for day long comfort,
+1004<TABLES>,Water Proof and Scratch Resistant; Material: Engineered Wood - Particle Boar; Finish: Matte Wood Grain; Multipurpose furniture,
+1005<SHOW PIECES>,Non breakable ;Decorative; traditional; unique handicraft design ;Royal Indian handicraft; having a layer of powder coating which gives the most economical, longest lasting, and most colour-durable quality finishes,
+1006<STANDS>,Beautifully crafted corner stand to enhance the look of your room corners; Looks vibrant and classy and imparts a fresh and new feel to the surroundings; Very easy to assemble and move around; Finish: Glossy; Style: Antique,
+1007<DINNER TABLE>,Primary Material : Sheesham Wood | Secondary Material : Ply Board/Solid Wood; This Dining Table Set Can Be Used Not Only In Home But Also In Kitchen, Pub, Restaurant And Other Business Place For Its Sophisticated Look And Excellent Sunlight Resistance,
+1008<STOOLS>,Light weight and made out of extremely durable plastic; The stools are designed in a way to conserve space after it is folded up; The lightweight but sturdy folding step stool is easy to use because it opens with one flip of the hand,
+1009<LADDERS>,Aluminium ladder 100% rust free, Ideal For Every House Hold-Office- Warehouse- Godown Or Shop; Corrosion Resistant Structure For Longer Life; Wide Base Design For Firm Comfortable And Safe Climb; Anti skid rubber and eco friendly,
+1010<HOME DECOR>,Perfect design;Each one is unique and beautiful; designed with adhesive sticker to help attach to the wall; Durable and elegant; Can be applied on all smooth surfaces such as walls- doors- closets- plastic- metal fridges- laptops and so on,
+1011<WARDROBES>,Product Material: Engineered Wood | Sub-Material: Melamine Faced Chipboard; The wardrobe features a secure closing function with a key lock mechanism on both sections to latch it securely shut; Durable and very spacious, 
+1012<CLOCKS>,Durable and Long Lasting: Made from premium quality materials; Uses 1 "AA" battery; This Designer Analog wall clocks will add charm to any room in your home and would add to the decor of your house,
+1013<BEDS>,Material: Rosewood (Sheesham); Finish: Polish; Headboard Included: Yes; Headboard Type: Basic; Storage Included: No; well-built supporting structure that will keep your spine firmly supported below the mattress,
