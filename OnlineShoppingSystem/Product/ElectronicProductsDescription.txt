@@ -1,13 +1,14 @@
-1ep
-2ep
-3ep
-4ep
-5ep
-6ep
-7ep
-8ep
-9ep
-10ep
-11ep
-12 ep
-13 ep
+productID,Description,
+5001,13MP Main Camera; Large Screen 16.55 centimeters (6.52-inch) HD+ display with 1600 x 720 pixel resolution with additional features like: Eye Comfort-Filters blue light to reduce damage to the eyes, 
+5002,8MP primary camera with LED Flash | 5MP front camera; 8.0 inchs (20.32 Cm) Touchscreen | Resolution HD+ (1280 x 800); 3GB RAM | 32GB Internal Memory,
+5003,Resolution: HD Ready (1366 x 768p) | Refresh Rate: 60HzConnectivity: 2 HDMI Port | 2 USB Ports to connect pen drives & hard disk drives | 1 VGA Port to connect to your laptop or computer as a monior | 1 Headphone (3.5mm) Port to connect headphones,
+5004,Convection technology with easy functionality and modern design; 1600W Power; 60 Minute Timer; Rotisserie Function; Full Black Housing; 25L Big Capacity,
+5005,Frost Free; Side-by-Side: Auto defrost to stop ice-build up; Capacity 810 L; includes syncing up food storage with meal preparation; wide range of smart features that allow consumers to do what they could not do before,
+5006,Advanced Inverter Technology: Saves more than 50% Electricity; one more step towards building a sustainable future; Unique innovative design; Power consumption: 35 Watts with Super Efficient Noise less motor,
+5007,Waterproof Lights: The string lights are IP44 Waterproof, allowing you to use them both indoor and outdoor. They are easy to use, can be directly plugged and unplugged for power on and off,
+5008,Desktop Computer Package Includes: Along with CPU you will get Power Cable- Motherboard Drivers CD- Desktop User Manual Book; Core I5 3RD Gen CPU/16GB RAM/1TB HDD,
+5009,Processor:10th Generation Core i3-1005G1 Processor (4MB Cache up to 3.4 GHz), Memory & Storage:4GB RAM Single Channel DDR4 2666 MHz | 1TB 5400 RPM 2.5" Hard Disk Drive; Display:15.6-inch FHD Anti-Glare LED-Backlit Non-touch Display,
+5010,Split AC with non-inverter compressor:One beautiful Air Conditioner; keeps its promise of cooling. Re-designed with Golden Hydrophilic coat protection; 1.5 Ton: Suitable for 150 to 170 Sq Ft; Energy Rating: 3 star,
+5011,16 megapixel Micro Four Thirds sensor with no low pass filter to confidently capture sharp images with a high dynamic range and artifact free performance; 4K VIDEO CAPTURE AND 4K PHOTO MODE at 30 frames per second to capture split second moments,
+5012,Pocket Size Portable Bluetooth Speakers; 5 hours Music Playtime Under Optimum Audio Settings; Dual Equalizer Modes for Normal & Deep Bass Output; Wireless Bluetooth Streaming; Speakerphone; Frequency Response 180Hz - 20KHz,
+5013,Design : Distinctive design with aluminium finish with Built-In USB Drive; Bass Boost : Bass Boost function for low-end power; Built-In Memory : 4 GB capacity for around 900 songs; Up to 20 hours of battery,
