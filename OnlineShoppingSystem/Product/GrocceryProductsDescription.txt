@@ -1,6 +1,6 @@
 productID,Description,
 <COOKING OIL>,Reduces the risk of chronic diseases; Helps to keep heart healthy; Low Absorbing: Keeps your food light; Low in Bad Fat: Canola oil has lowest saturated fat than any commonly used cooking oil,
-<PULSES>,Medium sized; without polish dal having very pleasing moderate aroma and great taste; Dals are sorted to deliver consistent quality of grains through the year; Hygienically packed which is free from impurities such as weevils and stones
+<PULSES>,Medium sized; without polish dal having very pleasing moderate aroma and great taste; Dals are sorted to deliver consistent quality of grains through the year; Hygienically packed which is free from impurities such as weevils and stones,
 <FRUITS AND VEGETABLES>,Fresh delivery of fruits and vegetables; contain high content of fiber and vitamins in them; Can be used in multiple dishes and snacks; Store in a cool dry place away from sunlight,
 <WHEAT>,Ensures 100% pure and natural whole wheat atta and retention of its natural dietary fibres and nutrients; helps in easy digestion and supporting immunity; The dietary fibres and natural nutrients help in easy digestion and supporting immunity which are essential for your family’s daily intake,
 <DRY FRUITS>,Healthy Nuts Mix High in proteins and anti oxidants; slows the ageing process and keeps diseases away; Improves digestion immunity mental health; Store In Cool And Dry Place,
