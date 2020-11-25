@@ -31,7 +31,6 @@ public class customerDashBoard extends customer{
             System.out.println("4. VIEW WISHLIST"); //System.out.println("");
             System.out.println("5. VIEW ORDERED PRODUCTS");
             System.out.println("6. ACCOUNT SETTINGS");
-            //System.out.println("6. SEARCH FROM PRODUCTS");
             System.out.println("0. EXIT");
             System.out.print(" PLEASE ENTER YOUR CHOICE - ");
             choice = ob.nextInt();
@@ -52,17 +51,13 @@ public class customerDashBoard extends customer{
                 case 5:
                     orderedProducts(this);;
                 break;
-                /*
-                case 6:
-                    search();
-                break;
-                */
                 case 6: 
                     accountSettings ob=new accountSettings(thisCustomer);                  
                     ob.settingsmenu(thisCustomer);
                 break;
                 case 0:
                     System.out.println("EXITING ... ");
+                    System.exit(0);
                 break;
                 default:
                     System.out.println("INVALID CHOICE \n");
@@ -213,9 +208,9 @@ public class customerDashBoard extends customer{
             //System.out.println("\t >> YOUR CART IS EMPTY ADD & BUY BEST PRODUCT AT BEST POSSIBLE PRICES :)\n");
         }
     }
-    public void viewPreviousProducts(customer thisCustomer)
+    public void viewPreviousProducts(customer thisCustomer,int flag)
     {
-        if(thisCustomer.customerDeliveryStatus!=0)
+        if(thisCustomer.customerDeliveryStatus!=0 || flag!=0)
         {
             for(int pI=0;pI<thisCustomer.customerCart.size();pI++)
             {
@@ -333,6 +328,19 @@ public class customerDashBoard extends customer{
         }
     }
 
+    public void checkStatus(customer thisCustomer,int flagDelivered)
+    { 
+        //this.flagDelivered=flagDelivered;
+        if(flagDelivered!=0 || thisCustomer.customerDeliveryStatus!=0)
+        {
+            for(int pI=0;pI<thisCustomer.customerCart.size();pI++)
+            {
+                thisCustomer.prevOrders.add(thisCustomer.customerOrders.get(pI));
+            }
+            thisCustomer.customerOrders.clear();
+        }
+    }
+
     public void search()
     {
         int ch;
@@ -411,4 +419,5 @@ public class customerDashBoard extends customer{
         }
         while(ch!=0);
     }
+    
 }

@@ -5,16 +5,15 @@ import OnlineShoppingSystem.Product.*;
 
 public class deliveredThread extends Thread
 {
-    int flagDelivered=0;
-    private Thread t;
+    //int flagDelivered;
     String threadName;
-    public customer thisCustomer=new customer();
+    public customer thisCustomer=new customer();;
 
     public deliveredThread(int flagDelivered)
     {
         this.threadName="DELIVERY THREAD";      //delivery status notification thread
         //this.thisCustomer=thisCustomer;
-        checkStatus(thisCustomer,flagDelivered);
+        //checkStatus(thisCustomer,flagDelivered);
     }
     public deliveredThread() {
         super();
@@ -30,10 +29,10 @@ public class deliveredThread extends Thread
             Thread.sleep(10000);
             System.out.println("\n\t\t\tOUT FOR DELIVERY :)");
             Thread.sleep(15000);
-            System.out.println("\n\t\t\tPRODUCT DELIVERED :)");
             thisCustomer.customerDeliveryStatus=1;
-            flagDelivered=1;
-            //checkStatus(thisCustomer,flagDelivered);
+            //flagDelivered=1;
+            System.out.println("\n\t\t\tPRODUCT DELIVERED :)");
+            //thisCustomer.checkStatus(thisCustomer,1);
         }
         catch(Exception e)
         {
@@ -43,18 +42,6 @@ public class deliveredThread extends Thread
         {
             System.out.println("\n\t\t\t HAPPY SHOPPING ;-)");
             //or else change status here :)
-        }
-    }
-    public void checkStatus(customer thisCustomer,int flagDelivered)
-    { 
-        this.flagDelivered=flagDelivered;
-        if(flagDelivered!=0 || thisCustomer.customerDeliveryStatus!=0)
-        {
-            for(int pI=0;pI<thisCustomer.customerCart.size();pI++)
-            {
-                thisCustomer.prevOrders.add(thisCustomer.customerOrders.get(pI));
-            }
-            thisCustomer.customerOrders.clear();
         }
     }
 }
