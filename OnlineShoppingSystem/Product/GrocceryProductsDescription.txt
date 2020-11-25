@@ -1,13 +1,14 @@
-1gromp
-2gromp
-3gromp
-4gromp
-5gromp
-6gromp
-7gromp
-8gromp
-9gromp
-10gromp
-11gromp
-12 gromp
-13 gromp
+productID,Description,
+<COOKING OIL>,Reduces the risk of chronic diseases; Helps to keep heart healthy; Low Absorbing: Keeps your food light; Low in Bad Fat: Canola oil has lowest saturated fat than any commonly used cooking oil,
+<PULSES>,Medium sized; without polish dal having very pleasing moderate aroma and great taste; Dals are sorted to deliver consistent quality of grains through the year; Hygienically packed which is free from impurities such as weevils and stones
+<FRUITS AND VEGETABLES>,Fresh delivery of fruits and vegetables; contain high content of fiber and vitamins in them; Can be used in multiple dishes and snacks; Store in a cool dry place away from sunlight,
+<WHEAT>,Ensures 100% pure and natural whole wheat atta and retention of its natural dietary fibres and nutrients; helps in easy digestion and supporting immunity; The dietary fibres and natural nutrients help in easy digestion and supporting immunity which are essential for your family’s daily intake,
+<DRY FRUITS>,Healthy Nuts Mix High in proteins and anti oxidants; slows the ageing process and keeps diseases away; Improves digestion immunity mental health; Store In Cool And Dry Place,
+<RICE>,Ultimate taste and sweet earthy aroma enhance the rice-eating experience; Naturally curated and nurtured with the utmost care; Gluten free rice governed by the highest food quality and safety standards,
+<BISCUITS AND SNACKS>,Choco chip cookies mouthful of chocolate; Fruit and nut cookies bicalicious fruity snack; Butter cookies let you savour the real taste of butter; A whole lot of snacks made with the best ingredients,
+<COLD DRINKS>,Tingle and add a spicy twist to meals snacks and even moments; strong taste packed with a punch of soda; available in different flavours; Helps brings out the toofani adventurous side of you,
+<TEA>,tea leaves used for this product are crushed twisted and curled; while processing to ensure infusion of exquisite aroma and taste; Also this process ensures rich color and strong flavor,
+<COFFEE>,This premium imported roast is artfully crafted to achieve a quality coffee experience that will awaken your senses; NESCAFÉ Gold is a sophisticated; aromatic coffee with a rich well-rounded taste that creates delicious moments instantly,
+<MILK>,Doubled toned milk; 100 percent natural; 0 percent preservative; extra protein and calcium; made from cow milk,
+<BREAD>,Freshly baked premium bread tastes best when lightly toasted or tawa toasted; Up to 20% reduced carbs! No transfat! No cholesterol! Low sugar!; Serves 9.6 Gm of protein per serving; giving more energy growth and nutrition everyday,
+<INSTANT NOODLES>,MAGGI 2-Minute Masala Noodles is an instant noodles brand manufactured by Nestle; Made with the finest quality spices and ingredients; Contains a noodle cake and the Favourite Masala Tastemaker inside for a quick 2 minute preparation,
