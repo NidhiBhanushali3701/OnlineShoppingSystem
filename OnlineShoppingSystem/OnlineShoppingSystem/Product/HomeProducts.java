@@ -7,6 +7,15 @@ import OnlineShoppingSystem.TnE.*;
 
 public class HomeProducts extends product
 {
+    Vector<product> home = new Vector<product>();
+    public static Scanner ob = new Scanner(System.in);
+    HomeProducts prod;
+    File HomeProductDescriptionFile;
+
+    String prodName[] = {"SOFA","FRAMES","CHAIR","TABLES","SHOW PIECES","STANDS","DINNER TABLE","STOOLS","LADDERS","HOME DECOR","WARDROBES","CLOCKS","BEDS"};
+    long prodCost[] = {20000,1200,2000,9000,1999,5000,11000,1000,2499,3999,2999,3999,10999};
+    String prodSellerName[] ={"URBAN LADDER","HOMESAKE","WOODSWORTH","WOODSWORTH","URBAN LADDER","HOME STUDIO","STYLE SPA","URBAN LADDER","WOODSWORTH","HOMESAKE","HOME STUDIO","AJANTA","SPRINGTEK"};
+
     public HomeProducts()
     {
         super();
@@ -16,15 +25,6 @@ public class HomeProducts extends product
     {
         super(productId,productCost,productName,productBuyerID,productBuyerName,productSellerID,productSellerName,productDescription);
     }
-
-    Vector<product> home = new Vector<product>();
-    Enumeration<product> CPEnumeration = home.elements();
-    String prodName[] = {"SOFA","FRAMES","CHAIR","TABLES","SHOW PIECES","STANDS","DINNER TABLE","STOOLS","LADDERS","HOME DECOR","WARDROBES","CLOCKS","BEDS"};
-    long prodCost[] = {20000,1200,2000,9000,1999,5000,11000,1000,2499,3999,2999,3999,10999};
-    String prodSellerName[] ={"URBAN LADDER","HOMESAKE","WOODSWORTH","WOODSWORTH","URBAN LADDER","HOME STUDIO","STYLE SPA","URBAN LADDER","WOODSWORTH","HOMESAKE","HOME STUDIO","AJANTA","SPRINGTEK"};
-    public static Scanner ob = new Scanner(System.in);
-    HomeProducts prod;
-    File HomeProductDescriptionFile;
 
     public void showProduct(customer thisCustomer)
     {
@@ -257,7 +257,7 @@ public class HomeProducts extends product
                     {
                         if(Integer.parseInt(prodStr[0])==(2000+i+1))
                         {
-                            allProd= new HomeProducts((2000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],sc.nextLine());
+                            allProd= new HomeProducts((2000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],prodStr[1]);
                             home.add(allProd);
                         }
                     }

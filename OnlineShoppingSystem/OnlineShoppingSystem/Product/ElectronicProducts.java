@@ -7,6 +7,15 @@ import OnlineShoppingSystem.TnE.*;
 
 public class ElectronicProducts extends product
 {
+    Vector<product> electronic = new Vector<product>();
+    public static Scanner ob = new Scanner(System.in);
+    ElectronicProducts prod;
+    File ElectronicProductDescriptionFile;
+    
+    String prodName[] = {"PHONES ","TABLETS "," TELEVISION ","OVEN ","FRIGDE ","FANS  "," LIGHTS ","COMPUTER ","LAPTOPS","AIR CONDITIONER ","CAMERA ","SPEAKERS","MUSIC PLAYERS"};
+    long prodCost[] = {120000,100000,200000,20000,65000,5000,5000,150000,200000,50000,45000,40000,30000};
+    String prodSellerName[] ={"APPLE","ONEPLUS","SONY","LG","SAMSUNG","BAJAJ","BAJAJ","APPLE","APPLE","VOLTAS","CANON","SONY","SAMSUNG"};
+
     public ElectronicProducts()
     {
         super();
@@ -15,19 +24,7 @@ public class ElectronicProducts extends product
     public ElectronicProducts(long productId,long productCost,String productName,long productBuyerID,String productBuyerName,long productSellerID,String productSellerName,String productDescription)
     {
         super(productId,productCost,productName,productBuyerID,productBuyerName,productSellerID,productSellerName,productDescription);
-    }
-
-
-    Vector<product> electronic = new Vector<product>();
-    //static Vector<product> Cart = new Vector<product>();
-    Enumeration<product> CPEnumeration = electronic.elements();
-    String prodName[] = {"PHONES ","TABLETS "," TELEVISION ","OVEN ","FRIGDE ","FANS  "," LIGHTS ","COMPUTER ","LAPTOPS","AIR CONDITIONER ","CAMERA ","SPEAKERS","MUSIC PLAYERS"};
-    long prodCost[] = {120000,100000,200000,20000,65000,5000,5000,150000,200000,50000,45000,40000,30000};
-    String prodSellerName[] ={"APPLE","ONEPLUS","SONY","LG","SAMSUNG","BAJAJ","BAJAJ","APPLE","APPLE","VOLTAS","CANON","SONY","SAMSUNG"};
-    //long prodID[] = {};
-    public static Scanner ob = new Scanner(System.in);
-    ElectronicProducts prod;
-    File ElectronicProductDescriptionFile;
+    }    
 
     public void showProduct(customer thisCustomer)
     {
@@ -261,7 +258,7 @@ public class ElectronicProducts extends product
                     {
                         if(Integer.parseInt(prodStr[0])==(5000+i+1))
                         {
-                            allProd= new ElectronicProducts((5000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],sc.nextLine());
+                            allProd= new ElectronicProducts((5000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],prodStr[1]);
                             electronic.add(allProd);
                         }
                     }

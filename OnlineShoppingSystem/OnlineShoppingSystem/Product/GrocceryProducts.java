@@ -18,13 +18,13 @@ public class GrocceryProducts extends product
     }
 
     Vector<product> groccery = new Vector<product>();
-    Enumeration<product> CPEnumeration = groccery.elements();
-    String prodName[] = {" COOKING OIL       ","  PULSES   ","  FRUITS AND VEGETABLES    ","  WHEAT      ","  DRY FRUITS     ","  RICE      ","  BISCUITS AND SNACKS ","  COLD DRINKS  ","  TEA       ","  COFFEE       ","  MILK    ","  BREAD    ","  INSTANT NOODLES  "};
-    long prodCost[] = {250,220,400,200,350,250,80,50,60,75,25,50,30};
-    String prodSellerName[] ={"FORTUNE","ORGANIC TATTVA","HARVEST FARMS","AASHIRWAAD","FARMOWN","KOHINOOR","BRITANNIA","THUMBS UP","SOCIETY","NESCAFE","AMUL","ENGLISH OVEN","MAGGI"};
     public static Scanner ob = new Scanner(System.in);
     GrocceryProducts prod;
     File GrocceryProductDescriptionFile;
+
+    String prodName[] = {" COOKING OIL       ","  PULSES   ","  FRUITS AND VEGETABLES    ","  WHEAT      ","  DRY FRUITS     ","  RICE      ","  BISCUITS AND SNACKS ","  COLD DRINKS  ","  TEA       ","  COFFEE       ","  MILK    ","  BREAD    ","  INSTANT NOODLES  "};
+    long prodCost[] = {250,220,400,200,350,250,80,50,60,75,25,50,30};
+    String prodSellerName[] ={"FORTUNE","ORGANIC TATTVA","HARVEST FARMS","AASHIRWAAD","FARMOWN","KOHINOOR","BRITANNIA","THUMBS UP","SOCIETY","NESCAFE","AMUL","ENGLISH OVEN","MAGGI"};
 
     public void showProduct(customer thisCustomer)
     {
@@ -258,7 +258,7 @@ public class GrocceryProducts extends product
                     {
                         if(Integer.parseInt(prodStr[0])==(4000+i+1))
                         {
-                            allProd= new GrocceryProducts((4000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],sc.nextLine());
+                            allProd= new GrocceryProducts((4000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],prodStr[1]);
                             groccery.add(allProd);
                         }
                     }

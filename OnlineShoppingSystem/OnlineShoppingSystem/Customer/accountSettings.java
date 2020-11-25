@@ -1,4 +1,5 @@
 package OnlineShoppingSystem.Customer;
+
 import OnlineShoppingSystem.Product.*;
 import OnlineShoppingSystem.TnE.*;
 import java.util.*;
@@ -75,9 +76,10 @@ public class accountSettings extends customerDashBoard{
         int o=0;
         String name,add,pass,id;
         long p=0;
-        String newpass="";
-        char[] oldPass;
-        char[] newPass;
+        String newPass="";
+        String oldPass="";
+        //char[] oldPass;
+        //char[] newPass;
         String regexStr = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"; 
         Pattern pattern = Pattern.compile(regexStr); 
         String[] cStr;
@@ -125,41 +127,44 @@ public class accountSettings extends customerDashBoard{
                 thisCustomer.customerEmail=id;
             break;
             case 5:
-            System.out.println("Enter your old password");
-            //pass=s.nextLine();
-            oldPass = console.readPassword("Password : ");
-            if(thisCustomer.customerPassword.equals(oldPass.toString()))
-            {
-                while(!validity)
+                System.out.println("Enter your old password");
+                oldPass= s.nextLine();
+                //oldPass = console.readPassword("Password : ");
+                if(thisCustomer.customerPassword.equals(oldPass))
                 {
-                    try{
-                    System.out.println( "New Password ");
-                    //newpass=s.nextLine();
-                    newPass = console.readPassword("Password : ");
-                    Matcher matcher = pattern.matcher(newpass);
-                    if(!matcher.matches())throw new passwordException("Please enter a valid password(min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number)");
-                    else validity=true;
-                    }
-                    catch(passwordException e)
+                    while(!validity)
                     {
-                        System.out.println(e);			
+                        try
+                        {
+                            System.out.println( "New Password ");
+                            newPass=s.nextLine();
+                            //newPass = console.readPassword("Password : ");
+                            Matcher matcher = pattern.matcher(newPass);
+                            if(!matcher.matches())
+                                throw new passwordException("Please enter a valid password(min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number)");
+                            else 
+                                validity=true;
+                        }
+                        catch(passwordException e)
+                        {
+                            System.out.println(e);			
+                        }
                     }
+                    thisCustomer.customerPassword=newPass;
                 }
-                thisCustomer.customerPassword=newpass;
-            }
-            
-            else
-            {
-                System.out.println("Wrong password");
-                edit(thisCustomer);
-            }
+                
+                else
+                {
+                    System.out.println("Wrong password");
+                    edit(thisCustomer);
+                }
             break;
             case 0:
-            System.out.println("GOING BACK");
+                System.out.println("GOING BACK");
             break;
             default:
-            System.out.println("Invalid choice".toUpperCase());
-            edit(thisCustomer);
+                System.out.println("Invalid choice".toUpperCase());
+                edit(thisCustomer);
             break;
         }
         
@@ -267,11 +272,6 @@ public class accountSettings extends customerDashBoard{
             System.out.println("Invalid choice");
             delete(thisCustomer);
         }
-
-    }
-
-	public static void main(String[] args)
-    {
 
     }
 }

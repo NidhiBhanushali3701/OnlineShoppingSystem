@@ -27,11 +27,10 @@ public class customerDashBoard extends customer{
             System.out.println("YOU CAN SELECT FROM ALL BELOW :)");
             System.out.println("1. VIEW PRODUCTS");
             System.out.println("2. BUY PRODUCTS");
-            System.out.println("3. DELIVERY STATUS");
-            System.out.println("4. VIEW CART");  
-            System.out.println("5. VIEW WISHLIST"); //System.out.println("");
-            System.out.println("6. VIEW ORDERED PRODUCTS");
-            System.out.println("7. ACCOUNT SETTINGS");
+            System.out.println("3. VIEW CART");  
+            System.out.println("4. VIEW WISHLIST"); //System.out.println("");
+            System.out.println("5. VIEW ORDERED PRODUCTS");
+            System.out.println("6. ACCOUNT SETTINGS");
             //System.out.println("6. SEARCH FROM PRODUCTS");
             System.out.println("0. EXIT");
             System.out.print(" PLEASE ENTER YOUR CHOICE - ");
@@ -45,15 +44,12 @@ public class customerDashBoard extends customer{
                     buyProducts();
                 break;
                 case 3:
-                    //viewPreviousProducts(this);
-                break;
-                case 4:
                     customerCart(this);
                 break;
-                case 5:
+                case 4:
                     customerWishlist(this);
                 break;
-                case 6:
+                case 5:
                     orderedProducts(this);;
                 break;
                 /*
@@ -61,7 +57,7 @@ public class customerDashBoard extends customer{
                     search();
                 break;
                 */
-                case 7: 
+                case 6: 
                     accountSettings ob=new accountSettings(thisCustomer);                  
                     ob.settingsmenu(thisCustomer);
                 break;
@@ -414,10 +410,5 @@ public class customerDashBoard extends customer{
             }
         }
         while(ch!=0);
-    }
-
-    public static void main(String[] args)
-    {
-
     }
 }

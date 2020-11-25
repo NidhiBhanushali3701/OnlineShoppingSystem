@@ -165,9 +165,4 @@ public class buyProducts extends accountSettings
         }      
       
     }
-    
-    public static void main(String[] args)
-    {
-
-    }
 }

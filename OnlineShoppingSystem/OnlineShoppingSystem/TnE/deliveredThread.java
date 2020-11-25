@@ -12,7 +12,7 @@ public class deliveredThread extends Thread
 
     public deliveredThread(int flagDelivered)
     {
-        this.threadName="DELIVERY THREAD";
+        this.threadName="DELIVERY THREAD";      //delivery status notification thread
         //this.thisCustomer=thisCustomer;
         checkStatus(thisCustomer,flagDelivered);
     }

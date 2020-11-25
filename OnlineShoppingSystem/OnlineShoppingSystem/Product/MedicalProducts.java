@@ -8,15 +8,12 @@ import OnlineShoppingSystem.TnE.*;
 public class MedicalProducts extends product
 {
     Vector<product> medical = new Vector<product>();
-    //static Vector<product> Cart = new Vector<product>();
-    Enumeration<product> CPEnumeration = medical.elements();
-    String prodName[] = {"RELAY SPRAY","MASKS","BAND AID","ANTISEPTICS","OINTMENTS","THERMOMETER","FIRST AID KIT","CROCIN","PUDIN HARA ","CYCLOPAM","PARACETAMOL","COUGH SYRUP","SANITIZERS"};
-    long prodCost[] = {300,40,35,200,150,600,1400,50,25,45,50,105,200};
-    String prodSellerName[] ={"PHARMEASY","MEDICOS","PHARMEASY","DETTOL","SAVLON","MEDHOME","PHARMEASY","MEDICOS","DABUR","MEDICOS","MEDHOME","HONITUS","LIFEBUOY"};
-    //long prodID[] = {};
     public static Scanner ob = new Scanner(System.in);
     MedicalProducts prod;
     File MedicalProductDescriptionFile;
+    String prodName[] = {"RELAY SPRAY","MASKS","BAND AID","ANTISEPTICS","OINTMENTS","THERMOMETER","FIRST AID KIT","CROCIN","PUDIN HARA ","CYCLOPAM","PARACETAMOL","COUGH SYRUP","SANITIZERS"};
+    long prodCost[] = {300,40,35,200,150,600,1400,50,25,45,50,105,200};
+    String prodSellerName[] ={"PHARMEASY","MEDICOS","PHARMEASY","DETTOL","SAVLON","MEDHOME","PHARMEASY","MEDICOS","DABUR","MEDICOS","MEDHOME","HONITUS","LIFEBUOY"};
 
     public MedicalProducts()
     {
@@ -259,7 +256,7 @@ public class MedicalProducts extends product
                     {
                         if(Integer.parseInt(prodStr[0])==(1000+i+1))
                         {
-                            allProd= new MedicalProducts((1000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],sc.nextLine());
+                            allProd= new MedicalProducts((1000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],prodStr[1]);
                             medical.add(allProd);
                         }
                     }

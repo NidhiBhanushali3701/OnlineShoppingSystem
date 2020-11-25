@@ -47,7 +47,6 @@ public class customer
 	}
 	public customer()
 	{
-		
 		customerEmail="";
 		customerName="";
 		customerPhoneNo=0;
@@ -160,8 +159,6 @@ public class customer
 	}
 	public void signUp()
     {
-        //String Name="ABC XYZ",address="P Q R",pass;
-        //long phone,credits=0;
         s = new Scanner(System.in);
 		System.out.println("Enter the following details:\n");
 		System.out.println("Email ID:");
@@ -264,41 +261,6 @@ public class customer
 		s.close();
 	}
 
-	/*
-	public void signUp()
-	{
-		//s.nextLine();
-		System.out.println("Enter Your Details:\n");
-		
-		System.out.println("Email ID:");
-		s.nextLine();
-		String email=s.nextLine();
-		customer accountExists=check(email,"");
-		int op=0;
-		if(accountExists.customerEmail!="")
-		{
-			
-				System.out.println("You already have an account with this email Id\n1)Log in?\n2)Create new account with different Email ID\n");
-				op=s.nextInt();
-				switch(op)
-				{
-					case 1:
-					logIn();
-					break;
-					case 2:
-					signUp();
-					break;
-					default:
-					System.out.println("Please enter a valid option");
-				}
-					
-		}
-		else
-		{
-			create(email,0);
-		}
-	}
-	*/
 	public customer create(String email,int customerNo)
 	{
 		s.nextLine();
@@ -312,36 +274,42 @@ public class customer
 		System.out.println("Address:");
 		String add=s.nextLine();
 		boolean validity=false;
-		while(!validity){
-		try{		
-		System.out.println("Phone Number:");
-		phone=s.nextLong();
-		if(phone<1000000000)throw new phonenumberException("Please enter a valid phone number(10 digits)");
-		else validity=true;
-
-		}
-		catch(phonenumberException e)
+		while(!validity)
 		{
-			System.out.println(e);			
-		}
-		
+			try
+			{		
+				System.out.println("Phone Number:");
+				phone=s.nextLong();
+				if(phone<1000000000)
+					throw new phonenumberException("Please enter a valid phone number(10 digits)");
+				else 
+					validity=true;
+			}
+			catch(phonenumberException e)
+			{
+				System.out.println(e);			
+			}
 		}
 		validity=false;
 		s.nextLine();
-		while(!validity){
-		try{
-			System.out.println("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number): ");
-		//password=console.readPassword("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number):");
-		password=s.nextLine();
-		//pass=pass_.toString();
-		Matcher matcher = pattern.matcher(password);
-		if(!matcher.matches())throw new passwordException("Please enter a valid password(min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number)");
-		else validity=true;
-		}
-		catch(passwordException e)
+		while(!validity)
 		{
-			System.out.println(e);			
-		}
+			try
+			{
+				System.out.println("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number): ");
+				//password=console.readPassword("Password(valid password should contain min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number):");
+				password=s.nextLine();
+				//pass=pass_.toString();
+				Matcher matcher = pattern.matcher(password);
+				if(!matcher.matches())
+					throw new passwordException("Please enter a valid password(min 8 characters, atleast one uppercase and one lowercase letter, atleast one special character and one number)");
+				else 
+					validity=true;
+			}
+			catch(passwordException e)
+			{
+				System.out.println(e);			
+			}
 		}
 		
 		customer c=new customer(name,phone,0,add,email,password,customerNo,0);
@@ -358,91 +326,6 @@ public class customer
 		*/
 		
 	}
-
-	/*
-	public void logIn()
-	{
-		int op=0;
-		System.out.println("Enter the following details:\n");
-		System.out.println("Email ID:");
-		String email=s.next();
-		System.out.println("Password:");
-		String pass=s.next();
-		customer validInfo=check(email,pass);
-		if(validInfo.customerEmail!="")
-		{
-			System.out.println("You are logged in");
-			delivered_thread = new deliveredThread(0);
-			delivered_thread.thisCustomer=validInfo;
-			//accountSettings aS= new accountSettings(aS, email, pass);
-			customerDashBoard cDB = new customerDashBoard(validInfo);
-			cDB.displayCustomerDashBoard(validInfo);
-			//aS.settingsmenu(validInfo);
-			//store menu
-		}
-		else
-		{
-			
-			while(op!=1 || op!=2)
-			{
-				System.out.println("Wrong email ID/Password\n1)Try Again\n2)Sign Up\n");
-				op=s.nextInt();
-				switch(op)
-				{
-					case 1:logIn();
-					break;
-					case 2:
-					signUp();
-					break;
-					default:
-					System.out.println("Please enter a valid option");
-				}
-			}
-		}
-	}
-	*/
-
-	public customer check(String e,String n)
-	{
-		customer b;
-		customer x;
-		b=new customer();
-		if(cust.size()==0)
-		return b;
-		for(int i=0;i<cust.size();i++)
-		{
-			x=cust.get(i);
-			
-			if(e.equals(x.customerEmail))
-			{			
-				
-				if(n!="")
-				{
-					if(n.equals(x.customerPassword))
-					{
-						b=x;						
-						return b;
-					}
-					else
-					{
-						b=new customer();						
-					}					
-				}
-				else
-				{
-					b=x;					
-					return b;
-				}
-			}
-			else
-			{
-				b=new customer();				
-			}
-		}
-		
-		return b;
-	}
-
 	public void customerPayment(customer thisCustomer)
 	{
 		//buy()

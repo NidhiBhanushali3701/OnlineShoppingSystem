@@ -19,14 +19,13 @@ public class GrommingProducts extends product
 
 
     Vector<product> gromming = new Vector<product>();
-    Enumeration<product> CPEnumeration = gromming.elements();
-    String prodName[] = {"LOTIONS","OILS","SOAP","FACEWASH","SHAMPOO","CONDITIONER","PASTE","TOOTH BRUSH","FACIAL MASKS","FACIAL KITS","NAIL PAINTS","ACCESSORIES","WIPES"};
-    long prodCost[] = {1299,1399,1149,1999,1299,3499,2999,5999,3499,5999,4499,3999,10999};
-    String prodSellerName[] ={"VASLINE","DOVE","DOVE","C&C","DOVE","DOVE","CLOSE UP","ORAL B","C&C","VLCC","NYKAA","Dior","J&J"};
     public static Scanner ob = new Scanner(System.in);
     GrommingProducts prod;
     File GrommingProductDescriptionFile;
-    
+
+    String prodName[] = {"LOTIONS","OILS","SOAP","FACEWASH","SHAMPOO","CONDITIONER","PASTE","TOOTH BRUSH","FACIAL MASKS","FACIAL KITS","NAIL PAINTS","ACCESSORIES","WIPES"};
+    long prodCost[] = {1299,1399,1149,1999,1299,3499,2999,5999,3499,5999,4499,3999,10999};
+    String prodSellerName[] ={"VASLINE","DOVE","DOVE","C&C","DOVE","DOVE","CLOSE UP","ORAL B","C&C","VLCC","NYKAA","Dior","J&J"};
 
     public void showProduct(customer thisCustomer)
     {
@@ -259,7 +258,7 @@ public class GrommingProducts extends product
                     {
                         if(Integer.parseInt(prodStr[0])==(3000+i+1))
                         {
-                            allProd= new GrommingProducts((3000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],sc.nextLine());
+                            allProd= new GrommingProducts((3000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],prodStr[1]);
                             gromming.add(allProd);
                         }
                     }
