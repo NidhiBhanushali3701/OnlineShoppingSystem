@@ -1,4 +1,3 @@
-productID,Description,
 1001<SOFA>,L shaped Modern Fabric Sofa Set; solid wooden base; Style: Contemporary; Seat filling : Foam,
 1002<FRAMES>,High Quality Synthetic Wood; unbreakable Plexi Glass and Mdf Back; The frame set makes a great gift idea for multi occasion: Christmas; anniversary; wedding; baby shower; housewarming; and more,
 1003<CHAIR>,Wide and broad design that provides comfortable long hours of sitting; Strong Plastic Armrest; Heavy Duty Plastic Umbrella Shape Base; Pneumatic height adjustment & padded seat for day long comfort,
