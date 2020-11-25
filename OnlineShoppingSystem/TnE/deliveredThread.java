@@ -1,5 +1,8 @@
 package OnlineShoppingSystem.TnE;
+
 import OnlineShoppingSystem.Customer.*;
+import OnlineShoppingSystem.Product.*;
+
 public class deliveredThread extends Thread
 {
     int flagDelivered=0;
@@ -9,8 +12,8 @@ public class deliveredThread extends Thread
 
     public deliveredThread(int flagDelivered)
     {
-        this.threadName="DELIVERY THREAD";
-       
+        this.threadName="DELIVERY THREAD";      //delivery status notification thread
+        //this.thisCustomer=thisCustomer;
         checkStatus(thisCustomer,flagDelivered);
     }
     public deliveredThread() {
@@ -30,7 +33,7 @@ public class deliveredThread extends Thread
             System.out.println("\n\t\t\tPRODUCT DELIVERED :)");
             thisCustomer.customerDeliveryStatus=1;
             flagDelivered=1;
-          
+            //checkStatus(thisCustomer,flagDelivered);
         }
         catch(Exception e)
         {
@@ -38,7 +41,8 @@ public class deliveredThread extends Thread
         }
         finally
         {
-            System.out.println("\n\t\t\t HAPPY SHOPPING ;-)");         
+            System.out.println("\n\t\t\t HAPPY SHOPPING ;-)");
+            //or else change status here :)
         }
     }
     public void checkStatus(customer thisCustomer,int flagDelivered)

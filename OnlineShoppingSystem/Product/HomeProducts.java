@@ -1,11 +1,21 @@
 package OnlineShoppingSystem.Product;
 import java.util.*;
+import java.sql.*;
 import java.io.*;
 import OnlineShoppingSystem.Customer.*;
 import OnlineShoppingSystem.TnE.*;
 
 public class HomeProducts extends product
 {
+    Vector<product> home = new Vector<product>();
+    public static Scanner ob = new Scanner(System.in);
+    HomeProducts prod;
+    File HomeProductDescriptionFile;
+
+    String prodName[] = {"SOFA","FRAMES","CHAIR","TABLES","SHOW PIECES","STANDS","DINNER TABLE","STOOLS","LADDERS","HOME DECOR","WARDROBES","CLOCKS","BEDS"};
+    long prodCost[] = {20000,1200,2000,9000,1999,5000,11000,1000,2499,3999,2999,3999,10999};
+    String prodSellerName[] ={"URBAN LADDER","HOMESAKE","WOODSWORTH","WOODSWORTH","URBAN LADDER","HOME STUDIO","STYLE SPA","URBAN LADDER","WOODSWORTH","HOMESAKE","HOME STUDIO","AJANTA","SPRINGTEK"};
+
     public HomeProducts()
     {
         super();
@@ -16,22 +26,18 @@ public class HomeProducts extends product
         super(productId,productCost,productName,productBuyerID,productBuyerName,productSellerID,productSellerName,productDescription);
     }
 
-    Vector<product> home = new Vector<product>();
-    
-    String prodName[] = {"SOFA","FRAMES","CHAIR","TABLES","SHOW PIECES","STANDS","DINNER TABLE","STOOLS","LADDERS","HOME DECOR","WARDROBES","CLOCKS","BEDS"};
-    long prodCost[] = {20000,1200,2000,9000,1999,5000,11000,1000,2499,3999,2999,3999,10999};
-    String prodSellerName[] ={"URBAN LADDER","HOMESAKE","WOODSWORTH","WOODSWORTH","URBAN LADDER","HOME STUDIO","STYLE SPA","URBAN LADDER","WOODSWORTH","HOMESAKE","HOME STUDIO","AJANTA","SPRINGTEK"};
-    public static Scanner ob = new Scanner(System.in);
-    HomeProducts prod;
-    File HomeProductDescriptionFile;
-
     public void showProduct(customer thisCustomer)
     {
         addHomeProductDetails();
-        int ch;
+        int ch,addToBag;
         do{
             System.out.println("\t--->>> WELCOME TO HOME COLLECTION ");
-            
+            /*
+            for(int i=0;i<13;i++)
+            {
+                System.out.println("\t\t\t"+home.get(i).productName + " \t " +home.get(i).productCost + " \t " +home.get(i).productID);
+            }
+            */
             System.out.println("\n\t\t "+" "+"   "+"PRODUCT NAME"+ " \t" +"PRICE"+ " \t " +"BRAND NAME");
             int i=1;
             for(product printProd:home)
@@ -40,6 +46,13 @@ public class HomeProducts extends product
                 i++;
             }
             
+            /*
+            CPEnumeration = home.elements();
+            while(CPEnumeration.hasMoreElements())
+            {
+                System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+            }
+            */
             System.out.println("\n\t\t 14. SEARCH");
             System.out.println("\t\t 15. SORT [HIGH TO LOW]");
             System.out.println("\t\t 16. SORT [LOW TO HIGH]");
@@ -173,7 +186,11 @@ public class HomeProducts extends product
             int viewCart = ob.nextInt();
             if(viewCart!=0)
             {
-              
+                /*CPEnumeration = customerCart.elements();
+                while(CPEnumeration.hasMoreElements())
+                {
+                    System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+                }*/
                 System.out.println("\t >>> YOUR CART \n");
                 int i=1;
                 for(product printProd:thisCustomer.customerCart)
@@ -196,7 +213,11 @@ public class HomeProducts extends product
             int viewCart = ob.nextInt();
             if(viewCart!=0)
             {
-               
+                /*CPEnumeration = customerWishList.elements();
+                while(CPEnumeration.hasMoreElements())
+                {
+                    System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+                }*/
                 System.out.println("\t >>> YOUR WISHLIST \n");
                 int i=1;
                 for(product printProd:thisCustomer.customerWishList)
@@ -218,23 +239,40 @@ public class HomeProducts extends product
     {
         product allProd;
         Scanner sc;
+        String[] prodStr;
         for(int i=0;i<13;i++)
         {
             try
             {
-                HomeProductDescriptionFile = new File("C:\\Users\\user\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\HomeProductsDescription.txt");
+                HomeProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\ProductsDescription.csv");
                 sc = new Scanner(HomeProductDescriptionFile);
-                if(sc.hasNextLine())
+                while(sc.hasNextLine())
                 {
-                    allProd= new HomeProducts((6000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],sc.nextLine());
-                    home.add(allProd);
+                    prodStr=sc.nextLine().split(",");
+                    if(prodStr[0].equals("productID"))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if(Integer.parseInt(prodStr[0])==(2000+i+1))
+                        {
+                            allProd= new HomeProducts((2000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],prodStr[1]);
+                            home.add(allProd);
+                        }
+                    }
                 }
             }
             catch(Exception E)
             {
                 System.out.println(E);
             }
-            
+            /*
+            finally{
+                allProd= new HomeProducts((6000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],"");
+                home.add(allProd);
+            }
+            */
         }
     }
 }

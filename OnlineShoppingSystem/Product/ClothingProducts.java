@@ -3,18 +3,18 @@ import OnlineShoppingSystem.Customer.*;
 import OnlineShoppingSystem.TnE.*;
 import java.util.*;
 import java.io.*;
-
+import java.sql.*;
 
 public class ClothingProducts extends product
 {   
     Vector<product> clothing = new Vector<product>();
+    public static Scanner ob = new Scanner(System.in);
+    ClothingProducts prod;
+    File ClothingProductDescriptionFile;
     
     String prodName[] = {" TOPS       "," T-SHIRTS   "," SHIRTS     "," PANTS      "," SHORTS     "," GOWNS      "," ONE-PIECES "," PURSES     "," BAGS       ","SHOES       ","SANDALS     ","WATCHES     ","JWELLERY    "};
     long prodCost[] = {1299,1399,1149,1999,1299,3499,2999,5999,3499,5999,4499,3999,10999};
     String prodSellerName[] ={"ZARA","ADIDAS","PRADA","PRADA","AND","AND","H&M","H&M","CHANEL","AND","H&M","GUCCI","Dior"};
-    public static Scanner ob = new Scanner(System.in);
-    ClothingProducts prod;
-    File ClothingProductDescriptionFile;
     
     public ClothingProducts()
     {
@@ -29,10 +29,15 @@ public class ClothingProducts extends product
     public void showProduct(customer thisCustomer)
     {
         addClothingProductDetails();
-        int ch;
+        int ch,addToBag;
         do{
             System.out.println("\t--->>> WELCOME TO CLOTHING COLLECTION ");
-            
+            /*
+            for(int i=0;i<13;i++)
+            {
+                System.out.println("\t\t\t"+clothing.get(i).productName + " \t " +clothing.get(i).productCost + " \t " +clothing.get(i).productID);
+            }
+            */
             System.out.println("\n\t\t "+" "+"   "+"PRODUCT NAME"+ " \t" +"PRICE"+ " \t " +"BRAND NAME");
             int i=1;
             for(product printProd:clothing)
@@ -41,7 +46,13 @@ public class ClothingProducts extends product
                 i++;
             }
             
-            
+            /*
+            CPEnumeration = clothing.elements();
+            while(CPEnumeration.hasMoreElements())
+            {
+                System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+            }
+            */
             System.out.println("\n\t\t 14. SEARCH");
             System.out.println("\t\t 15. SORT [HIGH TO LOW]");
             System.out.println("\t\t 16. SORT [LOW TO HIGH]");
@@ -175,7 +186,11 @@ public class ClothingProducts extends product
             int viewCart = ob.nextInt();
             if(viewCart!=0)
             {
-                
+                /*CPEnumeration = customerCart.elements();
+                while(CPEnumeration.hasMoreElements())
+                {
+                    System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+                }*/
                 System.out.println("\t >>> YOUR CART \n");
                 int i=1;
                 for(product printProd:thisCustomer.customerCart)
@@ -198,7 +213,11 @@ public class ClothingProducts extends product
             int viewCart = ob.nextInt();
             if(viewCart!=0)
             {
-                
+                /*CPEnumeration = customerWishList.elements();
+                while(CPEnumeration.hasMoreElements())
+                {
+                    System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+                }*/
                 System.out.println("\t >>> YOUR WISHLIST \n");
                 int i=1;
                 for(product printProd:thisCustomer.customerWishList)
@@ -220,23 +239,40 @@ public class ClothingProducts extends product
     {
         product allProd;
         Scanner sc;
+        String[] prodStr;
         for(int i=0;i<13;i++)
         {
             try
             {
-                ClothingProductDescriptionFile = new File("C:\\Users\\user\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\ClothingProductsDescription.txt");
+                ClothingProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\ProductsDescription.csv");
                 sc = new Scanner(ClothingProductDescriptionFile);
-                if(sc.hasNextLine())
+                while(sc.hasNextLine())
                 {
-                    allProd= new ClothingProducts((6000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],sc.nextLine());
-                    clothing.add(allProd);
+                    prodStr=sc.nextLine().split(",");
+                    if(prodStr[0].equals("productID"))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if(Integer.parseInt(prodStr[0])==(6000+i+1))
+                        {
+                            allProd= new ClothingProducts((6000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],prodStr[1]);
+                            clothing.add(allProd);
+                        }
+                    }
                 }
             }
             catch(Exception E)
             {
                 System.out.println(E);
             }
-           
+            /*
+            finally{
+                allProd= new ClothingProducts((6000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],"");
+                clothing.add(allProd);
+            }
+            */
         }
     }
 }

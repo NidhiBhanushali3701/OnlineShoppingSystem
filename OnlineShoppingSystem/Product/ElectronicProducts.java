@@ -1,13 +1,21 @@
 package OnlineShoppingSystem.Product;
-import OnlineShoppingSystem.Customer.*;
-import OnlineShoppingSystem.TnE.*;
 import java.util.*;
 import java.io.*;
-
-
+import java.sql.*;
+import OnlineShoppingSystem.Customer.*;
+import OnlineShoppingSystem.TnE.*;
 
 public class ElectronicProducts extends product
 {
+    Vector<product> electronic = new Vector<product>();
+    public static Scanner ob = new Scanner(System.in);
+    ElectronicProducts prod;
+    File ElectronicProductDescriptionFile;
+    
+    String prodName[] = {"PHONES ","TABLETS "," TELEVISION ","OVEN ","FRIGDE ","FANS  "," LIGHTS ","COMPUTER ","LAPTOPS","AIR CONDITIONER ","CAMERA ","SPEAKERS","MUSIC PLAYERS"};
+    long prodCost[] = {120000,100000,200000,20000,65000,5000,5000,150000,200000,50000,45000,40000,30000};
+    String prodSellerName[] ={"APPLE","ONEPLUS","SONY","LG","SAMSUNG","BAJAJ","BAJAJ","APPLE","APPLE","VOLTAS","CANON","SONY","SAMSUNG"};
+
     public ElectronicProducts()
     {
         super();
@@ -16,27 +24,20 @@ public class ElectronicProducts extends product
     public ElectronicProducts(long productId,long productCost,String productName,long productBuyerID,String productBuyerName,long productSellerID,String productSellerName,String productDescription)
     {
         super(productId,productCost,productName,productBuyerID,productBuyerName,productSellerID,productSellerName,productDescription);
-    }
-
-
-    Vector<product> electronic = new Vector<product>();
-    
-    Enumeration<product> CPEnumeration = electronic.elements();
-    String prodName[] = {"PHONES ","TABLETS "," TELEVISION ","OVEN ","FRIGDE ","FANS  "," LIGHTS ","COMPUTER ","LAPTOPS","AIR CONDITIONER ","CAMERA ","SPEAKERS","MUSIC PLAYERS"};
-    long prodCost[] = {120000,100000,200000,20000,65000,5000,5000,150000,200000,50000,45000,40000,30000};
-    String prodSellerName[] ={"APPLE","ONEPLUS","SONY","LG","SAMSUNG","BAJAJ","BAJAJ","APPLE","APPLE","VOLTAS","CANON","SONY","SAMSUNG"};
-    //long prodID[] = {};
-    public static Scanner ob = new Scanner(System.in);
-    ElectronicProducts prod;
-    File ElectronicProductDescriptionFile;
+    }    
 
     public void showProduct(customer thisCustomer)
     {
         addElectronicProductDetails();
-        int ch;
+        int ch,addToBag;
         do{
             System.out.println("\t--->>> WELCOME TO ELECTRONIC COLLECTION ");
-            
+            /*
+            for(int i=0;i<13;i++)
+            {
+                System.out.println("\t\t\t"+electronic.get(i).productName + " \t " +electronic.get(i).productCost + " \t " +electronic.get(i).productID);
+            }
+            */
             System.out.println("\n\t\t "+" "+"   "+"PRODUCT NAME"+ " \t" +"PRICE"+ " \t " +"BRAND NAME");
             int i=1;
             for(product printProd:electronic)
@@ -44,7 +45,14 @@ public class ElectronicProducts extends product
                 System.out.println("\t\t "+(i)+". "+printProd.productName + " \t " +printProd.productCost + " \t " + printProd.productSellerName);
                 i++;
             }
-           
+            
+            /*
+            CPEnumeration = electronic.elements();
+            while(CPEnumeration.hasMoreElements())
+            {
+                System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+            }
+            */
             System.out.println("\n\t\t 14. SEARCH");
             System.out.println("\t\t 15. SORT [HIGH TO LOW]");
             System.out.println("\t\t 16. SORT [LOW TO HIGH]");
@@ -179,7 +187,11 @@ public class ElectronicProducts extends product
             int viewCart = ob.nextInt();
             if(viewCart!=0)
             {
-               
+                /*CPEnumeration = customerCart.elements();
+                while(CPEnumeration.hasMoreElements())
+                {
+                    System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+                }*/
                 System.out.println("\t >>> YOUR CART \n");
                 int i=1;
                 for(product printProd:thisCustomer.customerCart)
@@ -202,7 +214,11 @@ public class ElectronicProducts extends product
             int viewCart = ob.nextInt();
             if(viewCart!=0)
             {
-                
+                /*CPEnumeration = customerWishList.elements();
+                while(CPEnumeration.hasMoreElements())
+                {
+                    System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+                }*/
                 System.out.println("\t >>> YOUR WISHLIST \n");
                 int i=1;
                 for(product printProd:thisCustomer.customerWishList)
@@ -224,23 +240,45 @@ public class ElectronicProducts extends product
     {
         product allProd;
         Scanner sc;
+        String[] prodStr;
         for(int i=0;i<13;i++)
         {
             try
             {
-                ElectronicProductDescriptionFile = new File("C:\\Users\\user\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\ElectronicProductsDescription.txt");
+                ElectronicProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\ProductsDescription.csv");
                 sc = new Scanner(ElectronicProductDescriptionFile);
-                if(sc.hasNextLine())
+                while(sc.hasNextLine())
                 {
-                    allProd= new ElectronicProducts((5000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],sc.nextLine());
-                    electronic.add(allProd);
+                    prodStr=sc.nextLine().split(",");
+                    if(prodStr[0].equals("productID"))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if(Integer.parseInt(prodStr[0])==(5000+i+1))
+                        {
+                            allProd= new ElectronicProducts((5000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],prodStr[1]);
+                            electronic.add(allProd);
+                        }
+                    }
                 }
             }
             catch(Exception E)
             {
                 System.out.println(E);
             }
-            
+            /*
+            finally{
+                allProd= new ElectronicProducts((6000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],"");
+                electronic.add(allProd);
+            }
+            */
         }
     }
+    
+
+
+
+
 }

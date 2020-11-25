@@ -5,49 +5,50 @@ import java.sql.*;
 import OnlineShoppingSystem.Customer.*;
 import OnlineShoppingSystem.TnE.*;
 
-public class GrocceryProducts extends product
+public class GrommingProducts extends product
 {
-    public GrocceryProducts()
+    public GrommingProducts()
     {
         super();
     }
 
-    public GrocceryProducts(long productId,long productCost,String productName,long productBuyerID,String productBuyerName,long productSellerID,String productSellerName,String productDescription)
+    public GrommingProducts(long productId,long productCost,String productName,long productBuyerID,String productBuyerName,long productSellerID,String productSellerName,String productDescription)
     {
         super(productId,productCost,productName,productBuyerID,productBuyerName,productSellerID,productSellerName,productDescription);
     }
 
-    Vector<product> groccery = new Vector<product>();
-    public static Scanner ob = new Scanner(System.in);
-    GrocceryProducts prod;
-    File GrocceryProductDescriptionFile;
 
-    String prodName[] = {" COOKING OIL       ","  PULSES   ","  FRUITS AND VEGETABLES    ","  WHEAT      ","  DRY FRUITS     ","  RICE      ","  BISCUITS AND SNACKS ","  COLD DRINKS  ","  TEA       ","  COFFEE       ","  MILK    ","  BREAD    ","  INSTANT NOODLES  "};
-    long prodCost[] = {250,220,400,200,350,250,80,50,60,75,25,50,30};
-    String prodSellerName[] ={"FORTUNE","ORGANIC TATTVA","HARVEST FARMS","AASHIRWAAD","FARMOWN","KOHINOOR","BRITANNIA","THUMBS UP","SOCIETY","NESCAFE","AMUL","ENGLISH OVEN","MAGGI"};
+    Vector<product> gromming = new Vector<product>();
+    public static Scanner ob = new Scanner(System.in);
+    GrommingProducts prod;
+    File GrommingProductDescriptionFile;
+
+    String prodName[] = {"LOTIONS","OILS","SOAP","FACEWASH","SHAMPOO","CONDITIONER","PASTE","TOOTH BRUSH","FACIAL MASKS","FACIAL KITS","NAIL PAINTS","ACCESSORIES","WIPES"};
+    long prodCost[] = {1299,1399,1149,1999,1299,3499,2999,5999,3499,5999,4499,3999,10999};
+    String prodSellerName[] ={"VASLINE","DOVE","DOVE","C&C","DOVE","DOVE","CLOSE UP","ORAL B","C&C","VLCC","NYKAA","Dior","J&J"};
 
     public void showProduct(customer thisCustomer)
     {
-        addGrocceryProductDetails();
+        addGrommingProductDetails();
         int ch,addToBag;
         do{
-            System.out.println("\t--->>> WELCOME TO GROCCERY COLLECTION ");
+            System.out.println("\t--->>> WELCOME TO GROMMING COLLECTION ");
             /*
             for(int i=0;i<13;i++)
             {
-                System.out.println("\t\t\t"+groccery.get(i).productName + " \t " +groccery.get(i).productCost + " \t " +groccery.get(i).productID);
+                System.out.println("\t\t\t"+gromming.get(i).productName + " \t " +gromming.get(i).productCost + " \t " +gromming.get(i).productID);
             }
             */
             System.out.println("\n\t\t "+" "+"   "+"PRODUCT NAME"+ " \t" +"PRICE"+ " \t " +"BRAND NAME");
             int i=1;
-            for(product printProd:groccery)
+            for(product printProd:gromming)
             {
                 System.out.println("\t\t "+(i)+". "+printProd.productName + " \t " +printProd.productCost + " \t " + printProd.productSellerName);
                 i++;
             }
             
             /*
-            CPEnumeration = groccery.elements();
+            CPEnumeration = gromming.elements();
             while(CPEnumeration.hasMoreElements())
             {
                 System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
@@ -74,15 +75,15 @@ public class GrocceryProducts extends product
                 case 11:
                 case 12:
                 case 13:
-                    System.out.println(groccery.get(ch-1).productDescription);
+                    System.out.println(gromming.get(ch-1).productDescription);
                     System.out.println("\t Do You want to add it to : \n   1. CART \n   2. WISHLIST \n   0. NONE ");
                     switch(ob.nextInt())
                     {
                         case 1:
-                            addToCart(thisCustomer,groccery.get(ch-1));
+                            addToCart(thisCustomer,gromming.get(ch-1));
                         break;
                         case 2:
-                            addToWishList(thisCustomer,groccery.get(ch-1));
+                            addToWishList(thisCustomer,gromming.get(ch-1));
                         break;
                         case 0:
                             System.out.println("GOING BACK");
@@ -111,15 +112,15 @@ public class GrocceryProducts extends product
                 break;
             }
         }while(ch!=0);
-        groccery = new Vector<product>();
+        gromming = new Vector<product>();
     } 
 
     public void search(String productNameToFind) 
     {
         int i,flag=0;
-        for(i=0;i<groccery.size();i++)
+        for(i=0;i<gromming.size();i++)
         {
-            if(groccery.elementAt(i).productName.trim().equalsIgnoreCase(productNameToFind))
+            if(gromming.elementAt(i).productName.trim().equalsIgnoreCase(productNameToFind))
             {
                 flag=1;
                 break;
@@ -132,8 +133,7 @@ public class GrocceryProducts extends product
             }
             else
             {
-                System.out.println(groccery.get(i).productName+"\t"+groccery.get(i).productCost+"\t"+groccery.get(i).productSellerName);
-                
+                System.out.println(gromming.get(i).productName+"\t"+gromming.get(i).productCost+"\t"+gromming.get(i).productSellerName);
             }
         }
         catch(Exception e)
@@ -145,15 +145,15 @@ public class GrocceryProducts extends product
     public void sortHighToLow() 
     {
         int i,j;
-        for(i=0;i<groccery.size();i++)
+        for(i=0;i<gromming.size();i++)
         {
-            for(j=0;j<groccery.size()-1-i;j++)
+            for(j=0;j<gromming.size()-1-i;j++)
             {
-                if(groccery.get(j).productCost<groccery.get(j+1).productCost)
+                if(gromming.get(j).productCost<gromming.get(j+1).productCost)
                 {
-                    product temp = groccery.get(j);
-                    groccery.set(j,groccery.get(j+1));
-                    groccery.set(j+1,temp);
+                    product temp = gromming.get(j);
+                    gromming.set(j,gromming.get(j+1));
+                    gromming.set(j+1,temp);
                 }
             }
         }
@@ -162,15 +162,15 @@ public class GrocceryProducts extends product
     public void sortLowToHigh() 
     {
         int i,j;
-        for(i=0;i<groccery.size();i++)
+        for(i=0;i<gromming.size();i++)
         {
-            for(j=0;j<groccery.size()-1-i;j++)
+            for(j=0;j<gromming.size()-1-i;j++)
             {
-                if(groccery.get(j).productCost>groccery.get(j+1).productCost)
+                if(gromming.get(j).productCost>gromming.get(j+1).productCost)
                 {
-                    product temp = groccery.get(j);
-                    groccery.set(j,groccery.get(j+1));
-                    groccery.set(j+1,temp);
+                    product temp = gromming.get(j);
+                    gromming.set(j,gromming.get(j+1));
+                    gromming.set(j+1,temp);
                 }
             }
         }
@@ -232,11 +232,11 @@ public class GrocceryProducts extends product
     }
     public static void main(String args[]) 
     {
-        GrocceryProducts prodMain = new GrocceryProducts();
-        ((GrocceryProducts) prodMain).addGrocceryProductDetails();
+        GrommingProducts prodMain = new GrommingProducts();
+        ((GrommingProducts) prodMain).addGrommingProductDetails();
     }
 
-    public void addGrocceryProductDetails()
+    public void addGrommingProductDetails()
     {
         product allProd;
         Scanner sc;
@@ -245,8 +245,8 @@ public class GrocceryProducts extends product
         {
             try
             {
-                GrocceryProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\ProductsDescription.csv");
-                sc = new Scanner(GrocceryProductDescriptionFile);
+                GrommingProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\ProductsDescription.csv");
+                sc = new Scanner(GrommingProductDescriptionFile);
                 while(sc.hasNextLine())
                 {
                     prodStr=sc.nextLine().split(",");
@@ -256,10 +256,10 @@ public class GrocceryProducts extends product
                     }
                     else
                     {
-                        if(Integer.parseInt(prodStr[0])==(4000+i+1))
+                        if(Integer.parseInt(prodStr[0])==(3000+i+1))
                         {
-                            allProd= new GrocceryProducts((4000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],prodStr[1]);
-                            groccery.add(allProd);
+                            allProd= new GrommingProducts((3000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],prodStr[1]);
+                            gromming.add(allProd);
                         }
                     }
                 }
@@ -270,10 +270,11 @@ public class GrocceryProducts extends product
             }
             /*
             finally{
-                allProd= new GrocceryProducts((6000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],"");
-                groccery.add(allProd);
+                allProd= new GrommingProducts((6000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],"");
+                gromming.add(allProd);
             }
             */
         }
     }
+
 }

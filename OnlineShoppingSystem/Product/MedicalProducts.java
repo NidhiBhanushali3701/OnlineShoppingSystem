@@ -1,21 +1,19 @@
 package OnlineShoppingSystem.Product;
 import java.util.*;
 import java.io.*;
+import java.sql.*;
 import OnlineShoppingSystem.Customer.*;
 import OnlineShoppingSystem.TnE.*;
 
 public class MedicalProducts extends product
 {
     Vector<product> medical = new Vector<product>();
-    //static Vector<product> Cart = new Vector<product>();
-   
-    String prodName[] = {"RELAY SPRAY","MASKS","BAND AID","ANTISEPTICS","OINTMENTS","THERMOMETER","FIRST AID KIT","CROCIN","PUDIN HARA ","CYCLOPAM","PARACETAMOL","COUGH SYRUP","SANITIZERS"};
-    long prodCost[] = {300,40,35,200,150,600,1400,50,25,45,50,105,200};
-    String prodSellerName[] ={"PHARMEASY","MEDICOS","PHARMEASY","DETTOL","SAVLON","MEDHOME","PHARMEASY","MEDICOS","DABUR","MEDICOS","MEDHOME","HONITUS","LIFEBUOY"};
-    //long prodID[] = {};
     public static Scanner ob = new Scanner(System.in);
     MedicalProducts prod;
     File MedicalProductDescriptionFile;
+    String prodName[] = {"RELAY SPRAY","MASKS","BAND AID","ANTISEPTICS","OINTMENTS","THERMOMETER","FIRST AID KIT","CROCIN","PUDIN HARA ","CYCLOPAM","PARACETAMOL","COUGH SYRUP","SANITIZERS"};
+    long prodCost[] = {300,40,35,200,150,600,1400,50,25,45,50,105,200};
+    String prodSellerName[] ={"PHARMEASY","MEDICOS","PHARMEASY","DETTOL","SAVLON","MEDHOME","PHARMEASY","MEDICOS","DABUR","MEDICOS","MEDHOME","HONITUS","LIFEBUOY"};
 
     public MedicalProducts()
     {
@@ -30,10 +28,15 @@ public class MedicalProducts extends product
     public void showProduct(customer thisCustomer)
     {
         addMedicalProductDetails();
-        int ch;
+        int ch,addToBag;
         do{
             System.out.println("\t--->>> WELCOME TO MEDICAL COLLECTION ");
-           
+            /*
+            for(int i=0;i<13;i++)
+            {
+                System.out.println("\t\t\t"+medical.get(i).productName + " \t " +medical.get(i).productCost + " \t " +medical.get(i).productID);
+            }
+            */
             System.out.println("\n\t\t "+" "+"   "+"PRODUCT NAME"+ " \t" +"PRICE"+ " \t " +"BRAND NAME");
             int i=1;
             for(product printProd:medical)
@@ -42,7 +45,13 @@ public class MedicalProducts extends product
                 i++;
             }
             
-            
+            /*
+            CPEnumeration = medical.elements();
+            while(CPEnumeration.hasMoreElements())
+            {
+                System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+            }
+            */
             System.out.println("\n\t\t 14. SEARCH");
             System.out.println("\t\t 15. SORT [HIGH TO LOW]");
             System.out.println("\t\t 16. SORT [LOW TO HIGH]");
@@ -203,7 +212,11 @@ public class MedicalProducts extends product
             int viewCart = ob.nextInt();
             if(viewCart!=0)
             {
-                
+                /*CPEnumeration = customerWishList.elements();
+                while(CPEnumeration.hasMoreElements())
+                {
+                    System.out.println(CPEnumeration.nextElement().productName + " \t " +CPEnumeration.nextElement().productCost);
+                }*/
                 System.out.println("\t >>> YOUR WISHLIST \n");
                 int i=1;
                 for(product printProd:thisCustomer.customerWishList)
@@ -225,23 +238,40 @@ public class MedicalProducts extends product
     {
         product allProd;
         Scanner sc;
+        String[] prodStr;
         for(int i=0;i<13;i++)
         {
             try
             {
-                MedicalProductDescriptionFile = new File("C:\\Users\\user\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\MedicalProductsDescription.txt");
+                MedicalProductDescriptionFile = new File("C:\\Users\\Nidhi\\Desktop\\OnlineShoppingSystem\\OnlineShoppingSystem\\Product\\ProductsDescription.csv");
                 sc = new Scanner(MedicalProductDescriptionFile);
-                if(sc.hasNextLine())
+                while(sc.hasNextLine())
                 {
-                    allProd= new MedicalProducts((1000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],sc.nextLine());
-                    medical.add(allProd);
+                    prodStr=sc.nextLine().split(",");
+                    if(prodStr[0].equals("productID"))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if(Integer.parseInt(prodStr[0])==(1000+i+1))
+                        {
+                            allProd= new MedicalProducts((1000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],prodStr[1]);
+                            medical.add(allProd);
+                        }
+                    }
                 }
             }
             catch(Exception E)
             {
                 System.out.println(E);
             }
-            
+            /*
+            finally{
+                allProd= new MedicalProducts((6000+i+1),prodCost[i],prodName[i],0,"",0,prodSellerName[i],"");
+                medical.add(allProd);
+            }
+            */
         }
     }
 }
