@@ -39,7 +39,7 @@ public abstract class product
 		productDescription="";
 	}
 
-	public abstract void showProduct(customer thisCustomer);		//we will show the respective product here 
+	public abstract void showProduct(customer thisCustomer);		
 
 	public abstract void search(String productNameToFind);
 	
@@ -47,50 +47,7 @@ public abstract class product
 	
 	public abstract void sortLowToHigh();
 
-	//public abstract void searchByBrand();
-	
-	//public abstract void sortByNew();
-
-	//public abstract void sortByPopular();
-
-	public abstract void addToCart(customer thisCustomer,product addToCartProduct);
-
-	//public abstract void removeFromCart(customer thisCustomer,product toRemoveProduct);
-
-	public void billing(customer thisCustomer,Vector<product> customerCartVector)
-	{
-		/*thisCustomer.customerTotalBill=0;
-		int q;
-		for(product buyingProd:customerCartVector)
-		{
-			q=0;
-			System.out.println("Enter the quantity of "+buyingProd.productName);
-			q=ob.nextInt();
-			thisCustomer.customerTotalBill+=(buyingProd.productCost*q);
-		}
-		System.out.println("  \t  \t \t YOUR TOTAL AMOUNT IS = $ " + thisCustomer.customerTotalBill+"\n");
-		if(thisCustomer.customerCredits>0)
-		{
-		System.out.println("DO YOY WANT TO USE YOUR ACCOUNT CREDIT BALANCE");
-		int op=ob.nextInt();
-		if(op!=0)
-		{
-			thisCustomer.customerTotalBill-=thisCustomer.customerCredits;
-			System.out.println("  \t  \t \t YOUR GRAND TOTAL AMOUNT IS = $ " + thisCustomer.customerTotalBill+"\n");
-		}
-			System.out.println(" NICE CHOICE OF PRODUCTS ");
-		}*/
-	}
-	/*public void billing(customer thisCustomer,Vector<product> customerCartVector)
-	{
-		thisCustomer.customerTotalBill=0;
-		System.out.println("in bill");
-		for(product buyingProd:customerCartVector)
-		{
-			thisCustomer.customerTotalBill+=buyingProd.productCost;
-		}
-		System.out.println("  \t  \t \t YOUR TOTAL AMOUNT IS = $ " + thisCustomer.customerTotalBill+"\n");
-	}*/
+	public abstract void addToCart(customer thisCustomer,product addToCartProduct);	
 	
 	public abstract void addToWishList(customer thisCustomer,product addToWLProd);
 
