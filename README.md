@@ -12,7 +12,7 @@
 - Delete Account anytime
 
 ### Concepts Used 
-- We have used ***` OOPs'`*** concepts 
+- We have used following ***` OOPs'`*** concepts 
   - Inheritance
   - Polymorphism
   - Abstraction
